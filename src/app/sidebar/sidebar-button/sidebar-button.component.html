@@ -1,0 +1,7 @@
+<button class="button">
+  <img ngSrc="{{source}}" width="18" height="19" alt="{{text}} icon">
+
+  @if (expanded$ | async) {
+    <p class="button-text">{{text}}</p>
+  }
+</button>
