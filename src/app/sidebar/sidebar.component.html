@@ -1,0 +1,17 @@
+<div [class]="(expanded$ | async) ? 'sidebar-open' : 'sidebar-closed'" >
+  <div class="flex flex-col space-y-6">
+    <app-sidebar-logo></app-sidebar-logo>
+
+    <div class="menu-buttons">
+      <app-sidebar-button [source]="'icon-nav-overview.svg'" [text]="'Overview'"></app-sidebar-button>
+      <app-sidebar-button [source]="'icon-nav-transactions.svg'" [text]="'Transactions'"></app-sidebar-button>
+      <app-sidebar-button [source]="'icon-nav-budgets.svg'" [text]="'Budgets'"></app-sidebar-button>
+      <app-sidebar-button [source]="'icon-nav-pots.svg'" [text]="'Pots'"></app-sidebar-button>
+      <app-sidebar-button [source]="'icon-nav-recurring-bills.svg'" [text]="'Recurring Bills'"></app-sidebar-button>
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <app-sidebar-minimize></app-sidebar-minimize>
+  </div>
+</div>
