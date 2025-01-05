@@ -55,7 +55,7 @@ module.exports = {
         'preset4': ['14px', {
           lineHeight: '150%',
           letterSpacing: '0px',
-          fontWeight: 'regular',
+          fontWeight: 'normal',
         }],
         'preset4-bold': ['14px', {
           lineHeight: '150%',
@@ -65,7 +65,7 @@ module.exports = {
         'preset5': ['12px', {
           lineHeight: '150%',
           letterSpacing: '0px',
-          fontWeight: 'regular',
+          fontWeight: 'normal',
         }],
         'preset5-bold': ['12px', {
           lineHeight: '150%',

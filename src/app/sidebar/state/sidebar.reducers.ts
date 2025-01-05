@@ -2,7 +2,7 @@ import {createReducer, on} from '@ngrx/store';
 import {SidebarState} from './sidebar.state';
 import {SidebarActions} from './sidebar.actions';
 import {produce} from "immer";
-import {Page} from '../../utils/models';
+import {Page} from '../../../utils/models';
 
 export const initialState: Readonly<SidebarState> = {
     expanded: true,

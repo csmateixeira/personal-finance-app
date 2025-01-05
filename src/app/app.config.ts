@@ -7,13 +7,16 @@ import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {SidebarReducer} from './sidebar/state/sidebar.reducers';
 import {sidebarFeatureKey} from './sidebar/state/sidebar.state';
 import { provideEffects } from '@ngrx/effects';
+import {TransactionsEffects} from './pages/transactions/state/transactions.effects';
+import {TransactionsReducer} from './pages/transactions/state/transactions.reducers';
+import {transactionsFeatureKey} from './pages/transactions/state/transactions.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore({ [sidebarFeatureKey]: SidebarReducer }),
+    provideStore({ [sidebarFeatureKey]: SidebarReducer, [transactionsFeatureKey]: TransactionsReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: false }),
-    provideEffects()
+    provideEffects(TransactionsEffects)
 ]
 };

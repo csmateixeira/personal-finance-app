@@ -1,5 +1,5 @@
 import {createActionGroup, emptyProps, props} from '@ngrx/store';
-import {Page} from '../../utils/models';
+import {Page} from '../../../utils/models';
 
 export const SidebarActions = createActionGroup(
     {

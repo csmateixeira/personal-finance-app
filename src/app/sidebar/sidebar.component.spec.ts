@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarComponent } from './sidebar.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {TestUtils} from '../utils/test-utils';
+import {TestUtils} from '../../utils/test-utils';
 import {RouterModule} from '@angular/router';
 
 describe('SidebarComponent', () => {
