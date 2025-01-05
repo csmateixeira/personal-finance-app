@@ -6,6 +6,7 @@ import {Store} from '@ngrx/store';
 import {selectSidebarExpanded, SidebarState} from './state/sidebar.state';
 import {Observable} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
+import {Page} from '../utils/models';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,6 +20,7 @@ import {AsyncPipe} from '@angular/common';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
+  protected readonly Page = Page;
   private store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   expanded$: Observable<boolean> = this.store.select(selectSidebarExpanded);

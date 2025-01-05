@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {AsyncPipe, NgOptimizedImage} from '@angular/common';
+import {AsyncPipe} from '@angular/common';
 import {Store} from '@ngrx/store';
 import {selectSidebarExpanded, SidebarState} from '../state/sidebar.state';
 import {Observable} from 'rxjs';
@@ -9,7 +9,6 @@ import {SidebarActions} from '../state/sidebar.actions';
   selector: 'app-sidebar-minimize',
   imports: [
     AsyncPipe,
-    NgOptimizedImage
   ],
   templateUrl: './sidebar-minimize.component.html',
   styleUrl: './sidebar-minimize.component.scss'
