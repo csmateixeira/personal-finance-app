@@ -1,7 +1,13 @@
+import {Page} from './models';
+import {SidebarState} from '../sidebar/state/sidebar.state';
+
 export class TestUtils {
-  static initialState = {
-    sidebar: {
-      expanded: true
+  static getInitialState(): {sidebar: SidebarState} {
+    return {
+      sidebar: {
+        expanded: true,
+        activePage: Page.overview
+      }
     }
   }
 }

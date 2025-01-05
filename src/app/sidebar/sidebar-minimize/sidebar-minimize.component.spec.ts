@@ -14,7 +14,7 @@ describe('SidebarMinimizeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SidebarMinimizeComponent],
       providers: [
-        provideMockStore({ initialState: TestUtils.initialState }),
+        provideMockStore({ initialState: TestUtils.getInitialState() }),
       ]
     })
     .compileComponents();

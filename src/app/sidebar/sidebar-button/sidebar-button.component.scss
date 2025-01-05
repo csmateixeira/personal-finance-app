@@ -1,7 +1,15 @@
-.button {
-  @apply flex flex-row space-x-4 px-8 py-4 items-center;
+:host {
+  @apply text-preset3 w-full;
 }
 
-.button-text {
-  @apply text-preset3 text-grey-300;
+.button-active {
+  @apply flex flex-row w-full space-x-4 px-8 py-4 items-center bg-beige-100 rounded-r-xl border-l-4 border-l-green;
+}
+
+.button-active p {
+  @apply  text-grey-900;
+}
+
+.button-active svg {
+  @apply fill-green;
 }

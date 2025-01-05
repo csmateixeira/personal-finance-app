@@ -1,5 +1,6 @@
 import * as fromReducer from './sidebar.reducers';
 import {SidebarActions} from './sidebar.actions';
+import {TestUtils} from '../../utils/test-utils';
 
 describe('Sidebar Reducers', () => {
   describe('unknown action', () => {
@@ -16,25 +17,26 @@ describe('Sidebar Reducers', () => {
 
   describe('toggle sidebar action', () => {
     it('should toggle expanded to false when initial value is true', () => {
-      const initialState = {
-        expanded: true,
-      };
+      const initialState = TestUtils.getInitialState().sidebar;
       const action = SidebarActions.toggleSidebar;
       const state = fromReducer.SidebarReducer(initialState, action);
 
       expect(state).toEqual({
+        ...initialState,
         expanded: false,
       });
     });
 
     it('should toggle expanded to true when initial value is false', () => {
       const initialState = {
+        ...TestUtils.getInitialState().sidebar,
         expanded: false,
       };
       const action = SidebarActions.toggleSidebar;
       const state = fromReducer.SidebarReducer(initialState, action);
 
       expect(state).toEqual({
+        ...initialState,
         expanded: true,
       });
     });
