@@ -6,6 +6,15 @@ export enum Page {
   bills = 'bills'
 }
 
+export enum Sort {
+  latest = 'Latest',
+  oldest = 'Oldest',
+  aToZ = 'A to Z',
+  zToA = 'Z to A',
+  highest = 'Highest',
+  lowest = 'Lowest',
+}
+
 export interface Transaction {
   id?: string;
   avatar: string;

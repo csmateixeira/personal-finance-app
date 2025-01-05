@@ -1,4 +1,4 @@
-<button [ngClass]="(active$ | async) ? 'button-active' : 'flex flex-row w-full space-x-4 px-8 py-4 items-center text-grey-300 fill-grey-300 group group-hover:text-grey-100'" [routerLink]="linkTo">
+<button [ngClass]="(active$ | async) ? 'button-active' : 'button-inactive group group-hover:text-grey-100 group-hover:cursor-pointer'" [routerLink]="linkTo">
 
   @switch (linkTo) {
     @case (Page.overview) {

@@ -1,6 +1,7 @@
 import * as fromReducer from './transactions.reducers';
 import {TestUtils} from '../../../../utils/test-utils';
 import {TransactionsActions} from './transactions.actions';
+import {TransactionsState} from './transactions.state';
 
 describe('TransactionsReducer', () => {
   describe('unknown action', () => {
@@ -20,8 +21,31 @@ describe('TransactionsReducer', () => {
       const action = TransactionsActions.transactionsLoaded({
         transactions: TestUtils.getTransactions()
       });
-      expect(fromReducer.TransactionsReducer([], action))
-        .toEqual(TestUtils.getTransactions());
+
+      const newState: Readonly<TransactionsState> =
+        fromReducer.TransactionsReducer(TestUtils.getInitialState().transactions, action);
+
+      expect(newState)
+        .toEqual({
+          ...TestUtils.getInitialState().transactions,
+          data: TestUtils.getTransactions(),
+          categories: ['General', 'Dining Out']
+        });
+    });
+
+    it('should set the correct page in the state', () => {
+      const action = TransactionsActions.setPage({
+        page: 10
+      });
+
+      const newState: Readonly<TransactionsState> =
+        fromReducer.TransactionsReducer(TestUtils.getInitialState().transactions, action);
+
+      expect(newState)
+        .toEqual({
+          ...TestUtils.getInitialState().transactions,
+          page: 10
+        });
     });
   });
 });

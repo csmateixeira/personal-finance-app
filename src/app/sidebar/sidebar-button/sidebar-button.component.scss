@@ -13,3 +13,7 @@
 .button-active svg {
   @apply fill-green;
 }
+
+.button-inactive {
+  @apply flex flex-row w-full space-x-4 px-8 py-4 items-center text-grey-300 fill-grey-300;
+}
