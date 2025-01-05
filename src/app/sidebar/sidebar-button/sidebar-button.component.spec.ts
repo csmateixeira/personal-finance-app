@@ -1,8 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SidebarButtonComponent } from './sidebar-button.component';
+import {SidebarButtonComponent} from './sidebar-button.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {TestUtils} from '../../utils/test-utils';
+import {Page} from '../../utils/models';
+import {RouterModule} from '@angular/router';
 
 describe('SidebarButtonComponent', () => {
   let component: SidebarButtonComponent;
@@ -12,9 +14,9 @@ describe('SidebarButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarButtonComponent],
+      imports: [SidebarButtonComponent, RouterModule.forRoot([])],
       providers: [
-        provideMockStore({ initialState: TestUtils.initialState }),
+        provideMockStore({ initialState: TestUtils.getInitialState() })
       ]
     })
     .compileComponents();
@@ -22,8 +24,8 @@ describe('SidebarButtonComponent', () => {
     fixture = TestBed.createComponent(SidebarButtonComponent);
     component = fixture.componentInstance;
 
-    component.source = 'source.svg';
-    component.text = 'Item Text';
+    component.text = 'Overview';
+    component.linkTo = Page.overview;
 
     store = TestBed.inject(MockStore);
     fixture.detectChanges();

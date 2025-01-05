@@ -2,15 +2,16 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {TestUtils} from './utils/test-utils';
+import {RouterModule} from '@angular/router';
 
 describe('AppComponent', () => {
   let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, RouterModule.forRoot([])],
       providers: [
-        provideMockStore({ initialState: TestUtils.initialState }),
+        provideMockStore({ initialState: TestUtils.getInitialState() }),
       ]
     }).compileComponents();
 

@@ -14,7 +14,7 @@ describe('SidebarLogoComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SidebarLogoComponent],
       providers: [
-        provideMockStore({ initialState: TestUtils.initialState }),
+        provideMockStore({ initialState: TestUtils.getInitialState() }),
       ]
     })
     .compileComponents();
