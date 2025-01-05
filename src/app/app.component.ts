@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {SidebarComponent} from './sidebar/sidebar.component';
+import {TransactionsActions} from './pages/transactions/state/transactions.actions';
+import {Store} from '@ngrx/store';
+import {SidebarState} from './sidebar/state/sidebar.state';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +11,11 @@ import {SidebarComponent} from './sidebar/sidebar.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'personal-finance-app';
+export class AppComponent implements OnInit {
+  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+
+
+  ngOnInit() {
+    this.store.dispatch(() => TransactionsActions.loadTransactions());
+  }
 }

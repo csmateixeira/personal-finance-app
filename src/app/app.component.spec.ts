@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {TestUtils} from './utils/test-utils';
+import {TestUtils} from '../utils/test-utils';
 import {RouterModule} from '@angular/router';
 
 describe('AppComponent', () => {

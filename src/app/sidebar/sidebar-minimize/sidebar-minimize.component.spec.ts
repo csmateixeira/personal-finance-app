@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SidebarMinimizeComponent} from './sidebar-minimize.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {TestUtils} from '../../utils/test-utils';
+import {TestUtils} from '../../../utils/test-utils';
 
 describe('SidebarMinimizeComponent', () => {
   let component: SidebarMinimizeComponent;

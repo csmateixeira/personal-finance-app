@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {Page} from "../../utils/models";
+import {Page} from "../../../utils/models";
 
 export interface SidebarState {
   expanded: boolean;
