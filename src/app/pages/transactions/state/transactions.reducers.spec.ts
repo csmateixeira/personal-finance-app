@@ -1,7 +1,6 @@
 import * as fromReducer from './transactions.reducers';
 import {TestUtils} from '../../../../utils/test-utils';
 import {TransactionsActions} from './transactions.actions';
-import {Transaction} from '../../../../utils/models';
 import {TransactionsState} from './transactions.state';
 
 describe('TransactionsReducer', () => {
@@ -23,9 +22,6 @@ describe('TransactionsReducer', () => {
         transactions: TestUtils.getTransactions()
       });
 
-      const pages = new Map<number, Transaction[]>();
-      pages.set(1, TestUtils.getTransactions());
-
       const newState: Readonly<TransactionsState> =
         fromReducer.TransactionsReducer(TestUtils.getInitialState().transactions, action);
 
@@ -34,6 +30,21 @@ describe('TransactionsReducer', () => {
           ...TestUtils.getInitialState().transactions,
           data: TestUtils.getTransactions(),
           categories: ['General', 'Dining Out']
+        });
+    });
+
+    it('should set the correct page in the state', () => {
+      const action = TransactionsActions.setPage({
+        page: 10
+      });
+
+      const newState: Readonly<TransactionsState> =
+        fromReducer.TransactionsReducer(TestUtils.getInitialState().transactions, action);
+
+      expect(newState)
+        .toEqual({
+          ...TestUtils.getInitialState().transactions,
+          page: 10
         });
     });
   });

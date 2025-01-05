@@ -40,6 +40,7 @@ export class TestUtils {
         "recurring": false
       },
       {
+        id: '789',
         "avatar": "avatars/daniel-carter.jpg",
         "name": "Daniel Carter",
         "category": "General",
