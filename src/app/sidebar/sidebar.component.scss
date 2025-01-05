@@ -1,9 +1,9 @@
 .sidebar-open {
-  @apply flex flex-col pb-6 bg-grey-900 rounded-r-2xl w-[300px] h-screen justify-between space-y-6;
+  @apply flex flex-col pb-6 bg-grey-900 rounded-r-2xl w-[300px] h-full justify-between space-y-6;
 }
 
 .sidebar-closed {
-  @apply flex flex-col pb-6 bg-grey-900 rounded-r-2xl w-auto h-screen justify-between space-y-6;
+  @apply flex flex-col pb-6 bg-grey-900 rounded-r-2xl w-auto h-full justify-between space-y-6;
 }
 
 .menu-buttons {

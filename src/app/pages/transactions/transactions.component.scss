@@ -1,3 +1,15 @@
+.transactions-page {
+  @apply flex flex-col space-y-8;
+}
+
+.transactions-page h1 {
+  @apply py-2 text-start text-preset1 text-grey-900;
+}
+
+.transactions-container {
+  @apply flex flex-col space-y-6 px-8 py-8 bg-white rounded-xl;
+}
+
 .header-tr {
   @apply text-grey-500;
 }
@@ -24,5 +36,21 @@
 
 .positive-amount {
   @apply px-4 py-4 text-preset4-bold text-green text-end;
+}
+
+.pagination-container {
+  @apply flex flex-row w-full pt-6 justify-between;
+}
+
+.page-caret-button {
+  @apply flex flex-row space-x-4 h-10 px-4 text-center items-center border-grey-500 border rounded-lg;
+}
+
+.page-button-container {
+  @apply flex flex-row space-x-4 items-center text-center text-grey-900;
+}
+
+.page-button {
+  @apply text-center w-10 h-10 border-grey-500 border rounded-lg;
 }
 

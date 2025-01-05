@@ -7,6 +7,7 @@ export const TransactionsActions = createActionGroup(
         events: {
           'Load Transactions': emptyProps(),
           'Transactions Loaded': props<{ transactions: Transaction[] }>(),
+          'Set Page': props<{ page: number }>(),
         }
     }
 );
