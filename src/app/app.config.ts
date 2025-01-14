@@ -10,6 +10,7 @@ import { provideEffects } from '@ngrx/effects';
 import {TransactionsEffects} from './pages/transactions/state/transactions.effects';
 import {TransactionsReducer} from './pages/transactions/state/transactions.reducers';
 import {transactionsFeatureKey} from './pages/transactions/state/transactions.state';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({ [sidebarFeatureKey]: SidebarReducer, [transactionsFeatureKey]: TransactionsReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: false }),
-    provideEffects(TransactionsEffects)
+    provideEffects(TransactionsEffects),
+    provideAnimationsAsync(),
 ]
 };

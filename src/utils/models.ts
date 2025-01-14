@@ -13,6 +13,13 @@ export enum Sort {
   zToA = 'Z to A',
   highest = 'Highest',
   lowest = 'Lowest',
+
+
+}
+
+export interface Option {
+  id: number;
+  value: string;
 }
 
 export interface Transaction {

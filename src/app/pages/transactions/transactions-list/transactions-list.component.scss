@@ -1,0 +1,27 @@
+.header-tr {
+  @apply text-grey-500;
+}
+
+.header-tr th {
+  @apply px-4 py-3 text-start text-preset5 last:text-end;
+}
+
+.content-tr {
+  @apply border-t-[1px] border-grey-100;
+}
+
+.recipient-container {
+  @apply flex flex-row space-x-4 items-center;
+}
+
+.category {
+  @apply px-4 py-4 text-preset5 text-grey-500;
+}
+
+.negative-amount {
+  @apply px-4 py-4 text-preset4-bold text-grey-900 text-end;
+}
+
+.positive-amount {
+  @apply px-4 py-4 text-preset4-bold text-green text-end;
+}

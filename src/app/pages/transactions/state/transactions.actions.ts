@@ -8,6 +8,10 @@ export const TransactionsActions = createActionGroup(
           'Load Transactions': emptyProps(),
           'Transactions Loaded': props<{ transactions: Transaction[] }>(),
           'Set Page': props<{ page: number }>(),
+          'Set Category Filter': props<{ category: number }>(),
+          'Set Sort By': props<{ sortBy: number }>(),
+          'Transactions Sorted': props<{ transactions: Transaction[] }>(),
+          'Transactions Filtered': props<{ transactions: Transaction[] }>(),
         }
     }
 );
