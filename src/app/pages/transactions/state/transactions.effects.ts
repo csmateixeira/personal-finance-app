@@ -64,4 +64,24 @@ export class TransactionsEffects {
       ];
     })
   ));
+
+  searchTransactions$ = createEffect(() => this.actions$.pipe(
+    ofType(TransactionsActions.search),
+    withLatestFrom(this.store.select(selectTransactions)),
+    switchMap(([action, state]: [any, TransactionsState]) => {
+      const category: string = state.categories
+        .find((option: Option) => option.id === state.categoryFilter)?.value ?? 'All Transactions';
+
+      const searchedTransactions: Transaction[] = state.categoryFilter === -1 ?
+        Utils.searchTransactions([...state.data], action.search) :
+        Utils.searchTransactions([...state.data], action.search, category);
+
+      return [
+        {
+          type: TransactionsActions.transactionsFiltered.type,
+          transactions: searchedTransactions
+        }
+      ];
+    })
+  ));
 }

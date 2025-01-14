@@ -12,6 +12,7 @@ export const TransactionsActions = createActionGroup(
           'Set Sort By': props<{ sortBy: number }>(),
           'Transactions Sorted': props<{ transactions: Transaction[] }>(),
           'Transactions Filtered': props<{ transactions: Transaction[] }>(),
+          'Search': props<{ search: string }>(),
         }
     }
 );

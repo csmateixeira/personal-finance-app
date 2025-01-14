@@ -79,7 +79,7 @@ export class TestUtils {
         "date": "2024-08-19T20:23:11Z",
         "amount": -55.50,
         "recurring": false
-      },
+      }
     ]
   }
 
