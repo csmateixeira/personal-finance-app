@@ -1,0 +1,21 @@
+<table class="w-full">
+  <tr class="header-tr">
+    @for (header of headers; track $index) {
+      <th>{{header}}</th>
+    }
+  </tr>
+
+  @for (transaction of (transactions$ | async | paginate: (page$ | async)); track transaction.id) {
+    <tr class="content-tr">
+      <td class="px-4 py-4">
+        <div class="recipient-container">
+          <img ngSrc="{{transaction.avatar}}" width="40" height="40" alt="avatar" class="rounded-full">
+          <p class="text-preset4-bold">{{transaction.name}}</p>
+        </div>
+      </td>
+      <td class="category">{{transaction.category}}</td>
+      <td class="category">{{transaction.date | date: 'd MMM yyyy'}}</td>
+      <td [ngClass]="transaction.amount < 0 ? 'negative-amount' : 'positive-amount'">{{transaction.amount | formatAmount}}</td>
+    </tr>
+  }
+</table>

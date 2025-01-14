@@ -1,0 +1,15 @@
+<div (click)="toggleContent()" class="dropdown">
+  <div class="dropdown-selected">
+    <p>{{ selectedText }}</p>
+    <img ngSrc="icon-caret-down.svg" width="12" height="6">
+  </div>
+
+  <ul [ngStyle]="{ display: showContent ? 'block' : 'none' }" class="dropdown-content">
+    @for (option of options; track option) {
+      <li [ngClass]="selected === option.id ? 'text-preset4-bold' : 'text-preset4'"
+          (click)="selectOption(option)">
+        {{ option.value }}
+      </li>
+    }
+  </ul>
+</div>

@@ -72,9 +72,14 @@ module.exports = {
           letterSpacing: '0px',
           fontWeight: 'bold',
         }],
+      },
+      backgroundImage: {
+        'caret-down': "url('../public/icon-caret-down.svg')",
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-primeui')
+  ],
 }
 
