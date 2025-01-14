@@ -1,0 +1,7 @@
+.budgets-page {
+  @apply flex flex-col space-y-8;
+}
+
+.budgets-page h1 {
+  @apply py-2 text-start text-preset1 text-grey-900;
+}
