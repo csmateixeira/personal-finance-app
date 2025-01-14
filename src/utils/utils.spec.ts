@@ -349,4 +349,89 @@ describe('Utils', () => {
         }
       ]);
   });
+
+  describe('searchTransactions', () => {
+    it('should search for transactions in a given category', () => {
+      const transactions = [
+        ...TestUtils.getTransactions(),
+        {
+          id: '987',
+          "avatar": "avatars/emma-richardson.jpg",
+          "name": "Emma Richardson",
+          "category": "Dining Out",
+          "date": "2024-08-19T14:23:11Z",
+          "amount": 75.50,
+          "recurring": false
+        },
+      ];
+
+      expect(Utils.searchTransactions(transactions, 'emma', 'General'))
+        .toEqual([
+          {
+            id: '123',
+            "avatar": "avatars/emma-richardson.jpg",
+            "name": "Emma Richardson",
+            "category": "General",
+            "date": "2024-08-19T14:23:11Z",
+            "amount": 75.50,
+            "recurring": false
+          }
+        ]);
+    });
+
+    it('should search for transactions in all transactions', () => {
+      const transactions = [
+        ...TestUtils.getTransactions(),
+        {
+          id: '987',
+          "avatar": "avatars/emma-richardson.jpg",
+          "name": "Emma Richardson",
+          "category": "Dining Out",
+          "date": "2024-08-19T14:23:11Z",
+          "amount": 75.50,
+          "recurring": false
+        },
+      ];
+
+      expect(Utils.searchTransactions(transactions, 'emma'))
+        .toEqual([
+          {
+            id: '123',
+            "avatar": "avatars/emma-richardson.jpg",
+            "name": "Emma Richardson",
+            "category": "General",
+            "date": "2024-08-19T14:23:11Z",
+            "amount": 75.50,
+            "recurring": false
+          },
+          {
+            id: '987',
+            "avatar": "avatars/emma-richardson.jpg",
+            "name": "Emma Richardson",
+            "category": "Dining Out",
+            "date": "2024-08-19T14:23:11Z",
+            "amount": 75.50,
+            "recurring": false
+          },
+        ]);
+    });
+  });
+
+  describe('isNullOrEmpty', () => {
+    it('should return true if string is undefined', () => {
+      expect(Utils.isNullOrEmpty(undefined)).toBeTrue();
+    });
+
+    it('should return true if string is empty', () => {
+      expect(Utils.isNullOrEmpty('')).toBeTrue();
+    });
+
+    it('should return true if string is null', () => {
+      expect(Utils.isNullOrEmpty(null)).toBeTrue();
+    });
+
+    it('should return false if string is not undefined, not null and not empty', () => {
+      expect(Utils.isNullOrEmpty('test')).toBeFalse();
+    });
+  });
 });

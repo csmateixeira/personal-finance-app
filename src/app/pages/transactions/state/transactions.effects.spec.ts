@@ -8,14 +8,15 @@ import {TransactionsEffects} from './transactions.effects';
 import {TestUtils} from '../../../../utils/test-utils';
 import {TransactionsService} from '../../../../services/transactions.service';
 import {Utils} from '../../../../utils/utils';
-import {provideMockStore} from '@ngrx/store/testing';
-import {selectTransactions} from './transactions.state';
+import {createMockStore, MockStore, provideMockStore} from '@ngrx/store/testing';
+import {selectTransactions, TransactionsState} from './transactions.state';
 import {Sort} from '../../../../utils/models';
 
 describe('TransactionsEffects', () => {
   let actions$: Observable<Action>;
   let effects: TransactionsEffects;
   let service: TransactionsService;
+  let store: MockStore<TransactionsState>;
 
   beforeEach(() => {
     actions$ = new Observable<Action>()
@@ -24,14 +25,7 @@ describe('TransactionsEffects', () => {
       providers: [
         TransactionsEffects,
         provideMockActions(() => actions$),
-        provideMockStore({
-          selectors: [
-            {
-              selector: selectTransactions,
-              value: TestUtils.getTransactionsStateForEffects()
-            }
-          ]
-        }),
+        provideMockStore()
       ],
     });
 
@@ -41,6 +35,7 @@ describe('TransactionsEffects', () => {
     spyOn(service, 'getAllTransactions').and.returnValue(of(TestUtils.getTransactions()));
     spyOn(Utils, 'sortTransactions').and.returnValue(TestUtils.getTransactionsSorted());
     spyOn(Utils, 'filterTransactions').and.returnValue(TestUtils.getTransactionsSorted());
+    spyOn(Utils, 'searchTransactions').and.returnValue(TestUtils.getTransactionsSorted());
   });
 
   describe('loadTransactions$', () => {
@@ -62,6 +57,17 @@ describe('TransactionsEffects', () => {
   });
 
   describe('sortTransactions$', () => {
+    beforeEach(() => {
+      store = createMockStore({
+        initialState: TestUtils.getTransactionsStateForEffects(),
+        selectors: [
+          {
+            selector: selectTransactions, value: TestUtils.getTransactionsStateForEffects()
+          },
+        ]
+      });
+    });
+
     it('should return action with transactions sorted by Latest', () => {
       actions$ = hot('a', {
         a: TransactionsActions.setSortBy({sortBy: 1})
@@ -160,6 +166,17 @@ describe('TransactionsEffects', () => {
   });
 
   describe('filterTransactions$', () => {
+    beforeEach(() => {
+      store = createMockStore({
+        initialState: TestUtils.getTransactionsStateForEffects(),
+        selectors: [
+          {
+            selector: selectTransactions, value: TestUtils.getTransactionsStateForEffects()
+          },
+        ]
+      });
+    });
+
     it('should return action with unfiltered transactions', () => {
       actions$ = hot('a', {
         a: TransactionsActions.setCategoryFilter({category: -1})
@@ -189,6 +206,66 @@ describe('TransactionsEffects', () => {
         }
       }));
       expect(Utils.filterTransactions).toHaveBeenCalledWith(TestUtils.getTransactions(), 'General');
+    });
+  });
+
+  describe('searchTransactions$', () => {
+    it('should return action with transactions from search for a given category', () => {
+      store = createMockStore({
+        initialState: TestUtils.getTransactionsStateForEffects(),
+        selectors: [
+          {
+            selector: selectTransactions,
+            value: {
+              ...TestUtils.getTransactionsStateForEffects(),
+              categoryFilter: 1
+            }
+          },
+        ]
+      });
+
+      actions$ = hot('a', {
+        a: TransactionsActions.search({search: 'search'})
+      });
+
+      const result = effects.searchTransactions$;
+
+      expect(result).toBeObservable(cold('a', {
+        a: {
+          type: TransactionsActions.transactionsFiltered.type,
+          transactions: TestUtils.getTransactionsSorted()
+        }
+      }));
+      expect(Utils.searchTransactions).toHaveBeenCalledWith(TestUtils.getTransactions(), 'search', 'General');
+    });
+
+    it('should return action with transactions from search for all transactions', () => {
+      store = createMockStore({
+        initialState: TestUtils.getTransactionsStateForEffects(),
+        selectors: [
+          {
+            selector: selectTransactions,
+            value: {
+              ...TestUtils.getTransactionsStateForEffects(),
+              categoryFilter: -1
+            }
+          },
+        ]
+      });
+
+      actions$ = hot('a', {
+        a: TransactionsActions.search({search: 'search'})
+      });
+
+      const result = effects.searchTransactions$;
+
+      expect(result).toBeObservable(cold('a', {
+        a: {
+          type: TransactionsActions.transactionsFiltered.type,
+          transactions: TestUtils.getTransactionsSorted()
+        }
+      }));
+      expect(Utils.searchTransactions).toHaveBeenCalledWith(TestUtils.getTransactions(), 'search');
     });
   });
 });

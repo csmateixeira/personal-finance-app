@@ -1,7 +1,9 @@
 <div class="filter-container">
+  @let sortBy = (sortBy$ | async) ?? 1;
+
   <div class="search-container">
-    <input placeholder="Search Transactions">
-    <button (click)="search()">
+    <input placeholder="Search Transactions" [(ngModel)]="searchString" (keyup.enter)="search(sortBy)">
+    <button (click)="search(sortBy)">
       <img ngSrc="icon-search.svg" width="14" height="14" alt="search icon">
     </button>
   </div>
@@ -18,8 +20,6 @@
 
     <div class="filter-select">
       <p>Category</p>
-
-      @let sortBy = (sortBy$ | async) ?? 1;
 
       <app-select [options]="(categories$ | async) ?? []"
                   [selected]="(categorySelected$ | async) ?? 1"

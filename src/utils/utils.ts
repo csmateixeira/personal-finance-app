@@ -49,4 +49,18 @@ export class Utils {
   static filterTransactions(transactions: Transaction[], category: string): Transaction[] {
     return transactions.filter((t: Transaction) => t.category === category)
   }
+
+  static searchTransactions(transactions: Transaction[], search: string, category?: string): Transaction[] {
+    const filteredByCategory: Transaction[] = category ?
+      this.filterTransactions(transactions, category)
+      : transactions;
+
+    return this.isNullOrEmpty(search) ?
+      filteredByCategory
+      : filteredByCategory.filter((t: Transaction) => t.name.toLowerCase().includes(search.toLowerCase()));
+  }
+
+  static isNullOrEmpty(value?: string | null): boolean {
+    return value === undefined || value === null || value === '';
+  }
 }
