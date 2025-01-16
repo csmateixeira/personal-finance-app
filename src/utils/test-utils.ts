@@ -1,9 +1,14 @@
-import {Option, Page, Sort, Transaction} from './models';
+import {Budget, Option, Page, Sort, Spending, Transaction} from './models';
 import {SidebarState} from '../app/sidebar/state/sidebar.state';
 import {TransactionsState} from "../app/pages/transactions/state/transactions.state";
+import {BudgetsState} from '../app/pages/budgets/state/budgets.state';
 
 export class TestUtils {
-  static getInitialState(): {sidebar: SidebarState, transactions: TransactionsState} {
+  static getInitialState(): {
+    sidebar: SidebarState,
+    transactions: TransactionsState,
+    budgets: BudgetsState
+  } {
     return {
       sidebar: {
         expanded: true,
@@ -12,28 +17,35 @@ export class TestUtils {
       transactions: {
         data: [],
         filteredData: [],
+        spendings: [],
         categories: [],
         sorts: [],
         page: 1,
         sortBy: 1,
         categoryFilter: -1,
+      },
+      budgets: {
+        data: []
       }
     }
   }
+}
 
+export class TransactionsTestUtils {
   static getTransactionsStateForEffects(): TransactionsState {
     return {
-      data: TestUtils.getTransactions(),
-      filteredData: TestUtils.getTransactionsSorted(),
-      categories: TestUtils.getTransactionsCategories(),
-      sorts: TestUtils.getTransactionsSorts(),
+      data: TransactionsTestUtils.getTransactions(),
+      filteredData: TransactionsTestUtils.getTransactionsSorted(),
+      spendings: TransactionsTestUtils.getSpendings(),
+      categories: TransactionsTestUtils.getTransactionsCategoryOptions(),
+      sorts: TransactionsTestUtils.getTransactionsSorts(),
       page: 8,
       sortBy: 5,
       categoryFilter: 2,
     }
   }
 
-  static getTransactionsCategories(): Option[] {
+  static getTransactionsCategoryOptions(): Option[] {
     return [
       {id: 1, value: 'General'},
       {id: 3, value: 'Dining Out'},
@@ -111,6 +123,38 @@ export class TestUtils {
         "date": "2024-08-19T20:23:11Z",
         "amount": -55.50,
         "recurring": false
+      },
+    ]
+  }
+
+  static getSpendings(): Spending[] {
+    return [
+      {category: 'General', amount: 42.3},
+      {category: 'Dining Out', amount: 55.50}
+    ]
+  }
+}
+
+export class BudgetsTestsUtils {
+  static getBudgetsStateForEffects(): BudgetsState {
+    return {
+      data: BudgetsTestsUtils.getBudgets(),
+    }
+  }
+
+  static getBudgets(): Budget[] {
+    return [
+      {
+        id: '123',
+        "category": "Entertainment",
+        "maximum": 50.00,
+        "theme": "#277C78"
+      },
+      {
+        id: '456',
+        "category": "Bills",
+        "maximum": 750.00,
+        "theme": "#82C9D7"
       },
     ]
   }

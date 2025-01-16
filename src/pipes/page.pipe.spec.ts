@@ -1,5 +1,5 @@
 import {PaginatePipe} from './page.pipe';
-import {Utils} from '../utils/utils';
+import {TransactionsUtils} from '../utils/transactions-utils';
 
 describe('PagePipe', () => {
   const pipe = new PaginatePipe();
@@ -7,21 +7,21 @@ describe('PagePipe', () => {
   const page: string[] = ['1', '2', '3'];
 
   beforeEach(() => {
-    spyOn(Utils, 'getPageData').and.returnValue(page);
+    spyOn(TransactionsUtils, 'getPageData').and.returnValue(page);
   });
 
   it('should return the correct page data', () => {
     expect(pipe.transform<string>(allData, 2)).toEqual(page);
-    expect(Utils.getPageData).toHaveBeenCalledWith(allData, 2);
+    expect(TransactionsUtils.getPageData).toHaveBeenCalledWith(allData, 2);
   });
 
   it('should return empty page data if value passed in is null', () => {
     expect(pipe.transform<string>(null, 2)).toEqual([]);
-    expect(Utils.getPageData).not.toHaveBeenCalled();
+    expect(TransactionsUtils.getPageData).not.toHaveBeenCalled();
   });
 
   it('should return data for page 1 if page passed in is null', () => {
     expect(pipe.transform<string>(allData, null)).toEqual(page);
-    expect(Utils.getPageData).toHaveBeenCalledWith(allData, 1);
+    expect(TransactionsUtils.getPageData).toHaveBeenCalledWith(allData, 1);
   });
 });

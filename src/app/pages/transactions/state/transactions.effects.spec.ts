@@ -5,12 +5,12 @@ import {Observable, of} from 'rxjs';
 import {cold, hot} from 'jasmine-marbles';
 import {TransactionsActions} from './transactions.actions';
 import {TransactionsEffects} from './transactions.effects';
-import {TestUtils} from '../../../../utils/test-utils';
+import {TransactionsTestUtils} from '../../../../utils/test-utils';
 import {TransactionsService} from '../../../../services/transactions.service';
-import {Utils} from '../../../../utils/utils';
 import {createMockStore, MockStore, provideMockStore} from '@ngrx/store/testing';
 import {selectTransactions, TransactionsState} from './transactions.state';
 import {Sort} from '../../../../utils/models';
+import {TransactionsUtils} from '../../../../utils/transactions-utils';
 
 describe('TransactionsEffects', () => {
   let actions$: Observable<Action>;
@@ -32,10 +32,10 @@ describe('TransactionsEffects', () => {
     effects = TestBed.inject(TransactionsEffects);
     service = TestBed.inject(TransactionsService);
 
-    spyOn(service, 'getAllTransactions').and.returnValue(of(TestUtils.getTransactions()));
-    spyOn(Utils, 'sortTransactions').and.returnValue(TestUtils.getTransactionsSorted());
-    spyOn(Utils, 'filterTransactions').and.returnValue(TestUtils.getTransactionsSorted());
-    spyOn(Utils, 'searchTransactions').and.returnValue(TestUtils.getTransactionsSorted());
+    spyOn(service, 'getAllTransactions').and.returnValue(of(TransactionsTestUtils.getTransactions()));
+    spyOn(TransactionsUtils, 'sortTransactions').and.returnValue(TransactionsTestUtils.getTransactionsSorted());
+    spyOn(TransactionsUtils, 'filterTransactions').and.returnValue(TransactionsTestUtils.getTransactionsSorted());
+    spyOn(TransactionsUtils, 'searchTransactions').and.returnValue(TransactionsTestUtils.getTransactionsSorted());
   });
 
   describe('loadTransactions$', () => {
@@ -49,7 +49,7 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsLoaded.type,
-          transactions: TestUtils.getTransactions()
+          transactions: TransactionsTestUtils.getTransactions()
         }
       }));
       expect(service.getAllTransactions).toHaveBeenCalled();
@@ -59,10 +59,10 @@ describe('TransactionsEffects', () => {
   describe('sortTransactions$', () => {
     beforeEach(() => {
       store = createMockStore({
-        initialState: TestUtils.getTransactionsStateForEffects(),
+        initialState: TransactionsTestUtils.getTransactionsStateForEffects(),
         selectors: [
           {
-            selector: selectTransactions, value: TestUtils.getTransactionsStateForEffects()
+            selector: selectTransactions, value: TransactionsTestUtils.getTransactionsStateForEffects()
           },
         ]
       });
@@ -78,10 +78,10 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.sortTransactions).toHaveBeenCalledWith(TestUtils.getTransactionsSorted(), Sort.latest);
+      expect(TransactionsUtils.sortTransactions).toHaveBeenCalledWith(TransactionsTestUtils.getTransactionsSorted(), Sort.latest);
     });
 
     it('should return action with transactions sorted by Oldest', () => {
@@ -94,10 +94,11 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.sortTransactions).toHaveBeenCalledWith(TestUtils.getTransactionsSorted(), Sort.oldest);
+      expect(TransactionsUtils.sortTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactionsSorted(), Sort.oldest);
     });
 
     it('should return action with transactions sorted by A to Z', () => {
@@ -110,10 +111,11 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.sortTransactions).toHaveBeenCalledWith(TestUtils.getTransactionsSorted(), Sort.aToZ);
+      expect(TransactionsUtils.sortTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactionsSorted(), Sort.aToZ);
     });
 
     it('should return action with transactions sorted by Z to A', () => {
@@ -126,10 +128,10 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.sortTransactions).toHaveBeenCalledWith(TestUtils.getTransactionsSorted(), Sort.zToA);
+      expect(TransactionsUtils.sortTransactions).toHaveBeenCalledWith(TransactionsTestUtils.getTransactionsSorted(), Sort.zToA);
     });
 
     it('should return action with transactions sorted by Highest', () => {
@@ -142,10 +144,11 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.sortTransactions).toHaveBeenCalledWith(TestUtils.getTransactionsSorted(), Sort.highest);
+      expect(TransactionsUtils.sortTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactionsSorted(), Sort.highest);
     });
 
     it('should return action with transactions sorted by Lowest', () => {
@@ -158,20 +161,20 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.sortTransactions).toHaveBeenCalledWith(TestUtils.getTransactionsSorted(), Sort.lowest);
+      expect(TransactionsUtils.sortTransactions).toHaveBeenCalledWith(TransactionsTestUtils.getTransactionsSorted(), Sort.lowest);
     });
   });
 
   describe('filterTransactions$', () => {
     beforeEach(() => {
       store = createMockStore({
-        initialState: TestUtils.getTransactionsStateForEffects(),
+        initialState: TransactionsTestUtils.getTransactionsStateForEffects(),
         selectors: [
           {
-            selector: selectTransactions, value: TestUtils.getTransactionsStateForEffects()
+            selector: selectTransactions, value: TransactionsTestUtils.getTransactionsStateForEffects()
           },
         ]
       });
@@ -187,10 +190,10 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsFiltered.type,
-          transactions: TestUtils.getTransactions()
+          transactions: TransactionsTestUtils.getTransactions()
         }
       }));
-      expect(Utils.filterTransactions).not.toHaveBeenCalled();
+      expect(TransactionsUtils.filterTransactions).not.toHaveBeenCalled();
     });
     it('should return action with transactions filtered by category', () => {
       actions$ = hot('a', {
@@ -202,22 +205,23 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsFiltered.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.filterTransactions).toHaveBeenCalledWith(TestUtils.getTransactions(), 'General');
+      expect(TransactionsUtils.filterTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactions(), 'General');
     });
   });
 
   describe('searchTransactions$', () => {
     it('should return action with transactions from search for a given category', () => {
       store = createMockStore({
-        initialState: TestUtils.getTransactionsStateForEffects(),
+        initialState: TransactionsTestUtils.getTransactionsStateForEffects(),
         selectors: [
           {
             selector: selectTransactions,
             value: {
-              ...TestUtils.getTransactionsStateForEffects(),
+              ...TransactionsTestUtils.getTransactionsStateForEffects(),
               categoryFilter: 1
             }
           },
@@ -233,20 +237,21 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsFiltered.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.searchTransactions).toHaveBeenCalledWith(TestUtils.getTransactions(), 'search', 'General');
+      expect(TransactionsUtils.searchTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactions(), 'search', 'General');
     });
 
     it('should return action with transactions from search for all transactions', () => {
       store = createMockStore({
-        initialState: TestUtils.getTransactionsStateForEffects(),
+        initialState: TransactionsTestUtils.getTransactionsStateForEffects(),
         selectors: [
           {
             selector: selectTransactions,
             value: {
-              ...TestUtils.getTransactionsStateForEffects(),
+              ...TransactionsTestUtils.getTransactionsStateForEffects(),
               categoryFilter: -1
             }
           },
@@ -262,10 +267,11 @@ describe('TransactionsEffects', () => {
       expect(result).toBeObservable(cold('a', {
         a: {
           type: TransactionsActions.transactionsFiltered.type,
-          transactions: TestUtils.getTransactionsSorted()
+          transactions: TransactionsTestUtils.getTransactionsSorted()
         }
       }));
-      expect(Utils.searchTransactions).toHaveBeenCalledWith(TestUtils.getTransactions(), 'search');
+      expect(TransactionsUtils.searchTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactions(), 'search');
     });
   });
 });

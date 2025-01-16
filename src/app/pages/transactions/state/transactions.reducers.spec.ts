@@ -1,25 +1,23 @@
 import * as fromReducer from './transactions.reducers';
-import {TestUtils} from '../../../../utils/test-utils';
+import {TestUtils, TransactionsTestUtils} from '../../../../utils/test-utils';
 import {TransactionsActions} from './transactions.actions';
 import {TransactionsState} from './transactions.state';
 import {Sort} from '../../../../utils/models';
 
 describe('TransactionsReducer', () => {
-  describe('unknown action', () => {
-    it('should return the default state', () => {
-      const {initialState} = fromReducer;
-      const action = {
-        type: 'Unknown',
-      };
-      const state = fromReducer.TransactionsReducer(initialState, action);
+  it('should return the default state for unknown actions', () => {
+    const {initialState} = fromReducer;
+    const action = {
+      type: 'Unknown',
+    };
+    const state: Readonly<TransactionsState> = fromReducer.TransactionsReducer(initialState, action);
 
-      expect(state).toEqual(initialState);
-    });
+    expect(state).toEqual(initialState);
   });
 
   it('should save all transactions to state', () => {
     const action = TransactionsActions.transactionsLoaded({
-      transactions: TestUtils.getTransactions()
+      transactions: TransactionsTestUtils.getTransactions()
     });
 
     const newState: Readonly<TransactionsState> =
@@ -27,11 +25,12 @@ describe('TransactionsReducer', () => {
 
     expect(newState).toEqual({
       ...TestUtils.getInitialState().transactions,
-      data: TestUtils.getTransactions(),
-      filteredData: TestUtils.getTransactions(),
+      data: TransactionsTestUtils.getTransactions(),
+      filteredData: TransactionsTestUtils.getTransactions(),
+      spendings: TransactionsTestUtils.getSpendings(),
       categories: [
         {id: 1, value: 'General'},
-        {id: 3, value: 'Dining Out'},
+        {id: 2, value: 'Dining Out'},
         {id: -1, value: 'All Transactions'}
       ],
       sorts: [
@@ -47,29 +46,29 @@ describe('TransactionsReducer', () => {
 
   it('should save sorted transactions to state', () => {
     const action = TransactionsActions.transactionsSorted({
-      transactions: TestUtils.getTransactionsSorted()
+      transactions: TransactionsTestUtils.getTransactionsSorted()
     });
 
     const newState: Readonly<TransactionsState> =
-      fromReducer.TransactionsReducer(TestUtils.getTransactionsStateForEffects(), action);
+      fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
 
     expect(newState).toEqual({
-      ...TestUtils.getTransactionsStateForEffects(),
-      filteredData: TestUtils.getTransactionsSorted()
+      ...TransactionsTestUtils.getTransactionsStateForEffects(),
+      filteredData: TransactionsTestUtils.getTransactionsSorted()
     });
   });
 
   it('should save filtered transactions to state', () => {
     const action = TransactionsActions.transactionsFiltered({
-      transactions: TestUtils.getTransactionsSorted()
+      transactions: TransactionsTestUtils.getTransactionsSorted()
     });
 
     const newState: Readonly<TransactionsState> =
-      fromReducer.TransactionsReducer(TestUtils.getTransactionsStateForEffects(), action);
+      fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
 
     expect(newState).toEqual({
-      ...TestUtils.getTransactionsStateForEffects(),
-      filteredData: TestUtils.getTransactionsSorted()
+      ...TransactionsTestUtils.getTransactionsStateForEffects(),
+      filteredData: TransactionsTestUtils.getTransactionsSorted()
     });
   });
 
@@ -79,11 +78,11 @@ describe('TransactionsReducer', () => {
     });
 
     const newState: Readonly<TransactionsState> =
-      fromReducer.TransactionsReducer(TestUtils.getTransactionsStateForEffects(), action);
+      fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
 
     expect(newState)
       .toEqual({
-        ...TestUtils.getTransactionsStateForEffects(),
+        ...TransactionsTestUtils.getTransactionsStateForEffects(),
         page: 10
       });
   });
@@ -94,11 +93,11 @@ describe('TransactionsReducer', () => {
     });
 
     const newState: Readonly<TransactionsState> =
-      fromReducer.TransactionsReducer(TestUtils.getTransactionsStateForEffects(), action);
+      fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
 
     expect(newState)
       .toEqual({
-        ...TestUtils.getTransactionsStateForEffects(),
+        ...TransactionsTestUtils.getTransactionsStateForEffects(),
         categoryFilter: 3
       });
   });
@@ -109,11 +108,11 @@ describe('TransactionsReducer', () => {
     });
 
     const newState: Readonly<TransactionsState> =
-      fromReducer.TransactionsReducer(TestUtils.getTransactionsStateForEffects(), action);
+      fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
 
     expect(newState)
       .toEqual({
-        ...TestUtils.getTransactionsStateForEffects(),
+        ...TransactionsTestUtils.getTransactionsStateForEffects(),
         sortBy: 2
       });
   });

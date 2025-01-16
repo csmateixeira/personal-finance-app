@@ -1,13 +1,15 @@
-import {createReducer, on} from '@ngrx/store';
+import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
 import {Sort, Transaction} from '../../../../utils/models';
 import {TransactionsActions} from './transactions.actions';
 import {produce} from 'immer';
 import {TransactionsState} from './transactions.state';
 import {Utils} from '../../../../utils/utils';
+import {TransactionsUtils} from '../../../../utils/transactions-utils';
 
 export const initialState: Readonly<TransactionsState> = {
   data: [],
   filteredData: [],
+  spendings: [],
   categories: [],
   sorts: [],
   page: 1,
@@ -15,15 +17,18 @@ export const initialState: Readonly<TransactionsState> = {
   categoryFilter: -1,
 };
 
-export const TransactionsReducer = createReducer(
+export const TransactionsReducer: ActionReducer<Readonly<TransactionsState>, Action> = createReducer(
   initialState,
   on(TransactionsActions.transactionsLoaded,
     (_state, {transactions}) => produce(
       _state, draft => {
+        const categories: string[] = Utils.getUniqueValues(transactions.map((t: Transaction) => t.category));
+
         draft.data = transactions;
         draft.filteredData = transactions;
+        draft.spendings = TransactionsUtils.getSpendings(transactions, categories, 7);
         draft.categories = [
-          ...Utils.getUniqueOptions(transactions.map((t: Transaction) => t.category)),
+          ...Utils.getUniqueOptions(categories),
           {id: -1, value: "All Transactions"}
         ];
         draft.sorts = [
