@@ -5,43 +5,48 @@ import {
   selectTransactionsFilteredData,
   selectTransactionsPage,
   selectTransactionsSortBy,
-  selectTransactionsSorts
+  selectTransactionsSorts, selectTransactionsSpendings
 } from './transactions.state';
-import {TestUtils} from '../../../../utils/test-utils';
+import {TransactionsTestUtils} from '../../../../utils/test-utils';
 
 describe('TransactionsSelectors', () => {
   it('should select all transactions data', () => {
-    expect(selectTransactionsData.projector(TestUtils.getTransactionsStateForEffects()))
-      .toEqual(TestUtils.getTransactions());
+    expect(selectTransactionsData.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
+      .toEqual(TransactionsTestUtils.getTransactions());
   });
 
   it('should select all transactions filtered data', () => {
-    expect(selectTransactionsFilteredData.projector(TestUtils.getTransactionsStateForEffects()))
-      .toEqual(TestUtils.getTransactionsSorted());
+    expect(selectTransactionsFilteredData.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
+      .toEqual(TransactionsTestUtils.getTransactionsSorted());
+  });
+
+  it('should select all transactions spendings', () => {
+    expect(selectTransactionsSpendings.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
+      .toEqual(TransactionsTestUtils.getSpendings());
   });
 
   it('should select the current page', () => {
-    expect(selectTransactionsPage.projector(TestUtils.getTransactionsStateForEffects()))
+    expect(selectTransactionsPage.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
       .toEqual(8);
   });
 
   it('should select the categories list', () => {
-    expect(selectTransactionsCategories.projector(TestUtils.getTransactionsStateForEffects()))
-      .toEqual(TestUtils.getTransactionsCategories());
+    expect(selectTransactionsCategories.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
+      .toEqual(TransactionsTestUtils.getTransactionsCategoryOptions());
   });
 
   it('should select the current category filter', () => {
-    expect(selectTransactionsCategoryFilter.projector(TestUtils.getTransactionsStateForEffects()))
+    expect(selectTransactionsCategoryFilter.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
       .toEqual(2);
   });
 
   it('should select the sort options list', () => {
-    expect(selectTransactionsSorts.projector(TestUtils.getTransactionsStateForEffects()))
-      .toEqual(TestUtils.getTransactionsSorts());
+    expect(selectTransactionsSorts.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
+      .toEqual(TransactionsTestUtils.getTransactionsSorts());
   });
 
   it('should select the current sort by filter', () => {
-    expect(selectTransactionsSortBy.projector(TestUtils.getTransactionsStateForEffects()))
+    expect(selectTransactionsSortBy.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
       .toEqual(5);
   });
 });

@@ -11,14 +11,21 @@ import {TransactionsEffects} from './pages/transactions/state/transactions.effec
 import {TransactionsReducer} from './pages/transactions/state/transactions.reducers';
 import {transactionsFeatureKey} from './pages/transactions/state/transactions.state';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {budgetsFeatureKey} from './pages/budgets/state/budgets.state';
+import {BudgetsReducer} from './pages/budgets/state/budgets.reducer';
+import {BudgetsEffects} from './pages/budgets/state/budgets.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore({ [sidebarFeatureKey]: SidebarReducer, [transactionsFeatureKey]: TransactionsReducer }),
+    provideStore({
+      [sidebarFeatureKey]: SidebarReducer,
+      [transactionsFeatureKey]: TransactionsReducer,
+      [budgetsFeatureKey]: BudgetsReducer
+    }),
     provideStoreDevtools({ maxAge: 25, logOnly: false }),
-    provideEffects(TransactionsEffects),
+    provideEffects(TransactionsEffects, BudgetsEffects),
     provideAnimationsAsync(),
 ]
 };

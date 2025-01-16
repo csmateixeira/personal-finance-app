@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Utils} from '../utils/utils';
+import {TransactionsUtils} from '../utils/transactions-utils';
 
 @Pipe({
   name: 'paginate'
@@ -7,7 +7,7 @@ import {Utils} from '../utils/utils';
 export class PaginatePipe implements PipeTransform {
 
   transform<T>(value: T[] | null, page: number | null): T[] {
-    return value ? Utils.getPageData<T>(value, page ?? 1) : [];
+    return value ? TransactionsUtils.getPageData<T>(value, page ?? 1) : [];
   }
 
 }

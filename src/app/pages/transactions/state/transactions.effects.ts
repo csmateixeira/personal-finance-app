@@ -7,12 +7,12 @@ import {Option, Sort, Transaction} from '../../../../utils/models';
 import {v4 as uuidv4} from 'uuid';
 import {Store} from '@ngrx/store';
 import {selectTransactions, TransactionsState} from './transactions.state';
-import {Utils} from '../../../../utils/utils';
+import {TransactionsUtils} from '../../../../utils/transactions-utils';
 
 @Injectable()
 export class TransactionsEffects {
-  private actions$ = inject(Actions);
-  private store = inject(Store);
+  private actions$: Actions<any> = inject(Actions);
+  private store: Store<any> = inject(Store);
   private transactionsService = inject(TransactionsService);
 
   loadTransactions$ = createEffect(() => this.actions$.pipe(
@@ -42,7 +42,7 @@ export class TransactionsEffects {
       return [
         {
           type: TransactionsActions.transactionsSorted.type,
-          transactions: Utils.sortTransactions([...state.filteredData], sort)
+          transactions: TransactionsUtils.sortTransactions([...state.filteredData], sort)
         }
       ];
     })
@@ -59,7 +59,7 @@ export class TransactionsEffects {
         {
           type: TransactionsActions.transactionsFiltered.type,
           transactions: action.category === -1 ? [...state.data] :
-            Utils.filterTransactions([...state.data], category)
+            TransactionsUtils.filterTransactions([...state.data], category)
         }
       ];
     })
@@ -73,8 +73,8 @@ export class TransactionsEffects {
         .find((option: Option) => option.id === state.categoryFilter)?.value ?? 'All Transactions';
 
       const searchedTransactions: Transaction[] = state.categoryFilter === -1 ?
-        Utils.searchTransactions([...state.data], action.search) :
-        Utils.searchTransactions([...state.data], action.search, category);
+        TransactionsUtils.searchTransactions([...state.data], action.search) :
+        TransactionsUtils.searchTransactions([...state.data], action.search, category);
 
       return [
         {

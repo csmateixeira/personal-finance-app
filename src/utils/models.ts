@@ -13,13 +13,18 @@ export enum Sort {
   zToA = 'Z to A',
   highest = 'Highest',
   lowest = 'Lowest',
-
-
 }
 
 export interface Option {
   id: number;
   value: string;
+}
+
+export interface Series {
+  data: number[];
+  themes: string[];
+  totalSpending: number;
+  totalBudget: number;
 }
 
 export interface Transaction {
@@ -32,6 +37,11 @@ export interface Transaction {
   recurring: boolean;
 }
 
+export interface Spending {
+  category: string;
+  amount: number;
+}
+
 export interface Balance {
   current: number;
   income: number;
@@ -39,9 +49,14 @@ export interface Balance {
 }
 
 export interface Budget {
+  id?: string;
   category: string;
   maximum: number;
   theme: string;
+}
+
+export interface BudgetSpending extends Budget {
+  spent: number;
 }
 
 export interface Pot {

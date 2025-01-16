@@ -1,6 +1,50 @@
 <div class="budgets-page">
   <h1>Budgets</h1>
 
+  <div class="flex flex-row space-x-6 justify-between">
+
+    <!-- Left side -->
+    <div class="items-start justify-start">
+      <div class="flex flex-col space-y-8 px-8 py-8 bg-white border rounded-xl items-center">
+        <!-- Chart -->
+        <div>
+          <highcharts-chart class="w-60 h-60"
+                            [Highcharts]="Highcharts"
+                            [constructorType]="chartConstructor"
+                            [options]="(series$ | async) | chartOptions"
+          ></highcharts-chart>
+        </div>
+
+        <div class="flex flex-col space-y-6 items-start w-full">
+          <p class="text-preset2 text-grey-900">Spending Summary</p>
+
+         <ul class="flex flex-col w-full justify-between">
+           @for (budget of budgetSpendings$ | async; track budget.id) {
+             <li class="flex flex-row justify-between py-4 first:pt-0 last:border-none border-b">
+               <!-- Budget Title -->
+               <div class="flex flex-row space-x-4">
+                 <div [ngStyle]="{'background-color': budget.theme}" class="w-1 h-5 border-0 rounded-lg"></div>
+                 <p class="text-preset4 text-grey-500">{{budget.category}}</p>
+               </div>
+
+               <!-- Budget Amounts -->
+               <div class="flex flex-row space-x-2 place-items-baseline">
+                 <span class="text-preset3 text-grey-900">{{budget.spent | currency}}</span>
+                 <span class="text-preset5 text-grey-500">of {{budget.maximum | currency}}</span>
+               </div>
+             </li>
+           }
+         </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right side -->
+    <div class="items-start justify-start flex flex-col space-y-6">
+
+    </div>
+  </div>
 </div>
 
 

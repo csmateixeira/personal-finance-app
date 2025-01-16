@@ -1,9 +1,10 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {Option, Transaction} from '../../../../utils/models';
+import {Option, Spending, Transaction} from '../../../../utils/models';
 
 export interface TransactionsState {
   data: Transaction[];
   filteredData: Transaction[];
+  spendings: Spending[];
   categories: Option[];
   sorts: Option[];
   page: number;
@@ -23,6 +24,11 @@ export const selectTransactionsData = createSelector(
 export const selectTransactionsFilteredData = createSelector(
   selectTransactions,
   (state: TransactionsState): Transaction[] => state.filteredData
+);
+
+export const selectTransactionsSpendings = createSelector(
+  selectTransactions,
+  (state: TransactionsState): Spending[] => state.spendings
 );
 
 export const selectTransactionsPage = createSelector(
