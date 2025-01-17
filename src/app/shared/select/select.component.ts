@@ -15,8 +15,8 @@ import {NgClass, NgOptimizedImage, NgStyle} from '@angular/common';
   styleUrl: './select.component.scss'
 })
 export class SelectComponent implements OnInit{
-  @Input({required: true}) options: Option[] = [];
-  @Input({required: true}) selected: number = 1;
+  @Input({required: true}) options!: Option[];
+  @Input({required: true}) selected!: number;
 
   @Output() updateEvent: EventEmitter<Option> = new EventEmitter<Option>();
 

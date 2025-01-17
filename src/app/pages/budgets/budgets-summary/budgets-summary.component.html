@@ -1,0 +1,30 @@
+<div class="summary-container">
+  <div class="summary-subcontainer">
+    <div>
+      <highcharts-chart class="w-60 h-60"
+                        [Highcharts]="Highcharts"
+                        [options]="(series$ | async) | chartOptions"
+      ></highcharts-chart>
+    </div>
+
+    <div class="details-container">
+      <h1>Spending Summary</h1>
+
+      <ul>
+        @for (budget of budgetSpendings$ | async; track budget.id) {
+          <li>
+            <div class="category-container">
+              <div [ngStyle]="{'background-color': budget.theme}" class="color-swatch"></div>
+              <p>{{ budget.category }}</p>
+            </div>
+
+            <div class="amounts-container">
+              <h2>{{ budget.spent | currency }}</h2>
+              <h3>of {{ budget.maximum | currency }}</h3>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
