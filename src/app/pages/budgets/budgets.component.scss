@@ -5,3 +5,11 @@
 .budgets-page h1 {
   @apply py-2 text-start text-preset1 text-grey-900;
 }
+
+.budgets-container {
+  @apply flex flex-row space-x-6 justify-between;
+}
+
+.cards-container {
+  @apply items-start justify-start flex flex-col space-y-6 w-full;
+}

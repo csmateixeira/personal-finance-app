@@ -57,6 +57,8 @@ export interface Budget {
 
 export interface BudgetSpending extends Budget {
   spent: number;
+  percent?: number;
+  remaining?: number;
 }
 
 export interface Pot {

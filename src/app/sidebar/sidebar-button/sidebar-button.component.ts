@@ -17,8 +17,8 @@ import {Page} from '../../../utils/models';
   styleUrl: './sidebar-button.component.scss'
 })
 export class SidebarButtonComponent {
-  @Input({required: true}) linkTo: Page = Page.overview;
-  @Input({required: true}) text: string = '';
+  @Input({required: true}) linkTo!: Page;
+  @Input({required: true}) text!: string;
 
   protected readonly Page = Page;
   private store: Store = inject(Store<{ sidebar: SidebarState }>);
