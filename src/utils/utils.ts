@@ -26,4 +26,8 @@ export class Utils {
   static isNullOrEmpty(value?: string | null): boolean {
     return value === undefined || value === null || value === '';
   }
+
+  static roundNumber(value: number): number {
+    return Math.round(value * 100) / 100;
+  }
 }

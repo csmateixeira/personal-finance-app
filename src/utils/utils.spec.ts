@@ -47,4 +47,8 @@ describe('Utils', () => {
       expect(Utils.isNullOrEmpty('test')).toBeFalse();
     });
   });
+
+  it('should round the number to 2 decimal places', () => {
+    expect(Utils.roundNumber(7.71000004)).toEqual(7.71)
+  });
 });

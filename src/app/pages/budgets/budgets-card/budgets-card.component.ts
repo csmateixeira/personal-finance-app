@@ -1,10 +1,11 @@
 import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe, CurrencyPipe, DatePipe, NgOptimizedImage, NgStyle, PercentPipe} from '@angular/common';
-import {Budget, BudgetSpending, Spending, Transaction} from '../../../../utils/models';
+import {Budget, BudgetSpending, Transaction} from '../../../../utils/models';
 import {Store} from '@ngrx/store';
 import {SidebarState} from '../../../sidebar/state/sidebar.state';
-import {map, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {selectTransactionsData, selectTransactionsSpendings} from '../../transactions/state/transactions.state';
+import {BudgetsService} from '../../../../services/budgets.service';
 
 @Component({
   selector: 'app-budgets-card',
@@ -21,6 +22,7 @@ import {selectTransactionsData, selectTransactionsSpendings} from '../../transac
 })
 export class BudgetsCardComponent {
   private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private budgetsService: BudgetsService = inject(BudgetsService);
 
   @Input() budget!: Budget;
 
@@ -28,22 +30,10 @@ export class BudgetsCardComponent {
   budgetSpending$: Observable<BudgetSpending> = this.getBudgetSpending();
 
   getBudgetSpending(): Observable<BudgetSpending> {
-    return this.store.select(selectTransactionsSpendings).pipe(
-      map((spendings: Spending[]) =>
-        spendings.find((spending: Spending) => spending.category === this.budget.category) ?? { amount: 0 } as Spending),
-      map((spending: Spending): BudgetSpending => ({
-        ...this.budget,
-        spent: spending.amount,
-        percent: spending.amount > 0 ? spending.amount/this.budget.maximum : 0,
-        remaining: this.budget.maximum - spending.amount > 0 ? this.budget.maximum - spending.amount : 0
-      }))
-    );
+    return this.budgetsService.getBudgetSpending(this.store.select(selectTransactionsSpendings), this.budget);
   }
 
   getLatestTransactions(): Observable<Transaction[]> {
-    return this.store.select(selectTransactionsData).pipe(
-      map((transactions: Transaction[]): Transaction[] => transactions.filter((transaction: Transaction) => transaction.category === this.budget.category)),
-      map((transactions: Transaction[]): Transaction[] => transactions.slice(0, 3))
-    );
+    return this.budgetsService.getLatestTransactions(this.store.select(selectTransactionsData), this.budget.category);
   }
 }
