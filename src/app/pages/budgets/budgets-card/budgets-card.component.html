@@ -1,62 +1,72 @@
 <div class="budget-card-container">
-  @let spending = (budgetSpending$ | async);
+    @let spending = (budgetSpending$ | async);
 
-  <div class="card-title-container">
-    <div class="card-title">
-      <span [ngStyle]="{'background-color': budget.theme}"></span>
-      <h1>{{ budget.category }}</h1>
-    </div>
-
-    <button class="items-end"><img ngSrc="icon-ellipsis.svg" height="4" width="14"></button>
-  </div>
-
-  <div class="amount-bar-container">
-    <h3>Maximum of {{ spending?.maximum ?? 0 | currency }}</h3>
-    <div class="amount-progress-bar">
-      <span [ngStyle]="{'background-color': budget.theme, 'width': (spending?.percent | percent)}"></span>
-    </div>
-    <div class="spending-container">
-      <div class="spending-section">
-        <span [ngStyle]="{'background-color': budget.theme}"></span>
-        <div class="spending-amount">
-          <h5>Spent</h5>
-          <h4>{{spending?.spent ?? 0 | currency}}</h4>
+    <div class="card-title-container">
+        <div class="card-title">
+            <span [ngStyle]="{'background-color': budget.theme}"></span>
+            <h1>{{ budget.category }}</h1>
         </div>
-      </div>
 
-      <div class="spending-section">
-        <span class="bg-beige-100"></span>
-        <div class="spending-amount">
-          <h5>Remaining</h5>
-          <h4>{{ spending?.remaining ?? 0 | currency}}</h4>
+        <div class="flex relative">
+            <button class="items-end" (click)="toggleDropdown()">
+                <img ngSrc="icon-ellipsis.svg" height="4" width="14">
+            </button>
+            <ul [ngStyle]="{ display: showDropdown ? 'flex' : 'none' }"
+                class="shadow-md absolute top-8 right-0 text-nowrap bg-white flex flex-col space-y-3 px-5 py-3 border rounded-lg">
+                <li (click)="edit()" class="text-preset4 text-grey-900 flex border-b pb-3 cursor-pointer">Edit Budget</li>
+                <li (click)="delete()" class="text-preset4 text-red cursor-pointer">Delete Budget</li>
+            </ul>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="latest-spend-container">
-    <div class="latest-spend-title">
-      <h2>Latest Spending</h2>
-
-      <button class="see-all-button">
-        <h3>See All</h3>
-        <img ngSrc="icon-caret-right.svg" height="11" width="6">
-      </button>
     </div>
 
-    <ul>
-      @for (transaction of (transactions$ | async); track transaction.id) {
-        <li>
-          <div class="transaction-name">
-            <img ngSrc="{{transaction.avatar}}" width="32" height="32" alt="avatar" class="rounded-full">
-            <h6>{{transaction.name}}</h6>
-          </div>
-          <div class="transaction-details">
-            <h6>{{transaction.amount | currency}}</h6>
-            <h5>{{transaction.date | date: 'd MMM yyyy'}}</h5>
-          </div>
-        </li>
-      }
-    </ul>
-  </div>
+    <div class="amount-bar-container">
+        <h3>Maximum of {{ spending?.maximum ?? 0 | currency }}</h3>
+        <div class="amount-progress-bar">
+            <span [ngStyle]="{'background-color': budget.theme, 'width': (spending?.percent | percent)}"></span>
+        </div>
+        <div class="spending-container">
+            <div class="spending-section">
+                <span [ngStyle]="{'background-color': budget.theme}"></span>
+                <div class="spending-amount">
+                    <h5>Spent</h5>
+                    <h4>{{ spending?.spent ?? 0 | currency }}</h4>
+                </div>
+            </div>
+
+            <div class="spending-section">
+                <span class="bg-beige-100"></span>
+                <div class="spending-amount">
+                    <h5>Remaining</h5>
+                    <h4>{{ spending?.remaining ?? 0 | currency }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="latest-spend-container">
+        <div class="latest-spend-title">
+            <h2>Latest Spending</h2>
+
+            <button class="see-all-button">
+                <h3>See All</h3>
+                <img ngSrc="icon-caret-right.svg" height="11" width="6">
+            </button>
+        </div>
+
+        <ul>
+            @for (transaction of (transactions$ | async); track transaction.id) {
+                <li>
+                    <div class="transaction-name">
+                        <img ngSrc="{{transaction.avatar}}" width="32" height="32" alt="avatar" class="rounded-full">
+                        <h6>{{ transaction.name }}</h6>
+                    </div>
+                    <div class="transaction-details">
+                        <h6>{{ transaction.amount | currency }}</h6>
+                        <h5>{{ transaction.date | date: 'd MMM yyyy' }}</h5>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
 </div>
