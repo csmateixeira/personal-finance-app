@@ -1,5 +1,5 @@
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
-import {Sort, Transaction} from '../../../../utils/models';
+import {Option, Sort, Transaction} from '../../../../utils/models';
 import {TransactionsActions} from './transactions.actions';
 import {produce} from 'immer';
 import {TransactionsState} from './transactions.state';
@@ -56,6 +56,12 @@ export const TransactionsReducer: ActionReducer<Readonly<TransactionsState>, Act
   on(TransactionsActions.setCategoryFilter, (_state, {category}) => produce(
     _state, draft => {
       draft.categoryFilter = category;
+    }
+  )),
+  on(TransactionsActions.updateCategoryFilter, (_state, {category}) => produce(
+    _state, draft => {
+      draft.categoryFilter = _state.categories
+        .find((option: Option) => option.value === category)?.id ?? -1;
     }
   )),
   on(TransactionsActions.setSortBy, (_state, {sortBy}) => produce(

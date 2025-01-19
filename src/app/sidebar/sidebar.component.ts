@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
-import {SidebarButtonComponent} from './sidebar-button/sidebar-button.component';
-import {SidebarLogoComponent} from './sidebar-logo/sidebar-logo.component';
-import {SidebarMinimizeComponent} from './sidebar-minimize/sidebar-minimize.component';
+import {SidebarButtonComponent} from '../components/sidebar/sidebar-button/sidebar-button.component';
+import {SidebarLogoComponent} from '../components/sidebar/sidebar-logo/sidebar-logo.component';
+import {SidebarMinimizeComponent} from '../components/sidebar/sidebar-minimize/sidebar-minimize.component';
 import {Store} from '@ngrx/store';
 import {selectSidebarExpanded, SidebarState} from './state/sidebar.state';
 import {Observable} from 'rxjs';

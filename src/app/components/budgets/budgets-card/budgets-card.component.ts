@@ -3,12 +3,12 @@ import {AsyncPipe} from '@angular/common';
 import {Budget, BudgetSpending, Spending} from '../../../../utils/models';
 import {Store} from '@ngrx/store';
 import {map, Observable} from 'rxjs';
-import {selectTransactionsSpendings} from '../../transactions/state/transactions.state';
+import {selectTransactionsSpendings} from '../../../pages/transactions/state/transactions.state';
 import {BudgetsUtils} from "../../../../utils/budgets-utils";
 import {BudgetsCardSummaryComponent} from "./budgets-card-summary/budgets-card-summary.component";
 import {BudgetsCardSpendingComponent} from "./budgets-card-spending/budgets-card-spending.component";
 import {BudgetsCardLatestComponent} from "./budgets-card-latest/budgets-card-latest.component";
-import {BudgetsState} from '../state/budgets.state';
+import {BudgetsState} from '../../../pages/budgets/state/budgets.state';
 
 @Component({
     selector: 'app-budgets-card',

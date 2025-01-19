@@ -3,7 +3,7 @@ import {NgOptimizedImage, NgStyle} from '@angular/common';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 import {Store} from '@ngrx/store';
-import {BudgetsActions} from '../../state/budgets.actions';
+import {BudgetsActions} from '../../../../pages/budgets/state/budgets.actions';
 
 @Component({
   selector: 'app-budgets-card-summary',

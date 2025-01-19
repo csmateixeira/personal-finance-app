@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {AsyncPipe, NgOptimizedImage} from "@angular/common";
 import {Observable} from 'rxjs';
-import {selectSidebarExpanded, SidebarState} from '../state/sidebar.state';
+import {selectSidebarExpanded, SidebarState} from '../../../sidebar/state/sidebar.state';
 import {Store} from '@ngrx/store';
 
 @Component({
