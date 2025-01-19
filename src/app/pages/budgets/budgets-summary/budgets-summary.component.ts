@@ -6,9 +6,8 @@ import {HighchartsChartModule} from 'highcharts-angular';
 import {combineLatest, map, Observable} from 'rxjs';
 import {Budget, BudgetSpending, Series, Spending} from '../../../../utils/models';
 import {selectTransactionsSpendings} from '../../transactions/state/transactions.state';
-import {selectBudgetsData} from '../state/budgets.state';
+import {BudgetsState, selectBudgetsData} from '../state/budgets.state';
 import {Store} from '@ngrx/store';
-import {SidebarState} from '../../../sidebar/state/sidebar.state';
 
 @Component({
   selector: 'app-budgets-summary',
@@ -23,7 +22,7 @@ import {SidebarState} from '../../../sidebar/state/sidebar.state';
   styleUrl: './budgets-summary.component.scss'
 })
 export class BudgetsSummaryComponent {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private store: Store = inject(Store<{ budgets: BudgetsState }>);
 
   spendings$: Observable<Spending[]> = this.store.select(selectTransactionsSpendings);
   budgets$: Observable<Budget[]> = this.store.select(selectBudgetsData);

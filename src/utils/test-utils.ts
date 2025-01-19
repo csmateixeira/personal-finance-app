@@ -1,4 +1,4 @@
-import {Budget, Option, Page, Sort, Spending, Transaction} from './models';
+import {Budget, BudgetSpending, Option, Page, Sort, Spending, Transaction} from './models';
 import {SidebarState} from '../app/sidebar/state/sidebar.state';
 import {TransactionsState} from "../app/pages/transactions/state/transactions.state";
 import {BudgetsState} from '../app/pages/budgets/state/budgets.state';
@@ -146,7 +146,7 @@ export class BudgetsTestsUtils {
     return [
       {
         id: '123',
-        "category": "Entertainment",
+        "category": "General",
         "maximum": 50.00,
         "theme": "#277C78"
       },
@@ -157,5 +157,17 @@ export class BudgetsTestsUtils {
         "theme": "#82C9D7"
       },
     ]
+  }
+
+  static getBudgetSpending(): BudgetSpending {
+    return {
+      id: '123',
+      "category": "General",
+      "maximum": 50.00,
+      "theme": "#277C78",
+      spent: 42.3,
+      remaining: 7.70,
+      percent: 0.846
+    };
   }
 }

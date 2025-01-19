@@ -1,0 +1,67 @@
+.card-title-container {
+  @apply flex flex-row justify-between;
+}
+
+.card-title {
+  @apply flex flex-row space-x-4 items-center;
+}
+
+.card-title span {
+  @apply w-4 h-4 border rounded-full;
+}
+
+.card-title h2 {
+  @apply text-preset2 text-grey-900;
+}
+
+.dropdown-container {
+  @apply flex relative;
+}
+
+.dropdown-container button {
+  @apply items-end;
+}
+
+.dropdown-container ul {
+  @apply shadow-md absolute top-8 right-0 text-nowrap bg-white flex flex-col space-y-3 px-5 py-3 border rounded-lg;
+}
+
+.dropdown-container ul > li {
+  @apply text-preset4 cursor-pointer;
+}
+
+.edit-item {
+  @apply text-grey-900 border-b pb-3;
+}
+
+.delete-item {
+  @apply text-red;
+}
+
+.modal-container {
+  @apply flex flex-col space-y-2 max-w-[560px] drop-shadow;
+}
+
+.modal {
+  @apply flex flex-col space-y-5 px-8 py-8 border rounded-xl bg-white;
+}
+
+.modal p {
+  @apply text-preset4 text-grey-500;
+}
+
+.modal-title {
+  @apply flex flex-row justify-between;
+}
+
+.modal-title h1 {
+  @apply text-preset1 text-grey-900;
+}
+
+.delete-button {
+  @apply px-4 py-4 bg-red border rounded-lg text-preset4-bold text-white text-center;
+}
+
+.cancel-button {
+  @apply outline-none border-none text-center text-preset4 text-grey-500;
+}

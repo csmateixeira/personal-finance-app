@@ -1,0 +1,45 @@
+<div class="card-title-container">
+  <div class="card-title">
+    <span [ngStyle]="{'background-color': theme}"></span>
+    <h2>{{ category }}</h2>
+  </div>
+
+  <div class="dropdown-container">
+    <button (click)="toggleDropdown()">
+      <img ngSrc="icon-ellipsis.svg" height="4" width="14" alt="card menu">
+    </button>
+    <ul [ngStyle]="{ display: showDropdown ? 'flex' : 'none' }">
+      <li (click)="edit()" class="edit-item">Edit Budget</li>
+      <li (click)="showDeleteDialog()" class="delete-item">Delete Budget</li>
+    </ul>
+  </div>
+</div>
+
+
+<p-dialog [modal]="true" [(visible)]="showDialog"
+          maskStyleClass="backdrop-brightness-0 backdrop-opacity-50" #cd>
+  <ng-template #headless>
+    <div class="modal-container">
+      <div class="modal">
+        <div class="modal-title">
+          <h1>Delete {{ category }}?</h1>
+          <button (click)="closeDialog()">
+            <img ngSrc="icon-close-modal.svg" height="26" width="26" alt="close button">
+          </button>
+        </div>
+
+        <p>Are you sure you want to delete this budget? This action cannot be
+          reversed, and all the data inside it will be removed forever.</p>
+
+        <button (click)="delete()" class="delete-button">
+          Yes, Confirm Deletion
+        </button>
+        <button (click)="closeDialog()" class="cancel-button">
+          No, Go Back
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+

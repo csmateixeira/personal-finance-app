@@ -6,7 +6,8 @@ export const BudgetsActions = createActionGroup(
         source: 'Budgets',
         events: {
           'Load Budgets': emptyProps(),
-          'Budgets Loaded': props<{ budgets: Budget[] }>()
+          'Budgets Loaded': props<{ budgets: Budget[] }>(),
+          'Delete Budget': props<{ category: string }>(),
         }
     }
 );
