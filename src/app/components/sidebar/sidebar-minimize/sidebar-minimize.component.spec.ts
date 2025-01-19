@@ -1,28 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SidebarLogoComponent } from './sidebar-logo.component';
+import {SidebarMinimizeComponent} from './sidebar-minimize.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {TestUtils} from '../../../utils/test-utils';
+import {TestUtils} from '../../../../utils/test-utils';
 
-describe('SidebarLogoComponent', () => {
-  let component: SidebarLogoComponent;
-  let fixture: ComponentFixture<SidebarLogoComponent>;
+describe('SidebarMinimizeComponent', () => {
+  let component: SidebarMinimizeComponent;
+  let fixture: ComponentFixture<SidebarMinimizeComponent>;
 
   let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarLogoComponent],
+      imports: [SidebarMinimizeComponent],
       providers: [
         provideMockStore({ initialState: TestUtils.getInitialState() }),
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SidebarLogoComponent);
+    fixture = TestBed.createComponent(SidebarMinimizeComponent);
     component = fixture.componentInstance;
 
     store = TestBed.inject(MockStore);
+    spyOn(store, 'dispatch');
+
     fixture.detectChanges();
   });
 

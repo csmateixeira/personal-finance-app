@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {Option} from '../../../utils/models';
+import {Option} from '../../../../utils/models';
 import {NgClass, NgOptimizedImage, NgStyle} from '@angular/common';
 
 @Component({

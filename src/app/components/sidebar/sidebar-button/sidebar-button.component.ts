@@ -1,10 +1,10 @@
 import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe, NgClass} from "@angular/common";
 import {Store} from '@ngrx/store';
-import {selectActivePage, selectSidebarExpanded, SidebarState} from '../state/sidebar.state';
+import {selectActivePage, selectSidebarExpanded, SidebarState} from '../../../sidebar/state/sidebar.state';
 import {map, Observable} from 'rxjs';
 import {RouterLink} from '@angular/router';
-import {Page} from '../../../utils/models';
+import {Page} from '../../../../utils/models';
 
 @Component({
   selector: 'app-sidebar-button',

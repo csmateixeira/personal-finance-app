@@ -8,11 +8,11 @@ import {
   selectTransactionsCategoryFilter,
   selectTransactionsSortBy,
   selectTransactionsSorts
-} from '../state/transactions.state';
+} from '../../../pages/transactions/state/transactions.state';
 import {Option, Sort} from '../../../../utils/models';
 import {FormsModule} from '@angular/forms';
-import {SelectComponent} from '../../../shared/select/select.component';
-import {TransactionsActions} from '../state/transactions.actions';
+import {SelectComponent} from '../../shared/select/select.component';
+import {TransactionsActions} from '../../../pages/transactions/state/transactions.actions';
 
 @Component({
   selector: 'app-transactions-filters',

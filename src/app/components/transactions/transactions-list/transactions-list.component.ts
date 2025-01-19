@@ -6,7 +6,7 @@ import {Store} from '@ngrx/store';
 import {SidebarState} from '../../../sidebar/state/sidebar.state';
 import {Observable} from 'rxjs';
 import {Transaction} from '../../../../utils/models';
-import {selectTransactionsFilteredData, selectTransactionsPage} from '../state/transactions.state';
+import {selectTransactionsFilteredData, selectTransactionsPage} from '../../../pages/transactions/state/transactions.state';
 
 @Component({
   selector: 'app-transactions-list',

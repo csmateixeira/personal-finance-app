@@ -5,8 +5,8 @@ import {ChartOptionsPipe} from '../../../../pipes/chart-options.pipe';
 import {HighchartsChartModule} from 'highcharts-angular';
 import {combineLatest, map, Observable} from 'rxjs';
 import {Budget, BudgetSpending, Series, Spending} from '../../../../utils/models';
-import {selectTransactionsSpendings} from '../../transactions/state/transactions.state';
-import {BudgetsState, selectBudgetsData} from '../state/budgets.state';
+import {selectTransactionsSpendings} from '../../../pages/transactions/state/transactions.state';
+import {BudgetsState, selectBudgetsData} from '../../../pages/budgets/state/budgets.state';
 import {Store} from '@ngrx/store';
 
 @Component({

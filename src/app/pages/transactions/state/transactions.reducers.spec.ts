@@ -102,6 +102,38 @@ describe('TransactionsReducer', () => {
       });
   });
 
+  describe('updateCategoryFilter', () => {
+    it('should update the correct category filter in the state', () => {
+      const action = TransactionsActions.updateCategoryFilter({
+        category: 'Dining Out'
+      });
+
+      const newState: Readonly<TransactionsState> =
+        fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
+
+      expect(newState)
+        .toEqual({
+          ...TransactionsTestUtils.getTransactionsStateForEffects(),
+          categoryFilter: 3
+        });
+    });
+
+    it('should update the category filter in the state with the default', () => {
+      const action = TransactionsActions.updateCategoryFilter({
+        category: 'Entertainment'
+      });
+
+      const newState: Readonly<TransactionsState> =
+        fromReducer.TransactionsReducer(TransactionsTestUtils.getTransactionsStateForEffects(), action);
+
+      expect(newState)
+        .toEqual({
+          ...TransactionsTestUtils.getTransactionsStateForEffects(),
+          categoryFilter: -1
+        });
+    });
+  });
+
   it('should set the correct sort by filter in the state', () => {
     const action = TransactionsActions.setSortBy({
       sortBy: 2

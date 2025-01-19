@@ -65,6 +65,19 @@ export class TransactionsEffects {
     })
   ));
 
+  filterTransactionsByCategory$ = createEffect(() => this.actions$.pipe(
+    ofType(TransactionsActions.updateCategoryFilter),
+    withLatestFrom(this.store.select(selectTransactions)),
+    switchMap(([action, state]: [any, TransactionsState]) => {
+      return [
+        {
+          type: TransactionsActions.transactionsFiltered.type,
+          transactions: TransactionsUtils.filterTransactions([...state.data], action.category)
+        }
+      ];
+    })
+  ));
+
   searchTransactions$ = createEffect(() => this.actions$.pipe(
     ofType(TransactionsActions.search),
     withLatestFrom(this.store.select(selectTransactions)),

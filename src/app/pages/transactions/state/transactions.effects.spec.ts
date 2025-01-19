@@ -213,6 +213,36 @@ describe('TransactionsEffects', () => {
     });
   });
 
+  describe('filterTransactionsByCategory$', () => {
+    beforeEach(() => {
+      store = createMockStore({
+        initialState: TransactionsTestUtils.getTransactionsStateForEffects(),
+        selectors: [
+          {
+            selector: selectTransactions, value: TransactionsTestUtils.getTransactionsStateForEffects()
+          },
+        ]
+      });
+    });
+
+    it('should return action with transactions filtered by category name', () => {
+      actions$ = hot('a', {
+        a: TransactionsActions.updateCategoryFilter({category: 'Dining Out'})
+      });
+
+      const result = effects.filterTransactionsByCategory$;
+
+      expect(result).toBeObservable(cold('a', {
+        a: {
+          type: TransactionsActions.transactionsFiltered.type,
+          transactions: TransactionsTestUtils.getTransactionsSorted()
+        }
+      }));
+      expect(TransactionsUtils.filterTransactions)
+        .toHaveBeenCalledWith(TransactionsTestUtils.getTransactions(), 'Dining Out');
+    });
+  });
+
   describe('searchTransactions$', () => {
     it('should return action with transactions from search for a given category', () => {
       store = createMockStore({

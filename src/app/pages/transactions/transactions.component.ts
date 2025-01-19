@@ -3,9 +3,9 @@ import {Store} from '@ngrx/store';
 import {SidebarState} from '../../sidebar/state/sidebar.state';
 import {SidebarActions} from '../../sidebar/state/sidebar.actions';
 import {Page} from '../../../utils/models';
-import {TransactionsListComponent} from './transactions-list/transactions-list.component';
-import {TransactionsPaginationComponent} from './transactions-pagination/transactions-pagination.component';
-import {TransactionsFiltersComponent} from './transactions-filters/transactions-filters.component';
+import {TransactionsListComponent} from '../../components/transactions/transactions-list/transactions-list.component';
+import {TransactionsPaginationComponent} from '../../components/transactions/transactions-pagination/transactions-pagination.component';
+import {TransactionsFiltersComponent} from '../../components/transactions/transactions-filters/transactions-filters.component';
 
 @Component({
   selector: 'app-transactions',
