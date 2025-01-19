@@ -14,5 +14,10 @@ export const BudgetsReducer: ActionReducer<Readonly<BudgetsState>, Action> = cre
       _state, draft => {
         draft.data = budgets;
       }
-    ))
+    )),
+  on(BudgetsActions.deleteBudget, (_state, {category}) => produce(
+    _state, draft => {
+      draft.data = draft.data.filter(budget => budget.category !== category);
+    }
+  ))
 );

@@ -24,4 +24,18 @@ describe('BudgetsReducer', () => {
 
     expect(newState).toEqual({data: BudgetsTestsUtils.getBudgets()});
   });
+
+  it('should delete budget by category', () => {
+    const action = BudgetsActions.deleteBudget({
+      category: 'General'
+    });
+
+    const state: Readonly<BudgetsState> = {
+      data: BudgetsTestsUtils.getBudgets()
+    };
+
+    const newState: Readonly<BudgetsState> = fromReducer.BudgetsReducer(state, action);
+
+    expect(newState).toEqual({data: [BudgetsTestsUtils.getBudgets()[1]]});
+  });
 });
