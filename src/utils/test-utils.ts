@@ -1,7 +1,8 @@
-import {Budget, BudgetSpending, Option, Page, Sort, Spending, Transaction} from './models';
-import {SidebarState} from '../app/sidebar/state/sidebar.state';
-import {TransactionsState} from "../app/pages/transactions/state/transactions.state";
-import {BudgetsState} from '../app/pages/budgets/state/budgets.state';
+import {Colors, Option, Page, Sort} from '../models/models';
+import {SidebarState} from '../app/state/sidebar.state';
+import {TransactionsState} from "../app/state/transactions.state";
+import {BudgetsState} from '../app/state/budgets.state';
+import {Budget, BudgetsTheme, Spending, Transaction} from '../models/features.models';
 
 export class TestUtils {
   static getInitialState(): {
@@ -25,7 +26,8 @@ export class TestUtils {
         categoryFilter: -1,
       },
       budgets: {
-        data: []
+        data: [],
+        themes: []
       }
     }
   }
@@ -139,6 +141,7 @@ export class BudgetsTestsUtils {
   static getBudgetsStateForEffects(): BudgetsState {
     return {
       data: BudgetsTestsUtils.getBudgets(),
+      themes: BudgetsTestsUtils.getBudgetsThemes()
     }
   }
 
@@ -159,15 +162,49 @@ export class BudgetsTestsUtils {
     ]
   }
 
-  static getBudgetSpending(): BudgetSpending {
-    return {
-      id: '123',
-      "category": "General",
-      "maximum": 50.00,
-      "theme": "#277C78",
-      spent: 42.3,
-      remaining: 7.70,
-      percent: 0.846
-    };
+  static getBudgetsThemes(): BudgetsTheme[] {
+    return [
+      {
+        id: 123,
+        name: 'Green',
+        color: Colors.green,
+        isUsed: true
+      },
+      {
+        id: 789,
+        name: 'Cyan',
+        color: Colors.cyan,
+        isUsed: true
+      },
+      {
+        id: 456,
+        name: 'Orange',
+        color: Colors.orange,
+        isUsed: false
+      }
+    ]
+  }
+
+  static getInitialBudgetsThemes(): BudgetsTheme[] {
+    return [
+      {
+        id: 123,
+        name: 'Green',
+        color: Colors.green,
+        isUsed: false
+      },
+      {
+        id: 789,
+        name: 'Cyan',
+        color: Colors.cyan,
+        isUsed: false
+      },
+      {
+        id: 456,
+        name: 'Orange',
+        color: Colors.orange,
+        isUsed: false
+      }
+    ]
   }
 }

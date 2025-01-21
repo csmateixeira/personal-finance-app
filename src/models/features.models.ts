@@ -1,31 +1,4 @@
-export enum Page {
-  overview = 'overview',
-  transactions = 'transactions',
-  budgets = 'budgets',
-  pots = 'pots',
-  bills = 'bills'
-}
-
-export enum Sort {
-  latest = 'Latest',
-  oldest = 'Oldest',
-  aToZ = 'A to Z',
-  zToA = 'Z to A',
-  highest = 'Highest',
-  lowest = 'Lowest',
-}
-
-export interface Option {
-  id: number;
-  value: string;
-}
-
-export interface Series {
-  data: number[];
-  themes: string[];
-  totalSpending: number;
-  totalBudget: number;
-}
+import {Colors} from './models';
 
 export interface Transaction {
   id?: string;
@@ -59,6 +32,19 @@ export interface BudgetSpending extends Budget {
   spent: number;
   percent?: number;
   remaining?: number;
+}
+
+export interface BudgetsTheme {
+  id: number;
+  name: string;
+  color: Colors;
+  isUsed: boolean;
+}
+
+export interface AddEditBudgetProps {
+  category: number;
+  maximum: number;
+  theme: number;
 }
 
 export interface Pot {

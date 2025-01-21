@@ -3,10 +3,10 @@ import {SidebarButtonComponent} from '../components/sidebar/sidebar-button/sideb
 import {SidebarLogoComponent} from '../components/sidebar/sidebar-logo/sidebar-logo.component';
 import {SidebarMinimizeComponent} from '../components/sidebar/sidebar-minimize/sidebar-minimize.component';
 import {Store} from '@ngrx/store';
-import {selectSidebarExpanded, SidebarState} from './state/sidebar.state';
+import {selectSidebarExpanded, SidebarState} from '../state/sidebar.state';
 import {Observable} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
-import {Page} from '../../utils/models';
+import {Page} from '../../models/models';
 
 @Component({
   selector: 'app-sidebar',

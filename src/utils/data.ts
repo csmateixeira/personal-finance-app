@@ -1,4 +1,4 @@
-import {Balance, Budget, Pot, Transaction} from './models';
+import {Balance, Budget, Pot, Transaction} from '../models/features.models';
 
 export class Data {
   static getTransactions(): Transaction[] {

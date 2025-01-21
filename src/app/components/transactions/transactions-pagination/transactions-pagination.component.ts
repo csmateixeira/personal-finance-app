@@ -1,11 +1,11 @@
 import {Component, inject} from '@angular/core';
 import {AsyncPipe, NgClass} from '@angular/common';
 import {Store} from '@ngrx/store';
-import {SidebarState} from '../../../sidebar/state/sidebar.state';
+import {SidebarState} from '../../../state/sidebar.state';
 import {map, Observable} from 'rxjs';
-import {Transaction} from '../../../../utils/models';
-import {selectTransactionsFilteredData, selectTransactionsPage} from '../../../pages/transactions/state/transactions.state';
-import {TransactionsActions} from '../../../pages/transactions/state/transactions.actions';
+import {selectTransactionsFilteredData, selectTransactionsPage} from '../../../state/transactions.state';
+import {TransactionsActions} from '../../../state/actions/transactions.actions';
+import {Transaction} from '../../../../models/features.models';
 
 @Component({
   selector: 'app-transactions-pagination',

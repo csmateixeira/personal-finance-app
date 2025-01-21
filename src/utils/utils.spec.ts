@@ -51,4 +51,10 @@ describe('Utils', () => {
   it('should round the number to 2 decimal places', () => {
     expect(Utils.roundNumber(7.71000004)).toEqual(7.71)
   });
+
+  it('should get totals', () => {
+    const data: number[] = [1, 2, 3, 4, 5];
+
+    expect(Utils.getTotals(data)).toEqual(15);
+  });
 });

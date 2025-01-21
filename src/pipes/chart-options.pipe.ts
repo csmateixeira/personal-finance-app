@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Series} from '../utils/models';
+import {Series} from '../models/models';
 import * as Highcharts from 'highcharts';
 
 

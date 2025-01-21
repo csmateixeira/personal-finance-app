@@ -1,5 +1,6 @@
 import {createActionGroup, emptyProps, props} from '@ngrx/store';
-import {Transaction} from '../../../../utils/models';
+
+import {Transaction} from '../../../models/features.models';
 
 export const TransactionsActions = createActionGroup(
     {

@@ -1,5 +1,5 @@
 import {selectSidebarExpanded} from './sidebar.state';
-import {Page} from '../../../utils/models';
+import {Page} from '../../models/models';
 
 describe('Sidebar Selectors', () => {
   it("should select expanded value", () => {

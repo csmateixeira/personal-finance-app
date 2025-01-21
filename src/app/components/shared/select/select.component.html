@@ -1,15 +1,40 @@
-<div (click)="toggleContent()" class="dropdown">
-  <div class="dropdown-selected">
-    <p>{{ selectedText }}</p>
-    <img ngSrc="icon-caret-down.svg" width="12" height="6">
-  </div>
-
-  <ul [ngStyle]="{ display: showContent ? 'block' : 'none' }" class="dropdown-content">
-    @for (option of options; track option) {
-      <li [ngClass]="selected === option.id ? 'text-preset4-bold' : 'text-preset4'"
-          (click)="selectOption(option)">
-        {{ option.value }}
-      </li>
+<div class="dropdown-container">
+    @if (withLabel) {
+        <label>{{ label }}</label>
     }
-  </ul>
+
+    <div (click)="toggleContent()" [ngStyle]="{ 'z-index': showContent ? 10 : 0 }" class="dropdown">
+        <div class="dropdown-selected">
+            @if (withPrefix) {
+                <div class="dropdown-prefix">
+                    <span [ngStyle]="{'background-color': selectedTheme}"></span>
+                    <p>{{ selectedText }}</p>
+                </div>
+            } @else {
+                <p>{{ selectedText }}</p>
+            }
+
+            <img ngSrc="icon-caret-down.svg" width="12" height="6">
+        </div>
+
+        <ul [ngStyle]="{ display: showContent ? 'block' : 'none' }" class="dropdown-content">
+            @for (option of options; track option) {
+                <li [ngClass]="selected === option.id ? 'text-preset4-bold' : 'text-preset4'" (click)="selectOption(option)">
+                    @if (withPrefix) {
+                        <div class="dropdown-prefix">
+                            <span [ngStyle]="{'background-color': option.prefix}"></span>
+                            <p>{{ option.value }}</p>
+                        </div>
+                    } @else {
+                        <p>{{ option.value }}</p>
+                    }
+
+                    @if (withPostfix){
+                        <p class="dropdown-postfix">{{ option.postfix }}</p>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
 </div>
+

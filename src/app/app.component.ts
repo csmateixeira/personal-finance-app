@@ -1,10 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {SidebarComponent} from './sidebar/sidebar.component';
-import {TransactionsActions} from './pages/transactions/state/transactions.actions';
+import {TransactionsActions} from './state/actions/transactions.actions';
 import {Store} from '@ngrx/store';
-import {SidebarState} from './sidebar/state/sidebar.state';
-import {BudgetsActions} from './pages/budgets/state/budgets.actions';
+import {SidebarState} from './state/sidebar.state';
+import {BudgetsActions} from './state/actions/budgets.actions';
 
 @Component({
   selector: 'app-root',

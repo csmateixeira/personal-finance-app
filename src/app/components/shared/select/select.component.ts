@@ -1,44 +1,54 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {Option} from '../../../../utils/models';
+import {Option} from '../../../../models/models';
 import {NgClass, NgOptimizedImage, NgStyle} from '@angular/common';
 
 @Component({
-  selector: 'app-select',
-  imports: [
-    FormsModule,
-    NgStyle,
-    NgOptimizedImage,
-    NgClass
-  ],
-  templateUrl: './select.component.html',
-  styleUrl: './select.component.scss'
+    selector: 'app-select',
+    imports: [
+        FormsModule,
+        NgStyle,
+        NgOptimizedImage,
+        NgClass
+    ],
+    templateUrl: './select.component.html',
+    styleUrl: './select.component.scss'
 })
-export class SelectComponent implements OnInit{
-  @Input({required: true}) options!: Option[];
-  @Input({required: true}) selected!: number;
+export class SelectComponent implements OnInit {
+    @Input() options!: Option[];
+    @Input() selected!: number;
 
-  @Output() updateEvent: EventEmitter<Option> = new EventEmitter<Option>();
+    @Input() withLabel: boolean = false;
+    @Input() label?: string;
+    @Input() withPrefix: boolean = false;
+    @Input() withPostfix: boolean = false;
 
-  showContent: boolean = false;
-  selectedText: string = '';
+    @Output() updateEvent: EventEmitter<Option> = new EventEmitter<Option>();
 
-  ngOnInit(): void {
-    this.selectedText = this.getSelectedText();
-  }
+    showContent: boolean = false;
+    selectedText: string = '';
+    selectedTheme: string = '';
 
-  toggleContent() {
-    this.showContent = !this.showContent;
-  }
+    ngOnInit(): void {
+        this.initializeSelectedOption();
+    }
 
-  selectOption(option: Option) {
-    this.updateEvent.emit(option);
+    toggleContent() {
+        this.showContent = !this.showContent;
+    }
 
-    this.selected = option.id;
-    this.selectedText = this.getSelectedText();
-  }
+    selectOption(option: Option) {
+        this.updateEvent.emit(option);
 
-  getSelectedText(): string {
-    return this.options.find((option: Option) => option.id === this.selected)?.value ?? '';
-  }
+        this.selected = option.id;
+
+        this.initializeSelectedOption();
+    }
+
+    initializeSelectedOption(): void {
+        const selectedOption: Option = this.options.find((option: Option) => option.id === this.selected) ?? this.options[0];
+
+        this.selectedText = selectedOption.value;
+        this.selectedTheme = selectedOption.prefix ?? '';
+    }
 }

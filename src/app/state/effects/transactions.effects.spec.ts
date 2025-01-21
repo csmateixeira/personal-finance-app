@@ -3,14 +3,14 @@ import {provideMockActions} from '@ngrx/effects/testing';
 import {Action} from '@ngrx/store';
 import {Observable, of} from 'rxjs';
 import {cold, hot} from 'jasmine-marbles';
-import {TransactionsActions} from './transactions.actions';
+import {TransactionsActions} from '../actions/transactions.actions';
 import {TransactionsEffects} from './transactions.effects';
-import {TransactionsTestUtils} from '../../../../utils/test-utils';
-import {TransactionsService} from '../../../../services/transactions.service';
+import {TransactionsTestUtils} from '../../../utils/test-utils';
+import {TransactionsService} from '../../../services/transactions.service';
 import {createMockStore, MockStore, provideMockStore} from '@ngrx/store/testing';
-import {selectTransactions, TransactionsState} from './transactions.state';
-import {Sort} from '../../../../utils/models';
-import {TransactionsUtils} from '../../../../utils/transactions-utils';
+import {selectTransactions, TransactionsState} from '../transactions.state';
+import {Sort} from '../../../models/models';
+import {TransactionsUtils} from '../../../utils/transactions-utils';
 
 describe('TransactionsEffects', () => {
   let actions$: Observable<Action>;

@@ -3,7 +3,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {SidebarButtonComponent} from './sidebar-button.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {TestUtils} from '../../../../utils/test-utils';
-import {Page} from '../../../../utils/models';
+import {Page} from '../../../../models/models';
 import {RouterModule} from '@angular/router';
 
 describe('SidebarButtonComponent', () => {

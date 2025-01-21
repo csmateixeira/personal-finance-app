@@ -7,7 +7,7 @@ import {
   selectTransactionsSortBy,
   selectTransactionsSorts, selectTransactionsSpendings
 } from './transactions.state';
-import {TransactionsTestUtils} from '../../../../utils/test-utils';
+import {TransactionsTestUtils} from '../../utils/test-utils';
 
 describe('TransactionsSelectors', () => {
   it('should select all transactions data', () => {

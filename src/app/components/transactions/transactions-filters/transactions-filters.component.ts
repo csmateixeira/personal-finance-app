@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {SidebarState} from '../../../sidebar/state/sidebar.state';
+import {SidebarState} from '../../../state/sidebar.state';
 import {AsyncPipe, NgOptimizedImage} from '@angular/common';
 import {Observable} from 'rxjs';
 import {
@@ -8,11 +8,11 @@ import {
   selectTransactionsCategoryFilter,
   selectTransactionsSortBy,
   selectTransactionsSorts
-} from '../../../pages/transactions/state/transactions.state';
-import {Option, Sort} from '../../../../utils/models';
+} from '../../../state/transactions.state';
+import {Option, Sort} from '../../../../models/models';
 import {FormsModule} from '@angular/forms';
 import {SelectComponent} from '../../shared/select/select.component';
-import {TransactionsActions} from '../../../pages/transactions/state/transactions.actions';
+import {TransactionsActions} from '../../../state/actions/transactions.actions';
 
 @Component({
   selector: 'app-transactions-filters',
