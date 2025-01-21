@@ -1,10 +1,11 @@
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
-import {Option, Sort, Transaction} from '../../../../utils/models';
-import {TransactionsActions} from './transactions.actions';
+import {Option, Sort} from '../../../models/models';
+import {TransactionsActions} from '../actions/transactions.actions';
 import {produce} from 'immer';
-import {TransactionsState} from './transactions.state';
-import {Utils} from '../../../../utils/utils';
-import {TransactionsUtils} from '../../../../utils/transactions-utils';
+import {TransactionsState} from '../transactions.state';
+import {Utils} from '../../../utils/utils';
+import {TransactionsUtils} from '../../../utils/transactions-utils';
+import {Transaction} from '../../../models/features.models';
 
 export const initialState: Readonly<TransactionsState> = {
   data: [],

@@ -4,10 +4,13 @@ import {AsyncPipe, CurrencyPipe, NgStyle} from '@angular/common';
 import {ChartOptionsPipe} from '../../../../pipes/chart-options.pipe';
 import {HighchartsChartModule} from 'highcharts-angular';
 import {combineLatest, map, Observable} from 'rxjs';
-import {Budget, BudgetSpending, Series, Spending} from '../../../../utils/models';
-import {selectTransactionsSpendings} from '../../../pages/transactions/state/transactions.state';
-import {BudgetsState, selectBudgetsData} from '../../../pages/budgets/state/budgets.state';
+import {Series} from '../../../../models/models';
+import {selectTransactionsSpendings} from '../../../state/transactions.state';
+import {BudgetsState, selectBudgetsData} from '../../../state/budgets.state';
 import {Store} from '@ngrx/store';
+import {Budget, BudgetSpending, Spending} from '../../../../models/features.models';
+import {BudgetsUtils} from "../../../../utils/budgets-utils";
+import {Utils} from "../../../../utils/utils";
 
 @Component({
   selector: 'app-budgets-summary',
@@ -49,8 +52,8 @@ export class BudgetsSummaryComponent {
         return {
           data,
           themes: budgets.map((b: Budget) => b.theme),
-          totalSpending: data.reduce((accumulator: number, current: number) => accumulator + current, 0),
-          totalBudget: budgets.reduce((accumulator: number, current: Budget) => accumulator + current.maximum, 0)
+          totalSpending: Utils.getTotals(data),
+          totalBudget: BudgetsUtils.getMaximumTotals(budgets)
         }
       })
     );

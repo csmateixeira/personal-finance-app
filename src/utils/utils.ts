@@ -1,4 +1,4 @@
-import {Option} from './models';
+import {Option} from '../models/models';
 
 export class Utils {
   static getUniqueValues(values: string[]): string[] {
@@ -29,5 +29,9 @@ export class Utils {
 
   static roundNumber(value: number): number {
     return Math.round(value * 100) / 100;
+  }
+
+  static getTotals(data: number[]): number {
+    return data.reduce((accumulator: number, current: number) => accumulator + current, 0);
   }
 }

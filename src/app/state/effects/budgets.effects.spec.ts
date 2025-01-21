@@ -2,12 +2,12 @@ import {Observable, of} from 'rxjs';
 import {Action} from '@ngrx/store';
 import {provideMockStore} from '@ngrx/store/testing';
 import {BudgetsEffects} from './budgets.effects';
-import {BudgetsService} from '../../../../services/budgets.service';
+import {BudgetsService} from '../../../services/budgets.service';
 import {TestBed} from '@angular/core/testing';
 import {provideMockActions} from '@ngrx/effects/testing';
-import {BudgetsTestsUtils} from '../../../../utils/test-utils';
+import {BudgetsTestsUtils} from '../../../utils/test-utils';
 import {cold, hot} from 'jasmine-marbles';
-import {BudgetsActions} from './budgets.actions';
+import {BudgetsActions} from '../actions/budgets.actions';
 
 describe('BudgetsEffects', () => {
   let actions$: Observable<Action>;

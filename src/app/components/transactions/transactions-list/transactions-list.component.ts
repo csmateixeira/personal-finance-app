@@ -3,10 +3,10 @@ import {AsyncPipe, DatePipe, NgClass, NgOptimizedImage} from '@angular/common';
 import {FormatAmountPipe} from '../../../../pipes/format-amount.pipe';
 import {PaginatePipe} from '../../../../pipes/page.pipe';
 import {Store} from '@ngrx/store';
-import {SidebarState} from '../../../sidebar/state/sidebar.state';
+import {SidebarState} from '../../../state/sidebar.state';
 import {Observable} from 'rxjs';
-import {Transaction} from '../../../../utils/models';
-import {selectTransactionsFilteredData, selectTransactionsPage} from '../../../pages/transactions/state/transactions.state';
+import {selectTransactionsFilteredData, selectTransactionsPage} from '../../../state/transactions.state';
+import {Transaction} from '../../../../models/features.models';
 
 @Component({
   selector: 'app-transactions-list',

@@ -1,13 +1,14 @@
 import {inject, Injectable} from '@angular/core';
-import {TransactionsService} from '../../../../services/transactions.service';
+import {TransactionsService} from '../../../services/transactions.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {TransactionsActions} from './transactions.actions';
+import {TransactionsActions} from '../actions/transactions.actions';
 import {catchError, EMPTY, exhaustMap, map, switchMap, withLatestFrom} from 'rxjs';
-import {Option, Sort, Transaction} from '../../../../utils/models';
+import {Option, Sort} from '../../../models/models';
 import {v4 as uuidv4} from 'uuid';
 import {Store} from '@ngrx/store';
-import {selectTransactions, TransactionsState} from './transactions.state';
-import {TransactionsUtils} from '../../../../utils/transactions-utils';
+import {selectTransactions, TransactionsState} from '../transactions.state';
+import {TransactionsUtils} from '../../../utils/transactions-utils';
+import {Transaction} from '../../../models/features.models';
 
 @Injectable()
 export class TransactionsEffects {

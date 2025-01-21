@@ -1,5 +1,5 @@
 import * as fromReducer from './sidebar.reducers';
-import {SidebarActions} from './sidebar.actions';
+import {SidebarActions} from '../actions/sidebar.actions';
 import {TestUtils} from '../../../utils/test-utils';
 
 describe('Sidebar Reducers', () => {

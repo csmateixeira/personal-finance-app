@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {SidebarState} from '../../sidebar/state/sidebar.state';
-import {SidebarActions} from '../../sidebar/state/sidebar.actions';
-import {Page} from '../../../utils/models';
+import {SidebarState} from '../../state/sidebar.state';
+import {SidebarActions} from '../../state/actions/sidebar.actions';
+import {Page} from '../../../models/models';
 
 @Component({
   selector: 'app-bills',

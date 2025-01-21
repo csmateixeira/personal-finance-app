@@ -1,0 +1,52 @@
+<p-dialog [modal]="true" [(visible)]="showDialog"
+          maskStyleClass="backdrop-brightness-0 backdrop-opacity-50" #cd>
+  <ng-template #headless>
+    <div class="modal-container">
+      <div class="modal">
+        <div class="modal-title">
+          <h1>{{ title }}</h1>
+          <button (click)="closeDialog()">
+            <img ngSrc="icon-close-modal.svg" height="26" width="26" alt="close button">
+          </button>
+        </div>
+
+        <p>{{ description }}</p>
+
+        @if (action === BudgetAction.delete) {
+          <button (click)="submit()" class="delete-button">
+            {{ buttonText }}
+          </button>
+          <button (click)="closeDialog()" class="cancel-button">
+            No, Go Back
+          </button>
+        } @else {
+          @let categories = (filteredCategories$ | async)!;
+          @let themes = (themes$ | async)!;
+
+          <div class="add-edit-container">
+            <form [formGroup]="budgetForm">
+              <app-select [options]="categories" [selected]="categories[0].id"
+                          [withLabel]="true" [label]="'Budget category'"
+                          (updateEvent)="updateCategory($event)"></app-select>
+
+              <label>Maximum Spend</label>
+              <div class="add-edit-spend">
+                <p>$</p>
+                <input type="number" formControlName="maximum" placeholder="e.g 2000">
+              </div>
+
+              <app-select [options]="themes" [selected]="themes[0].id"
+                          [withLabel]="true" [label]="'Theme'"
+                          [withPrefix]="true" [withPostfix]="true"
+                          (updateEvent)="updateTheme($event)"></app-select>
+            </form>
+          </div>
+
+          <button (click)="submit()" class="save-button">
+            {{ buttonText }}
+          </button>
+        }
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>

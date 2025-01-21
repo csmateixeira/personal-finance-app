@@ -1,9 +1,9 @@
 import {Component, inject} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {Store} from '@ngrx/store';
-import {selectSidebarExpanded, SidebarState} from '../../../sidebar/state/sidebar.state';
+import {selectSidebarExpanded, SidebarState} from '../../../state/sidebar.state';
 import {Observable} from 'rxjs';
-import {SidebarActions} from '../../../sidebar/state/sidebar.actions';
+import {SidebarActions} from '../../../state/actions/sidebar.actions';
 
 @Component({
   selector: 'app-sidebar-minimize',

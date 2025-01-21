@@ -1,5 +1,5 @@
 import {ChartOptionsPipe} from './chart-options.pipe';
-import {Series} from '../utils/models';
+import {Series} from '../models/models';
 
 describe('ChartOptionsPipe', () => {
   const pipe: ChartOptionsPipe = new ChartOptionsPipe();

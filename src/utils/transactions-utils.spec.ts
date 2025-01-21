@@ -1,6 +1,7 @@
 import {TransactionsUtils} from './transactions-utils';
 import {TransactionsTestUtils} from './test-utils';
-import {Sort, Spending} from './models';
+import {Sort} from '../models/models';
+import {Spending} from '../models/features.models';
 
 describe('TransactionsUtils', () => {
   it('should return the correct page data', () => {

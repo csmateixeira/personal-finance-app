@@ -1,5 +1,6 @@
-import {Sort, Spending, Transaction} from './models';
+import {Sort} from '../models/models';
 import {Utils} from './utils';
+import {Spending, Transaction} from '../models/features.models';
 
 export class TransactionsUtils {
   static getPageData<T>(data: T[], page: number): T[] {

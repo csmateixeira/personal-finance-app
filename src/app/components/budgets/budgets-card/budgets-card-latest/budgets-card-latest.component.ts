@@ -1,13 +1,13 @@
 import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe, CurrencyPipe, DatePipe, NgOptimizedImage} from '@angular/common';
 import {map, Observable} from 'rxjs';
-import {Transaction} from '../../../../../utils/models';
-import {selectTransactionsData} from '../../../../pages/transactions/state/transactions.state';
+import {selectTransactionsData} from '../../../../state/transactions.state';
 import {TransactionsUtils} from '../../../../../utils/transactions-utils';
 import {Store} from '@ngrx/store';
-import {SidebarState} from '../../../../sidebar/state/sidebar.state';
-import {TransactionsActions} from '../../../../pages/transactions/state/transactions.actions';
+import {SidebarState} from '../../../../state/sidebar.state';
+import {TransactionsActions} from '../../../../state/actions/transactions.actions';
 import {Router} from '@angular/router';
+import {Transaction} from "../../../../../models/features.models";
 
 @Component({
   selector: 'app-budgets-card-latest',

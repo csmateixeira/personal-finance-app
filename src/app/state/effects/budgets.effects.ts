@@ -1,10 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {BudgetsService} from '../../../../services/budgets.service';
-import {BudgetsActions} from './budgets.actions';
+import {BudgetsService} from '../../../services/budgets.service';
+import {BudgetsActions} from '../actions/budgets.actions';
 import {catchError, EMPTY, exhaustMap, map} from 'rxjs';
-import {Budget} from '../../../../utils/models';
 import {v4 as uuidv4} from 'uuid';
+import {Budget} from '../../../models/features.models';
 
 @Injectable()
 export class BudgetsEffects {

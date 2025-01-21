@@ -1,8 +1,8 @@
 import * as fromReducer from './transactions.reducers';
-import {TestUtils, TransactionsTestUtils} from '../../../../utils/test-utils';
-import {TransactionsActions} from './transactions.actions';
-import {TransactionsState} from './transactions.state';
-import {Sort} from '../../../../utils/models';
+import {TestUtils, TransactionsTestUtils} from '../../../utils/test-utils';
+import {TransactionsActions} from '../actions/transactions.actions';
+import {TransactionsState} from '../transactions.state';
+import {Sort} from '../../../models/models';
 
 describe('TransactionsReducer', () => {
   it('should return the default state for unknown actions', () => {
