@@ -1,14 +1,14 @@
 <div class="amount-bar-container">
-  <h3>Maximum of {{ spending.maximum | currency }}</h3>
+  <h3>Maximum of {{ budget.maximum | currency }}</h3>
   <div class="amount-progress-bar">
-    <span [ngStyle]="{'background-color': theme, 'width': (spending.percent | percent)}"></span>
+    <span [ngStyle]="{'background-color': budget.theme, 'width': (budget.percent | percent)}"></span>
   </div>
   <div class="spending-container">
     <div class="spending-section">
-      <span [ngStyle]="{'background-color': theme}"></span>
+      <span [ngStyle]="{'background-color': budget.theme}"></span>
       <div class="spending-amount">
         <h5>Spent</h5>
-        <h4>{{ spending.spent | currency }}</h4>
+        <h4>{{ budget.spent | currency }}</h4>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
       <span class="bg-beige-100"></span>
       <div class="spending-amount">
         <h5>Remaining</h5>
-        <h4>{{ spending.remaining | currency }}</h4>
+        <h4>{{ budget.remaining | currency }}</h4>
       </div>
     </div>
   </div>

@@ -4,13 +4,11 @@ import {TransactionsActions} from '../actions/transactions.actions';
 import {produce} from 'immer';
 import {TransactionsState} from '../transactions.state';
 import {Utils} from '../../../utils/utils';
-import {TransactionsUtils} from '../../../utils/transactions-utils';
 import {Transaction} from '../../../models/features.models';
 
 export const initialState: Readonly<TransactionsState> = {
   data: [],
   filteredData: [],
-  spendings: [],
   categories: [],
   sorts: [],
   page: 1,
@@ -27,7 +25,6 @@ export const TransactionsReducer: ActionReducer<Readonly<TransactionsState>, Act
 
         draft.data = transactions;
         draft.filteredData = transactions;
-        draft.spendings = TransactionsUtils.getSpendings(transactions, categories, 7);
         draft.categories = [
           ...Utils.getUniqueOptions(categories),
           {id: -1, value: "All Transactions"}

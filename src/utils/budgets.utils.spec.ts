@@ -1,4 +1,4 @@
-import {BudgetsUtils} from './budgets-utils';
+import {BudgetsUtils} from './budgets.utils';
 import {Budget, Spending} from '../models/features.models';
 import {Colors} from '../models/models';
 
@@ -66,5 +66,17 @@ describe('BudgetsUtils', () => {
     ];
 
     expect(BudgetsUtils.getMaximumTotals(budgets)).toEqual(3000);
+  });
+
+  describe('findBudgetByCategory', () => {
+    it('should find budget by category', () => {
+      const budgets: Budget[] = [
+        {id: '1', category: 'Food', maximum: 1000, theme: Colors.red},
+        {id: '2', category: 'Entertainment', maximum: 2000, theme: Colors.blue}
+      ];
+      const category = 'Food';
+      expect(BudgetsUtils.findBudgetByCategory(budgets, category))
+        .toEqual({id: '1', category: 'Food', maximum: 1000, theme: Colors.red});
+    });
   });
 });

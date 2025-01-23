@@ -5,7 +5,7 @@ import {
   selectTransactionsFilteredData,
   selectTransactionsPage,
   selectTransactionsSortBy,
-  selectTransactionsSorts, selectTransactionsSpendings
+  selectTransactionsSorts
 } from './transactions.state';
 import {TransactionsTestUtils} from '../../utils/test-utils';
 
@@ -18,11 +18,6 @@ describe('TransactionsSelectors', () => {
   it('should select all transactions filtered data', () => {
     expect(selectTransactionsFilteredData.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
       .toEqual(TransactionsTestUtils.getTransactionsSorted());
-  });
-
-  it('should select all transactions spendings', () => {
-    expect(selectTransactionsSpendings.projector(TransactionsTestUtils.getTransactionsStateForEffects()))
-      .toEqual(TransactionsTestUtils.getSpendings());
   });
 
   it('should select the current page', () => {

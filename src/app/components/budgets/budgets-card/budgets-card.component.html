@@ -1,13 +1,9 @@
 <div class="budget-card-container">
-    @let spending = (budgetSpending$ | async)!;
-
     <app-budgets-card-summary
             [theme]="budget.theme"
             [category]="budget.category"></app-budgets-card-summary>
 
-    <app-budgets-card-spending
-            [spending]="spending"
-            [theme]="budget.theme"></app-budgets-card-spending>
+    <app-budgets-card-spending [budget]="budget"></app-budgets-card-spending>
 
     <app-budgets-card-latest
             [category]="budget.category"></app-budgets-card-latest>

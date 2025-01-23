@@ -27,7 +27,6 @@ describe('TransactionsReducer', () => {
       ...TestUtils.getInitialState().transactions,
       data: TransactionsTestUtils.getTransactions(),
       filteredData: TransactionsTestUtils.getTransactions(),
-      spendings: TransactionsTestUtils.getSpendings(),
       categories: [
         {id: 1, value: 'General'},
         {id: 2, value: 'Dining Out'},

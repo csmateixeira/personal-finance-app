@@ -9,15 +9,21 @@
             <img ngSrc="icon-ellipsis.svg" height="4" width="14" alt="card menu">
         </button>
         <ul [ngStyle]="{ display: showDropdown ? 'flex' : 'none' }">
-            <li (click)="edit()" class="edit-item">Edit Budget</li>
+            <li (click)="showEditDialog()" class="edit-item">Edit Budget</li>
             <li (click)="showDeleteDialog()" class="delete-item">Delete Budget</li>
         </ul>
     </div>
 </div>
 
 <app-budget-dialog (actionEvent)="delete()"
-                   (closeDialogEvent)="closeDialog()"
+                   (closeDialogEvent)="closeDeleteDialog()"
                    [category]="category"
-                   [showDialog]="showDialog"
+                   [showDialog]="deleteDialog"
                    [action]="BudgetAction.delete"></app-budget-dialog>
+
+<app-budget-dialog (actionEvent)="edit()"
+                   (closeDialogEvent)="closeEditDialog()"
+                   [category]="category"
+                   [showDialog]="editDialog"
+                   [action]="BudgetAction.edit"></app-budget-dialog>
 

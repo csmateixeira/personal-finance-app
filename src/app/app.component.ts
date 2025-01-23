@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    this.store.dispatch(() => TransactionsActions.loadTransactions());
     this.store.dispatch(() => BudgetsActions.loadBudgets());
+    this.store.dispatch(() => TransactionsActions.loadTransactions());
   }
 }

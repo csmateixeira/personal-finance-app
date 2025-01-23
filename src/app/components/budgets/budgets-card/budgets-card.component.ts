@@ -1,37 +1,19 @@
-import {Component, inject, Input} from '@angular/core';
-import {AsyncPipe} from '@angular/common';
-import {Store} from '@ngrx/store';
-import {map, Observable} from 'rxjs';
-import {selectTransactionsSpendings} from '../../../state/transactions.state';
-import {BudgetsUtils} from "../../../../utils/budgets-utils";
+import {Component, Input} from '@angular/core';
 import {BudgetsCardSummaryComponent} from "./budgets-card-summary/budgets-card-summary.component";
 import {BudgetsCardSpendingComponent} from "./budgets-card-spending/budgets-card-spending.component";
 import {BudgetsCardLatestComponent} from "./budgets-card-latest/budgets-card-latest.component";
-import {BudgetsState} from '../../../state/budgets.state';
-import {Budget, BudgetSpending, Spending} from "../../../../models/features.models";
+import {Budget} from "../../../../models/features.models";
 
 @Component({
-    selector: 'app-budgets-card',
-    imports: [
-        AsyncPipe,
-        BudgetsCardSummaryComponent,
-        BudgetsCardSpendingComponent,
-        BudgetsCardLatestComponent,
-    ],
-    templateUrl: './budgets-card.component.html',
-    styleUrl: './budgets-card.component.scss'
+  selector: 'app-budgets-card',
+  imports: [
+    BudgetsCardSummaryComponent,
+    BudgetsCardSpendingComponent,
+    BudgetsCardLatestComponent,
+  ],
+  templateUrl: './budgets-card.component.html',
+  styleUrl: './budgets-card.component.scss'
 })
 export class BudgetsCardComponent {
-    private store: Store = inject(Store<{ budgets: BudgetsState }>);
-
-    @Input() budget!: Budget;
-
-    budgetSpending$: Observable<BudgetSpending> = this.getBudgetSpending();
-
-    getBudgetSpending(): Observable<BudgetSpending> {
-        return this.store.select(selectTransactionsSpendings).pipe(
-            map((spendings: Spending[]) => BudgetsUtils.findSpendingForCategory(spendings, this.budget.category)),
-            map((spending: Spending): BudgetSpending => BudgetsUtils.getBudgetSpending(this.budget, spending))
-        );
-    }
+  @Input() budget!: Budget;
 }

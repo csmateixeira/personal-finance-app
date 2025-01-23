@@ -7,7 +7,7 @@ import {Option, Sort} from '../../../models/models';
 import {v4 as uuidv4} from 'uuid';
 import {Store} from '@ngrx/store';
 import {selectTransactions, TransactionsState} from '../transactions.state';
-import {TransactionsUtils} from '../../../utils/transactions-utils';
+import {TransactionsUtils} from '../../../utils/transactions.utils';
 import {Transaction} from '../../../models/features.models';
 
 @Injectable()

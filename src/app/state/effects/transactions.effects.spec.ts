@@ -10,7 +10,7 @@ import {TransactionsService} from '../../../services/transactions.service';
 import {createMockStore, MockStore, provideMockStore} from '@ngrx/store/testing';
 import {selectTransactions, TransactionsState} from '../transactions.state';
 import {Sort} from '../../../models/models';
-import {TransactionsUtils} from '../../../utils/transactions-utils';
+import {TransactionsUtils} from '../../../utils/transactions.utils';
 
 describe('TransactionsEffects', () => {
   let actions$: Observable<Action>;

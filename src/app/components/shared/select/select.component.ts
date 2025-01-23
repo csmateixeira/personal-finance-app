@@ -17,9 +17,11 @@ import {NgClass, NgOptimizedImage, NgStyle} from '@angular/common';
 export class SelectComponent implements OnInit {
     @Input() options!: Option[];
     @Input() selected!: number;
+    @Input() enabled: boolean = true;
 
     @Input() withLabel: boolean = false;
     @Input() label?: string;
+
     @Input() withPrefix: boolean = false;
     @Input() withPostfix: boolean = false;
 
@@ -34,7 +36,9 @@ export class SelectComponent implements OnInit {
     }
 
     toggleContent() {
-        this.showContent = !this.showContent;
+        if (this.enabled) {
+            this.showContent = !this.showContent;
+        }
     }
 
     selectOption(option: Option) {

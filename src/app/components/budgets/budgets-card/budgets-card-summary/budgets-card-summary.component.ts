@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {NgOptimizedImage, NgStyle} from '@angular/common';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
-import {BudgetDialogComponent} from '../../delete-confirm-dialog/budget-dialog.component';
+import {BudgetDialogComponent} from '../../budget-dialog/budget-dialog.component';
 import {BudgetAction} from "../../../../../models/models";
 
 @Component({
@@ -23,27 +23,39 @@ export class BudgetsCardSummaryComponent {
   @Input() theme!: string;
   @Input() category!: string;
 
-  showDropdown = false;
-  showDialog = false;
+  showDropdown: boolean = false;
+  deleteDialog: boolean = false;
+  editDialog: boolean = false;
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
-  closeDialog() {
-    this.showDialog = false;
+  closeDeleteDialog() {
+    this.deleteDialog = false;
+  }
+
+  closeEditDialog() {
+    this.editDialog = false;
   }
 
   edit() {
-    this.showDialog = false;
+    this.editDialog = false;
   }
 
   delete() {
-    this.showDialog = false;
+    this.deleteDialog = false;
   }
 
   showDeleteDialog() {
     this.showDropdown = false;
-    this.showDialog = true;
+    this.editDialog = false;
+    this.deleteDialog = true;
+  }
+
+  showEditDialog() {
+    this.showDropdown = false;
+    this.deleteDialog = false;
+    this.editDialog = true;
   }
 }

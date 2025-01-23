@@ -1,5 +1,5 @@
 import {PaginatePipe} from './page.pipe';
-import {TransactionsUtils} from '../utils/transactions-utils';
+import {TransactionsUtils} from '../utils/transactions.utils';
 
 describe('PagePipe', () => {
   const pipe = new PaginatePipe();

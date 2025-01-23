@@ -34,4 +34,12 @@ export class Utils {
   static getTotals(data: number[]): number {
     return data.reduce((accumulator: number, current: number) => accumulator + current, 0);
   }
+
+  static findOptionByValue(options: Option[], value: string): Option {
+    return options.find((option: Option) => option.value === value)!;
+  }
+
+  static findOptionById(options: Option[], id: number): Option {
+    return options.find((option: Option) => option.id === id)!;
+  }
 }
