@@ -11,7 +11,7 @@
       <h1>Spending Summary</h1>
 
       <ul>
-        @for (budget of budgetSpendings$ | async; track budget.id) {
+        @for (budget of budgets$ | async; track budget.id) {
           <li>
             <div class="category-container">
               <div [ngStyle]="{'background-color': budget.theme}" class="color-swatch"></div>

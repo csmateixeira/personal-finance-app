@@ -2,7 +2,7 @@ import * as fromReducer from './budgets.reducer';
 import {BudgetsState} from '../budgets.state';
 import {BudgetsTestsUtils, TestUtils} from '../../../utils/test-utils';
 import {BudgetsActions} from '../actions/budgets.actions';
-import {BudgetsUtils} from '../../../utils/budgets-utils';
+import {BudgetsUtils} from '../../../utils/budgets.utils';
 import {Budget} from '../../../models/features.models';
 
 describe('BudgetsReducer', () => {
@@ -95,12 +95,19 @@ describe('BudgetsReducer', () => {
   it('should edit a budget', () => {
     const newBudget: Budget = {
       ...BudgetsTestsUtils.getBudgets()[0],
-      "maximum": 175.00,
+      maximum: 175.00,
     };
     const action = BudgetsActions.editBudget({newBudget});
 
     const state: Readonly<BudgetsState> = {
-      data: BudgetsTestsUtils.getBudgets(),
+      data: [
+        {
+          ...BudgetsTestsUtils.getBudgets()[0],
+          maximum: 200.00,
+          spent: 150.00,
+        },
+        BudgetsTestsUtils.getBudgets()[1]
+      ],
       themes: BudgetsTestsUtils.getBudgetsThemes()
     };
 
@@ -110,10 +117,29 @@ describe('BudgetsReducer', () => {
       data: [
         {
           ...BudgetsTestsUtils.getBudgets()[0],
-          maximum: 175.00
+          maximum: 175.00,
+          spent: 150.00,
+          percent: 0.86,
+          remaining: 25
         },
         BudgetsTestsUtils.getBudgets()[1]
       ],
+      themes: BudgetsTestsUtils.getBudgetsThemes()
+    });
+  });
+
+  it('should update budget spendings', () => {
+    const updatedBudgets: Budget[] = BudgetsTestsUtils.getUpdatedBudgets();
+
+    const state: Readonly<BudgetsState> = {
+      data: BudgetsTestsUtils.getBudgets(),
+      themes: BudgetsTestsUtils.getBudgetsThemes()
+    };
+
+    const newState: Readonly<BudgetsState> = fromReducer.BudgetsReducer(state, BudgetsActions.budgetSpendingsUpdated({budgets: updatedBudgets}));
+
+    expect(newState).toEqual({
+      data: updatedBudgets,
       themes: BudgetsTestsUtils.getBudgetsThemes()
     });
   });

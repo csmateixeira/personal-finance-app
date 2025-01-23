@@ -18,7 +18,6 @@ export class TestUtils {
       transactions: {
         data: [],
         filteredData: [],
-        spendings: [],
         categories: [],
         sorts: [],
         page: 1,
@@ -38,7 +37,6 @@ export class TransactionsTestUtils {
     return {
       data: TransactionsTestUtils.getTransactions(),
       filteredData: TransactionsTestUtils.getTransactionsSorted(),
-      spendings: TransactionsTestUtils.getSpendings(),
       categories: TransactionsTestUtils.getTransactionsCategoryOptions(),
       sorts: TransactionsTestUtils.getTransactionsSorts(),
       page: 8,
@@ -204,6 +202,23 @@ export class BudgetsTestsUtils {
         name: 'Orange',
         color: Colors.orange,
         isUsed: false
+      }
+    ]
+  }
+
+  static getUpdatedBudgets(): Budget[] {
+    return [
+      {
+        ...BudgetsTestsUtils.getBudgets()[0],
+        spent: 42.3,
+        percent: 0.846,
+        remaining: 7.7
+      },
+      {
+        ...BudgetsTestsUtils.getBudgets()[1],
+        spent: 0,
+        percent: 0,
+        remaining: 750
       }
     ]
   }

@@ -8,7 +8,7 @@ import {BudgetsCardComponent} from '../../components/budgets/budgets-card/budget
 import {Observable} from 'rxjs';
 import {selectBudgetsData} from '../../state/budgets.state';
 import {AsyncPipe} from '@angular/common';
-import {BudgetDialogComponent} from '../../components/budgets/delete-confirm-dialog/budget-dialog.component';
+import {BudgetDialogComponent} from '../../components/budgets/budget-dialog/budget-dialog.component';
 import {Budget} from '../../../models/features.models';
 
 @Component({

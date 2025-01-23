@@ -1,4 +1,4 @@
-import {TransactionsUtils} from './transactions-utils';
+import {TransactionsUtils} from './transactions.utils';
 import {TransactionsTestUtils} from './test-utils';
 import {Sort} from '../models/models';
 import {Spending} from '../models/features.models';
@@ -395,7 +395,7 @@ describe('TransactionsUtils', () => {
   });
 
   it('should get the current month spendings from the transactions list', () => {
-    const result: Spending[] = TransactionsUtils.getSpendings(
+    const result: Spending[] = TransactionsUtils.getSpendingsForMonth(
       TransactionsTestUtils.getTransactions(),
       ['General'],
       7

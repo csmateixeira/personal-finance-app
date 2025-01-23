@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {TransactionsUtils} from '../utils/transactions-utils';
+import {TransactionsUtils} from '../utils/transactions.utils';
 
 @Pipe({
   name: 'paginate'

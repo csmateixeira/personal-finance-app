@@ -2,7 +2,7 @@ import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe, CurrencyPipe, DatePipe, NgOptimizedImage} from '@angular/common';
 import {map, Observable} from 'rxjs';
 import {selectTransactionsData} from '../../../../state/transactions.state';
-import {TransactionsUtils} from '../../../../../utils/transactions-utils';
+import {TransactionsUtils} from '../../../../../utils/transactions.utils';
 import {Store} from '@ngrx/store';
 import {SidebarState} from '../../../../state/sidebar.state';
 import {TransactionsActions} from '../../../../state/actions/transactions.actions';

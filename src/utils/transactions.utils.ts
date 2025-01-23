@@ -45,7 +45,7 @@ export class TransactionsUtils {
       : filteredByCategory.filter((t: Transaction) => t.name.toLowerCase().includes(search.toLowerCase()));
   }
 
-  static getSpendings(transactions: Transaction[], categories: string[], currentMonth: number): Spending[] {
+  static getSpendingsForMonth(transactions: Transaction[], categories: string[], currentMonth: number): Spending[] {
     return categories.map((category: string) => {
       const amount: number = transactions
         .filter((t: Transaction) => new Date(t.date).getMonth() === currentMonth)

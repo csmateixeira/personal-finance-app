@@ -1,4 +1,4 @@
-import {Budget, BudgetSpending, BudgetsTheme, Spending} from '../models/features.models';
+import {Budget, BudgetsTheme, Spending} from '../models/features.models';
 import {Colors} from '../models/models';
 
 export class BudgetsUtils {
@@ -6,7 +6,7 @@ export class BudgetsUtils {
     return spendings.find((spending: Spending) => spending.category === category) ?? {amount: 0} as Spending;
   }
 
-  static getBudgetSpending(budget: Budget, spending: Spending): BudgetSpending {
+  static getBudgetSpending(budget: Budget, spending: Spending): Budget {
     return {
       ...budget,
       spent: spending.amount,
@@ -17,6 +17,10 @@ export class BudgetsUtils {
 
   static getMaximumTotals(budgets: Budget[]): number {
     return budgets.reduce((accumulator: number, current: Budget) => accumulator + current.maximum, 0);
+  }
+
+  static findBudgetByCategory(budgets: Budget[], category: string): Budget {
+    return budgets.find((budget: Budget) => budget.category === category)!;
   }
 
   static initializeBudgetThemes(): BudgetsTheme[] {

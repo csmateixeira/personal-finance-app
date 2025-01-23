@@ -1,4 +1,5 @@
 import {Utils} from './utils';
+import {Option} from '../models/models';
 
 describe('Utils', () => {
   it('should get unique values from a list', () => {
@@ -56,5 +57,35 @@ describe('Utils', () => {
     const data: number[] = [1, 2, 3, 4, 5];
 
     expect(Utils.getTotals(data)).toEqual(15);
+  });
+
+  describe('findOptionByValue', () => {
+    it('should return the option with the matching value', () => {
+      const options: Option[] = [
+        {id: 1, value: 'Option1'},
+        {id: 2, value: 'Option2'},
+        {id: 3, value: 'Option3'}
+      ];
+      const value = 'Option2';
+
+      const result = Utils.findOptionByValue(options, value);
+
+      expect(result).toEqual({id: 2, value: 'Option2'});
+    });
+
+    describe('findOptionById', () => {
+      it('should return the option with the matching id', () => {
+        const options: Option[] = [
+          {id: 1, value: 'Option1'},
+          {id: 2, value: 'Option2'},
+          {id: 3, value: 'Option3'}
+        ];
+        const id = 2;
+
+        const result = Utils.findOptionById(options, id);
+
+        expect(result).toEqual({id: 2, value: 'Option2'});
+      });
+    });
   });
 });

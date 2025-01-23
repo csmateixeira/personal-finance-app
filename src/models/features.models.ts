@@ -26,10 +26,8 @@ export interface Budget {
   category: string;
   maximum: number;
   theme: string;
-}
 
-export interface BudgetSpending extends Budget {
-  spent: number;
+  spent?: number;
   percent?: number;
   remaining?: number;
 }
@@ -39,12 +37,6 @@ export interface BudgetsTheme {
   name: string;
   color: Colors;
   isUsed: boolean;
-}
-
-export interface AddEditBudgetProps {
-  category: number;
-  maximum: number;
-  theme: number;
 }
 
 export interface Pot {
