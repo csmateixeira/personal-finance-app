@@ -2,8 +2,8 @@ import * as fromReducer from './budgets.reducer';
 import {BudgetsState} from '../budgets.state';
 import {BudgetsTestsUtils, TestUtils} from '../../../utils/test-utils';
 import {BudgetsActions} from '../actions/budgets.actions';
-import {BudgetsUtils} from '../../../utils/budgets.utils';
 import {Budget} from '../../../models/features.models';
+import {Utils} from '../../../utils/utils';
 
 describe('BudgetsReducer', () => {
   it('should return the default state', () => {
@@ -17,7 +17,7 @@ describe('BudgetsReducer', () => {
   });
 
   it('should save all budgets to state', () => {
-    spyOn(BudgetsUtils, 'initializeBudgetThemes').and.returnValue(BudgetsTestsUtils.getInitialBudgetsThemes());
+    spyOn(Utils, 'initializeThemes').and.returnValue(BudgetsTestsUtils.getInitialBudgetsThemes());
 
     const action = BudgetsActions.budgetsLoaded({
       budgets: BudgetsTestsUtils.getBudgets()

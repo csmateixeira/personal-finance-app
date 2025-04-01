@@ -1,13 +1,13 @@
 <div class="budgets-page">
 
-  <div class="flex flex-row justify-between text-start py-2">
+  <div class="budgets-page-title">
     <h1>Budgets</h1>
-    <button (click)="showAddDialog()" class="bg-grey-900 text-white px-4 py-4 border rounded-lg text-preset4-bold text-center">
+    <button (click)="showAddDialog()">
       +Add Budget
     </button>
   </div>
 
-  <div class="budgets-container w-full">
+  <div class="budgets-container">
 
     <!-- Left side -->
     <app-budgets-summary></app-budgets-summary>

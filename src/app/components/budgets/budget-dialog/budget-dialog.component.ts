@@ -7,7 +7,7 @@ import {combineLatest, map, Observable, Subscription, tap} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {selectTransactionsCategories} from '../../../state/transactions.state';
 import {SelectComponent} from '../../shared/select/select.component';
-import {Budget, BudgetsTheme} from '../../../../models/features.models';
+import {Budget, Theme} from '../../../../models/features.models';
 import {selectBudgetsData, selectBudgetsThemes} from '../../../state/budgets.state';
 import {BudgetsActions} from '../../../state/actions/budgets.actions';
 import {v4 as uuidv4} from 'uuid';
@@ -44,7 +44,7 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
     categories$: Observable<Option[]> = this.store.select(selectTransactionsCategories);
 
     themes$: Observable<Option[]> = this.store.select(selectBudgetsThemes).pipe(
-        map((themes: BudgetsTheme[]): Option[] => themes.map((theme: BudgetsTheme) => ({
+        map((themes: Theme[]): Option[] => themes.map((theme: Theme) => ({
             id: theme.id,
             value: theme.name,
             prefix: theme.color,

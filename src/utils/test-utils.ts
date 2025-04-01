@@ -2,13 +2,15 @@ import {Colors, Option, Page, Sort} from '../models/models';
 import {SidebarState} from '../app/state/sidebar.state';
 import {TransactionsState} from "../app/state/transactions.state";
 import {BudgetsState} from '../app/state/budgets.state';
-import {Budget, BudgetsTheme, Spending, Transaction} from '../models/features.models';
+import {Budget, Theme, Spending, Transaction, Pot} from '../models/features.models';
+import {PotsState} from '../app/state/pots.state';
 
 export class TestUtils {
   static getInitialState(): {
     sidebar: SidebarState,
     transactions: TransactionsState,
-    budgets: BudgetsState
+    budgets: BudgetsState,
+    pots: PotsState,
   } {
     return {
       sidebar: {
@@ -25,6 +27,10 @@ export class TestUtils {
         categoryFilter: -1,
       },
       budgets: {
+        data: [],
+        themes: []
+      },
+      pots: {
         data: [],
         themes: []
       }
@@ -126,13 +132,6 @@ export class TransactionsTestUtils {
       },
     ]
   }
-
-  static getSpendings(): Spending[] {
-    return [
-      {category: 'General', amount: 42.3},
-      {category: 'Dining Out', amount: 55.50}
-    ]
-  }
 }
 
 export class BudgetsTestsUtils {
@@ -160,7 +159,7 @@ export class BudgetsTestsUtils {
     ]
   }
 
-  static getBudgetsThemes(): BudgetsTheme[] {
+  static getBudgetsThemes(): Theme[] {
     return [
       {
         id: 123,
@@ -183,7 +182,7 @@ export class BudgetsTestsUtils {
     ]
   }
 
-  static getInitialBudgetsThemes(): BudgetsTheme[] {
+  static getInitialBudgetsThemes(): Theme[] {
     return [
       {
         id: 123,
@@ -221,5 +220,69 @@ export class BudgetsTestsUtils {
         remaining: 750
       }
     ]
+  }
+}
+
+export class PotsTestsUtils {
+  static getPots(): Pot[] {
+    return [
+      {
+        id: '123',
+        "name": "Savings",
+        "target": 2000.00,
+        "total": 159.00,
+        "theme": Colors.green
+      },
+      {
+        id: '456',
+        "name": "Concert Ticket",
+        "target": 150.00,
+        "total": 110.00,
+        "theme": Colors.orange
+      },
+      {
+        id: '789',
+        "name": "Gift",
+        "target": 60.00,
+        "total": 0,
+        "theme": Colors.cyan
+      },
+    ];
+  }
+
+  static getPotsThemes(): Theme[] {
+    return [
+      {
+        id: 123,
+        name: 'Green',
+        color: Colors.green,
+        isUsed: true
+      },
+      {
+        id: 789,
+        name: 'Cyan',
+        color: Colors.cyan,
+        isUsed: true
+      },
+      {
+        id: 987,
+        name: 'Yellow',
+        color: Colors.yellow,
+        isUsed: false
+      },
+      {
+        id: 456,
+        name: 'Orange',
+        color: Colors.orange,
+        isUsed: true
+      }
+    ]
+  }
+
+  static getPotsStateForEffects(): PotsState {
+    return {
+      data: PotsTestsUtils.getPots(),
+      themes: PotsTestsUtils.getPotsThemes()
+    }
   }
 }
