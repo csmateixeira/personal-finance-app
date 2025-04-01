@@ -1,1 +1,14 @@
-<p>pots works!</p>
+<div class="pots-page">
+
+  <div class="pots-page-title">
+    <h1>Pots</h1>
+  </div>
+
+  <div class="pots-container">
+
+    @for (pot of (pots$ | async); track pot.id) {
+      <app-pots-card [pot]="pot"></app-pots-card>
+    }
+
+  </div>
+</div>

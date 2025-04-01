@@ -32,7 +32,7 @@ export interface Budget {
   remaining?: number;
 }
 
-export interface BudgetsTheme {
+export interface Theme {
   id: number;
   name: string;
   color: Colors;
@@ -40,8 +40,11 @@ export interface BudgetsTheme {
 }
 
 export interface Pot {
+  id?: string;
   name: string;
   target: number;
   total: number;
   theme: string;
+
+  percent?: number;
 }

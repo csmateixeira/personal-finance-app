@@ -1,9 +1,9 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {Budget, BudgetsTheme} from '../../models/features.models';
+import {Budget, Theme} from '../../models/features.models';
 
 export interface BudgetsState {
   data: Budget[];
-  themes: BudgetsTheme[];
+  themes: Theme[];
 }
 
 export const budgetsFeatureKey = 'budgets';
@@ -17,5 +17,5 @@ export const selectBudgetsData = createSelector(
 
 export const selectBudgetsThemes = createSelector(
   selectBudgets,
-  (state: BudgetsState): BudgetsTheme[] => state.themes
+  (state: BudgetsState): Theme[] => state.themes
 );

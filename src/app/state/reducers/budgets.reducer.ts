@@ -2,7 +2,7 @@ import {BudgetsState} from '../budgets.state';
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
 import {BudgetsActions} from '../actions/budgets.actions';
 import {produce} from 'immer';
-import {Budget, BudgetsTheme} from '../../../models/features.models';
+import {Budget, Theme} from '../../../models/features.models';
 import {BudgetsUtils} from '../../../utils/budgets.utils';
 import {Utils} from '../../../utils/utils';
 
@@ -16,7 +16,7 @@ export const BudgetsReducer: ActionReducer<Readonly<BudgetsState>, Action> = cre
   on(BudgetsActions.budgetsLoaded,
     (_state, {budgets}) => produce(
       _state, draft => {
-        const themes: BudgetsTheme[] = BudgetsUtils.initializeBudgetThemes();
+        const themes: Theme[] = Utils.initializeThemes();
 
         budgets.forEach((budget: Budget) => {
           const themeIndex: number = themes.findIndex(theme => theme.color === budget.theme);

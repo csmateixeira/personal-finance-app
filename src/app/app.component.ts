@@ -5,6 +5,7 @@ import {TransactionsActions} from './state/actions/transactions.actions';
 import {Store} from '@ngrx/store';
 import {SidebarState} from './state/sidebar.state';
 import {BudgetsActions} from './state/actions/budgets.actions';
+import {PotsActions} from './state/actions/pots.actions';
 
 @Component({
   selector: 'app-root',
@@ -19,5 +20,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(() => BudgetsActions.loadBudgets());
     this.store.dispatch(() => TransactionsActions.loadTransactions());
+    this.store.dispatch(() => PotsActions.loadPots());
   }
 }

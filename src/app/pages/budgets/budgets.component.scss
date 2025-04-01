@@ -2,12 +2,20 @@
   @apply flex flex-col space-y-8;
 }
 
-.budgets-page h1 {
+.budgets-page-title {
+  @apply flex flex-row justify-between text-start py-2;
+}
+
+.budgets-page-title h1 {
   @apply py-2 text-start text-preset1 text-grey-900;
 }
 
+.budgets-page-title button {
+  @apply bg-grey-900 text-white px-4 py-4 border rounded-lg text-preset4-bold text-center;
+}
+
 .budgets-container {
-  @apply flex flex-row space-x-6 justify-between;
+  @apply flex flex-row space-x-6 justify-between w-full;
 }
 
 .cards-container {
