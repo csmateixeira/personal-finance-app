@@ -1,5 +1,7 @@
 import {Utils} from './utils';
 import {Option} from '../models/models';
+import {Transaction} from '../models/features.models';
+import {TransactionsTestUtils} from './test-utils';
 
 describe('Utils', () => {
   it('should get unique values from a list', () => {
@@ -87,5 +89,39 @@ describe('Utils', () => {
         expect(result).toEqual({id: 2, value: 'Option2'});
       });
     });
+  });
+
+  it('should calculate expenses', () => {
+    const transactions: Transaction[] = [
+      ...TransactionsTestUtils.getTransactions(),
+      {
+        id: '987',
+        "avatar": "avatars/emma-richardson.jpg",
+        "name": "Emma Richardson",
+        "category": "General",
+        "date": "2024-08-19T14:23:11Z",
+        "amount": 15.00,
+        "recurring": false
+      }
+    ];
+
+    expect(Utils.calculateExpenses(transactions)).toEqual(97.80);
+  });
+
+  it('should calculate income', () => {
+    const transactions: Transaction[] = [
+      ...TransactionsTestUtils.getTransactions(),
+      {
+        id: '987',
+        "avatar": "avatars/emma-richardson.jpg",
+        "name": "Emma Richardson",
+        "category": "General",
+        "date": "2024-08-19T14:23:11Z",
+        "amount": 15.00,
+        "recurring": false
+      }
+    ];
+
+    expect(Utils.calculateIncome(transactions)).toEqual(90.50);
   });
 });

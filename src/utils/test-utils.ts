@@ -2,8 +2,9 @@ import {Colors, Option, Page, Sort} from '../models/models';
 import {SidebarState} from '../app/state/sidebar.state';
 import {TransactionsState} from "../app/state/transactions.state";
 import {BudgetsState} from '../app/state/budgets.state';
-import {Budget, Theme, Spending, Transaction, Pot} from '../models/features.models';
+import {Budget, Theme, Spending, Transaction, Pot, Balance} from '../models/features.models';
 import {PotsState} from '../app/state/pots.state';
+import {OverviewState} from '../app/state/overview.state';
 
 export class TestUtils {
   static getInitialState(): {
@@ -11,6 +12,7 @@ export class TestUtils {
     transactions: TransactionsState,
     budgets: BudgetsState,
     pots: PotsState,
+    overview: OverviewState
   } {
     return {
       sidebar: {
@@ -33,6 +35,11 @@ export class TestUtils {
       pots: {
         data: [],
         themes: []
+      },
+      overview: {
+        balance: 0,
+        income: 0,
+        expenses: 0
       }
     }
   }
@@ -283,6 +290,25 @@ export class PotsTestsUtils {
     return {
       data: PotsTestsUtils.getPots(),
       themes: PotsTestsUtils.getPotsThemes()
+    }
+  }
+}
+
+export class OverviewTestUtils {
+
+  static getOverviewStateForEffects(): OverviewState {
+    return {
+      balance: 1500,
+      income: 2000.25,
+      expenses: 500.50
+    }
+  }
+
+  static getOverviewBalances(): Balance {
+    return {
+      current: 1500,
+      income: 2000.25,
+      expenses: 500.50
     }
   }
 }

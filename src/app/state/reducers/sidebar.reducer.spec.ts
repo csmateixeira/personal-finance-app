@@ -1,4 +1,4 @@
-import * as fromReducer from './sidebar.reducers';
+import * as fromReducer from './sidebar.reducer';
 import {SidebarActions} from '../actions/sidebar.actions';
 import {TestUtils} from '../../../utils/test-utils';
 
