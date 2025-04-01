@@ -1,5 +1,5 @@
 import {Colors, Option} from '../models/models';
-import {Theme} from '../models/features.models';
+import {Theme, Transaction} from '../models/features.models';
 
 export class Utils {
   static getUniqueValues(values: string[]): string[] {
@@ -62,5 +62,17 @@ export class Utils {
       {id: 14, name: 'Gold', color: Colors.gold, isUsed: false},
       {id: 15, name: 'Orange', color: Colors.orange, isUsed: false},
     ];
+  }
+
+  static calculateExpenses(transactions: Transaction[]): number {
+    return transactions
+      .filter((transaction: Transaction): boolean => transaction.amount < 0)
+      .reduce((total: number, transaction: Transaction): number => total + Math.abs(transaction.amount), 0);
+  }
+
+  static calculateIncome(transactions: Transaction[]): number {
+    return transactions
+      .filter((transaction: Transaction): boolean => transaction.amount > 0)
+      .reduce((total: number, transaction: Transaction): number => total + transaction.amount, 0);
   }
 }

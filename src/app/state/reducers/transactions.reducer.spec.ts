@@ -1,4 +1,4 @@
-import * as fromReducer from './transactions.reducers';
+import * as fromReducer from './transactions.reducer';
 import {TestUtils, TransactionsTestUtils} from '../../../utils/test-utils';
 import {TransactionsActions} from '../actions/transactions.actions';
 import {TransactionsState} from '../transactions.state';

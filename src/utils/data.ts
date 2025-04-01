@@ -1,4 +1,5 @@
 import {Balance, Budget, Pot, Transaction} from '../models/features.models';
+import {Utils} from './utils';
 
 export class Data {
   static getTransactions(): Transaction[] {
@@ -401,8 +402,8 @@ export class Data {
   static getBalance(): Balance {
     return {
       "current": 4836.00,
-      "income": 3814.25,
-      "expenses": 1700.50
+      "income": Utils.calculateIncome(this.getTransactions()),
+      "expenses": Utils.calculateExpenses(this.getTransactions())
     };
   }
 
