@@ -2,7 +2,7 @@ import {Colors, Option, Page, Sort} from '../models/models';
 import {SidebarState} from '../app/state/sidebar.state';
 import {TransactionsState} from "../app/state/transactions.state";
 import {BudgetsState} from '../app/state/budgets.state';
-import {Budget, Theme, Spending, Transaction, Pot, Balance} from '../models/features.models';
+import {Balance, Budget, Pot, Theme, Transaction} from '../models/features.models';
 import {PotsState} from '../app/state/pots.state';
 import {OverviewState} from '../app/state/overview.state';
 
@@ -187,6 +187,14 @@ export class BudgetsTestsUtils {
         isUsed: false
       }
     ]
+  }
+
+  static getBudgetsThemeOptions(): Option[] {
+    return [
+      {id: 123, value: 'Green', prefix: Colors.green, postfix: 'Already used'},
+      {id: 789, value: 'Cyan', prefix: Colors.cyan, postfix: 'Already used'},
+      {id: 456, value: 'Orange', prefix: Colors.orange, postfix: ''}
+    ];
   }
 
   static getInitialBudgetsThemes(): Theme[] {

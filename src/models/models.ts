@@ -15,7 +15,7 @@ export enum Sort {
   lowest = 'Lowest',
 }
 
-export enum BudgetAction {
+export enum ModalAction {
   add,
   edit,
   delete
@@ -51,4 +51,10 @@ export interface Series {
   themes: string[];
   totalSpending: number;
   totalBudget: number;
+}
+
+export interface ModalTitleDetails {
+  title: string;
+  description: string;
+  buttonText: string;
 }

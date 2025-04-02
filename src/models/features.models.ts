@@ -1,4 +1,5 @@
 import {Colors} from './models';
+import {FormControl} from '@angular/forms';
 
 export interface Transaction {
   id?: string;
@@ -47,4 +48,10 @@ export interface Pot {
   theme: string;
 
   percent?: number;
+}
+
+export interface BudgetForm {
+  category: FormControl<string | null>;
+  maximum: FormControl<number | null>;
+  theme: FormControl<string | null>;
 }

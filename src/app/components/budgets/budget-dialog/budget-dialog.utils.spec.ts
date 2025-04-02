@@ -1,4 +1,4 @@
-import {BudgetAction, Option} from '../../../../models/models';
+import {ModalAction, Option} from '../../../../models/models';
 import {Budget} from '../../../../models/features.models';
 import {BudgetDialogUtils} from './budget-dialog.utils';
 
@@ -10,7 +10,7 @@ describe('BudgetDialogUtils', () => {
         {id: 2, value: 'Transport'}
       ];
       const budgets: Budget[] = [];
-      const action = BudgetAction.edit;
+      const action = ModalAction.edit;
 
       const result = BudgetDialogUtils.filterCategories(categories, budgets, action);
 
@@ -27,7 +27,7 @@ describe('BudgetDialogUtils', () => {
         {category: 'Food', maximum: 100, theme: "red"}
       ];
 
-      expect(BudgetDialogUtils.filterCategories(categories, budgets, BudgetAction.add))
+      expect(BudgetDialogUtils.filterCategories(categories, budgets, ModalAction.add))
         .toEqual([{id: 2, value: 'Entertainment'}]);
     });
   });
@@ -40,7 +40,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const selectedBudget: Budget = {category: 'Food', maximum: 100, theme: 'red'};
 
-      expect(BudgetDialogUtils.getSelectedTheme(BudgetAction.edit, themes, selectedBudget)).toBe(2);
+      expect(BudgetDialogUtils.getSelectedTheme(ModalAction.edit, themes, selectedBudget)).toBe(2);
     });
 
     it('should return the id of the first theme if action is not edit', () => {
@@ -50,7 +50,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const selectedBudget: Budget = {category: 'Food', maximum: 100, theme: 'red'};
 
-      expect(BudgetDialogUtils.getSelectedTheme(BudgetAction.add, themes, selectedBudget)).toBe(1);
+      expect(BudgetDialogUtils.getSelectedTheme(ModalAction.add, themes, selectedBudget)).toBe(1);
     });
   });
 
@@ -62,7 +62,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const category = 'Transport';
 
-      expect(BudgetDialogUtils.getSelectedCategory(BudgetAction.edit, categories, category)).toBe(2);
+      expect(BudgetDialogUtils.getSelectedCategory(ModalAction.edit, categories, category)).toBe(2);
     });
 
     it('should return the id of the first category if action is not edit', () => {
@@ -72,7 +72,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const category = 'Transport';
 
-      expect(BudgetDialogUtils.getSelectedCategory(BudgetAction.add, categories, category)).toBe(1);
+      expect(BudgetDialogUtils.getSelectedCategory(ModalAction.add, categories, category)).toBe(1);
     });
   });
 });

@@ -3,7 +3,7 @@ import {NgOptimizedImage, NgStyle} from '@angular/common';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 import {BudgetDialogComponent} from '../../budget-dialog/budget-dialog.component';
-import {BudgetAction} from "../../../../../models/models";
+import {ModalAction} from "../../../../../models/models";
 
 @Component({
   selector: 'app-budgets-card-summary',
@@ -18,7 +18,7 @@ import {BudgetAction} from "../../../../../models/models";
   styleUrl: './budgets-card-summary.component.scss'
 })
 export class BudgetsCardSummaryComponent {
-  protected readonly BudgetAction: typeof BudgetAction = BudgetAction;
+  protected readonly BudgetAction: typeof ModalAction = ModalAction;
 
   @Input() theme!: string;
   @Input() category!: string;
