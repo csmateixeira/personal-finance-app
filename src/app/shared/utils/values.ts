@@ -1,0 +1,1 @@
+export const VERCEL_TOKEN = 'VERCEL_OIDC_TOKEN';

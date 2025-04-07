@@ -38,6 +38,17 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - name: Install Vercel CLI
+        env:
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npm install --global vercel@latest
+
+      - name: Vercel project link
+        run: vercel link --yes --project personal-finance-app --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Pull Vercel Environment Information
+        run: vercel env pull --yes --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: npm install and build
         run: |
           npm ci
