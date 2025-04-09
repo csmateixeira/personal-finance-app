@@ -12,6 +12,7 @@ import {BudgetDialogComponent} from '../components/budget-dialog/budget-dialog.c
 import {Budget} from '../models/budget.model';
 import {BudgetAction} from '../../shared/models/action.model';
 import {Page} from '../../shared/models/page.model';
+import {BudgetsActions} from '../state/budgets.actions';
 
 @Component({
   selector: 'app-budgets',
@@ -34,6 +35,7 @@ export class BudgetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(() => SidebarActions.changePage({page: Page.budgets}));
+    this.store.dispatch(() => BudgetsActions.updateBudgetSpendings());
   }
 
   closeDialog() {

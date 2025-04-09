@@ -4,7 +4,6 @@ import {BudgetsService} from '../services/budgets.service';
 import {BudgetsActions} from './budgets.actions';
 import {catchError, EMPTY, exhaustMap, map, withLatestFrom} from 'rxjs';
 import {v4 as uuidv4} from 'uuid';
-import {TransactionsActions} from '../../transactions/state/transactions.actions';
 import {Store} from '@ngrx/store';
 import {selectBudgetsData} from './budgets.state';
 import {TransactionsUtils} from '../../transactions/transactions.utils';
@@ -37,7 +36,7 @@ export class BudgetsEffects {
   ));
 
   updateBudgetSpendings$ = createEffect(() => this.actions$.pipe(
-    ofType(TransactionsActions.transactionsLoaded, BudgetsActions.addBudget),
+    ofType(BudgetsActions.updateBudgetSpendings, BudgetsActions.addBudget),
     withLatestFrom(
       this.store.select(selectBudgetsData),
       this.store.select(selectTransactionsData)
