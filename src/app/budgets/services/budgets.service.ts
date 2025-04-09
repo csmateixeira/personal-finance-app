@@ -21,4 +21,8 @@ export class BudgetsService {
     updateBudget(budget: Budget): Observable<Budget> {
         return this.httpService.doPut<Budget>(`budgets/${budget.id}`, budget);
     }
+
+    deleteBudget(id: string): Observable<boolean> {
+        return this.httpService.doDelete(`budgets/${id}`);
+    }
 }

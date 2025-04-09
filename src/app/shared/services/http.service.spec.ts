@@ -105,4 +105,31 @@ describe('HttpService', () => {
       expect(httpClient.put).toHaveBeenCalledWith(apiUrl + '/test-uri', body);
     });
   });
+
+  describe('doDelete', () => {
+    it('should call doDelete and return data', () => {
+      const uri = 'test-uri';
+      const expectedResponse: ApiResponse<boolean> = {
+        status: 200,
+        data: true
+      };
+
+      spyOn(httpClient, 'delete').and.returnValue(of(expectedResponse));
+
+      expect(service.doDelete(uri)).toBeObservable(cold('(a|)', {
+        a: true
+      }));
+      expect(httpClient.delete).toHaveBeenCalledWith(apiUrl + '/test-uri');
+    });
+
+    it('should handle error in doDelete', () => {
+      const uri = 'test-uri';
+      const errorResponse = { message: 'error' };
+
+      spyOn(httpClient, 'delete').and.returnValue(cold('#', {}, errorResponse));
+
+      expect(service.doDelete(uri)).toBeObservable(cold('|'))
+      expect(httpClient.delete).toHaveBeenCalledWith(apiUrl + '/test-uri');
+    });
+  });
 });

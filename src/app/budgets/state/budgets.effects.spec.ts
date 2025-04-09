@@ -246,4 +246,37 @@ describe('BudgetsEffects', () => {
       expect(service.updateBudget).toHaveBeenCalledWith(changedBudget);
     });
   });
+
+  describe('deleteBudget$', () => {
+    beforeEach(() => {
+      store = createMockStore({
+        initialState: {},
+        selectors: [
+          {
+            selector: selectBudgetsData, value: BudgetsTestsUtils.getBudgets()
+          }
+        ]
+      });
+    });
+
+    it('should call service to delete the budget and dispatch deleted action', () => {
+      const budgetToDelete: Budget = BudgetsTestsUtils.getBudgets()[0];
+
+      spyOn(service, 'deleteBudget').and.returnValue(of(true));
+
+      actions$ = hot('a', {
+        a: BudgetsActions.deleteBudget({category: budgetToDelete.category})
+      });
+
+      const expected = cold('a', {
+        a: {
+          type: BudgetsActions.budgetDeleted.type,
+          category: budgetToDelete.category
+        }
+      });
+
+      expect(effects.deleteBudget$).toBeObservable(expected);
+      expect(service.deleteBudget).toHaveBeenCalledWith(budgetToDelete.id!);
+    });
+  });
 });

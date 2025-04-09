@@ -12,6 +12,7 @@ export const BudgetsActions = createActionGroup(
             'Update Budget Spendings': emptyProps(),
             'Budget Spendings Updated': props<{ budgets: Budget[] }>(),
             'Delete Budget': props<{ category: string }>(),
+            'Budget Deleted': props<{ category: string }>(),
             'Edit Budget': props<{ newBudget: Budget }>(),
             'Budget Edited': props<{ newBudget: Budget }>(),
             'Add Budget': props<{ newBudget: Budget }>(),
