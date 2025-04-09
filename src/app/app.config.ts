@@ -20,6 +20,8 @@ import {PotsEffects} from './pots/state/pots.effects';
 import {overviewFeatureKey} from './overview/state/overview.state';
 import {OverviewReducer} from './overview/state/overview.reducer';
 import {OverviewEffects} from './overview/state/overview.effects';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {tokenInterceptor} from './shared/services/token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,10 +32,13 @@ export const appConfig: ApplicationConfig = {
       [transactionsFeatureKey]: TransactionsReducer,
       [budgetsFeatureKey]: BudgetsReducer,
       [potsFeatureKey]: PotsReducer,
-      [overviewFeatureKey]: OverviewReducer
+      [overviewFeatureKey]: OverviewReducer,
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: false }),
     provideEffects(TransactionsEffects, BudgetsEffects, PotsEffects, OverviewEffects),
     provideAnimationsAsync(),
-]
+    provideHttpClient(
+      withInterceptors([tokenInterceptor]),
+    )
+  ]
 };
