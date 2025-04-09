@@ -52,7 +52,7 @@ export const BudgetsReducer: ActionReducer<Readonly<BudgetsState>, Action> = cre
       draft.themes[themeIndex].isUsed = true;
     }
   )),
-  on(BudgetsActions.editBudget, (_state, {newBudget}) => produce(
+  on(BudgetsActions.budgetEdited, (_state, {newBudget}) => produce(
     _state, draft => {
       const budgetIndex: number = _state.data.findIndex(budget => budget.category === newBudget.category);
       const budget: Budget = _state.data[budgetIndex];

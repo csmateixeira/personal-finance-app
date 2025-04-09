@@ -88,4 +88,34 @@ export class BudgetsEffects {
       )
     })
   ));
+
+  editBudget$ = createEffect(() => this.actions$.pipe(
+    ofType(BudgetsActions.editBudget),
+    withLatestFrom(
+      this.store.select(selectBudgetsData),
+    ),
+    exhaustMap(([{newBudget}, budgets]) => {
+      const budget: Budget | undefined = budgets.find((b: Budget) => b.category === newBudget.category);
+      if (!budget) {
+        console.error(`No matching budget found for category: ${newBudget.category}`);
+        return EMPTY;
+      }
+
+      return this.budgetsService.updateBudget({
+        id: budget.id,
+        category: budget.category,
+        maximum: newBudget.maximum,
+        theme: budget.theme
+      }).pipe(
+        map((budget: Budget) => ({
+          type: BudgetsActions.budgetEdited.type,
+          newBudget: budget
+        })),
+        catchError((error) => {
+          console.error('Error editing budget', error);
+          return EMPTY;
+        })
+      )
+    })
+  ));
 }

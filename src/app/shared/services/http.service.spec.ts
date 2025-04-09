@@ -77,4 +77,32 @@ describe('HttpService', () => {
     });
   });
 
+  describe('doPut', () => {
+    it('should call doPut and return data', () => {
+      const uri = 'test-uri';
+      const body = { test: 'data' };
+      const expectedResponse: ApiResponse<string> = {
+        status: 200,
+        data: 'test-data'
+      };
+
+      spyOn(httpClient, 'put').and.returnValue(of(expectedResponse));
+
+      expect(service.doPut(uri, body)).toBeObservable(cold('(a|)', {
+        a: expectedResponse.data
+      }));
+      expect(httpClient.put).toHaveBeenCalledWith(apiUrl + '/test-uri', body);
+    });
+
+    it('should handle error in doPut', () => {
+      const uri = 'test-uri';
+      const body = { test: 'data' };
+      const errorResponse = { message: 'error' };
+
+      spyOn(httpClient, 'put').and.returnValue(cold('#', {}, errorResponse));
+
+      expect(service.doPut(uri, body)).toBeObservable(cold('|'))
+      expect(httpClient.put).toHaveBeenCalledWith(apiUrl + '/test-uri', body);
+    });
+  });
 });

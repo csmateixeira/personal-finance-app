@@ -206,4 +206,44 @@ describe('BudgetsEffects', () => {
       });
     });
   });
+
+  describe('editBudget$', () => {
+    beforeEach(() => {
+      store = createMockStore({
+        initialState: {},
+        selectors: [
+          {
+            selector: selectBudgetsData, value: BudgetsTestsUtils.getBudgets()
+          }
+        ]
+      });
+    });
+
+    it('should call service to edit the budget and dispatch edited action', () => {
+      const newBudget: Budget = {
+        "category": "General",
+        "maximum": 100.00,
+      } as Budget;
+      const changedBudget: Budget = {
+        ...BudgetsTestsUtils.getBudgets()[0],
+        maximum: 100,
+      };
+
+      spyOn(service, 'updateBudget').and.returnValue(of(changedBudget));
+
+      actions$ = hot('a', {
+        a: BudgetsActions.editBudget({newBudget})
+      });
+
+      const expected = cold('a', {
+        a: {
+          type: BudgetsActions.budgetEdited.type,
+          newBudget: changedBudget
+        }
+      });
+
+      expect(effects.editBudget$).toBeObservable(expected);
+      expect(service.updateBudget).toHaveBeenCalledWith(changedBudget);
+    });
+  });
 });
