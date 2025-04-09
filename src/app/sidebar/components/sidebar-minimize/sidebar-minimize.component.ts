@@ -19,6 +19,6 @@ export class SidebarMinimizeComponent {
   expanded$: Observable<boolean> = this.store.select(selectSidebarExpanded);
 
   toggleSidebar() {
-    this.store.dispatch(() => SidebarActions.toggleSidebar());
+    this.store.dispatch(SidebarActions.toggleSidebar());
   }
 }

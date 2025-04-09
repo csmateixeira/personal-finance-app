@@ -8,11 +8,11 @@ import {provideMockActions} from '@ngrx/effects/testing';
 import {BudgetsTestsUtils, TransactionsTestUtils} from '../../shared/utils/test-utils';
 import {cold, hot} from 'jasmine-marbles';
 import {BudgetsActions} from './budgets.actions';
-import {TransactionsActions} from '../../transactions/state/transactions.actions';
 import {TransactionsUtils} from '../../transactions/transactions.utils';
 import {selectTransactionsData} from '../../transactions/state/transactions.state';
 import {selectBudgetsData} from './budgets.state';
 import {Spending} from "../models/spending.model";
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('BudgetsEffects', () => {
   let actions$: Observable<Action>;
@@ -25,7 +25,9 @@ describe('BudgetsEffects', () => {
       providers: [
         BudgetsEffects,
         provideMockActions(() => actions$),
-        provideMockStore()
+        provideMockStore(),
+        HttpClient,
+        HttpHandler
       ],
     });
 
@@ -70,7 +72,7 @@ describe('BudgetsEffects', () => {
 
     it('should return success action to update budget spendings', () => {
       actions$ = hot('a', {
-        a: TransactionsActions.transactionsLoaded({transactions: TransactionsTestUtils.getTransactions()})
+        a: BudgetsActions.updateBudgetSpendings()
       });
 
       const expectedSpendings: Spending[] = [

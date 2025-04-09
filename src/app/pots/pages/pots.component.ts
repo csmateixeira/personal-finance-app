@@ -24,6 +24,6 @@ export class PotsComponent implements OnInit {
   pots$: Observable<Pot[]> = this.store.select(selectPotsData);
 
   ngOnInit(): void {
-    this.store.dispatch(() => SidebarActions.changePage({page: Page.pots}));
+    this.store.dispatch(SidebarActions.changePage({page: Page.pots}));
   }
 }

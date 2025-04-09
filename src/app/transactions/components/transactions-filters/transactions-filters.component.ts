@@ -38,22 +38,22 @@ export class TransactionsFiltersComponent {
   searchString: string = '';
 
   search(sortBy: number) {
-    this.store.dispatch(() => TransactionsActions.search({search: this.searchString}));
+    this.store.dispatch(TransactionsActions.search({search: this.searchString}));
 
-    this.store.dispatch(() => TransactionsActions.setSortBy({sortBy: sortBy}));
-    this.store.dispatch(() => TransactionsActions.setPage({page: 1}));
+    this.store.dispatch(TransactionsActions.setSortBy({sortBy: sortBy}));
+    this.store.dispatch(TransactionsActions.setPage({page: 1}));
   }
 
   updateSort(option: Option) {
-    this.store.dispatch(() => TransactionsActions.setSortBy({sortBy: option.id}));
+    this.store.dispatch(TransactionsActions.setSortBy({sortBy: option.id}));
 
-    this.store.dispatch(() => TransactionsActions.setPage({page: 1}));
+    this.store.dispatch(TransactionsActions.setPage({page: 1}));
   }
 
   updateCategory(option: Option, sortBy: number) {
-    this.store.dispatch(() => TransactionsActions.setCategoryFilter({category: option.id}));
+    this.store.dispatch(TransactionsActions.setCategoryFilter({category: option.id}));
 
-    this.store.dispatch(() => TransactionsActions.setSortBy({sortBy: sortBy}));
-    this.store.dispatch(() => TransactionsActions.setPage({page: 1}));
+    this.store.dispatch(TransactionsActions.setSortBy({sortBy: sortBy}));
+    this.store.dispatch(TransactionsActions.setPage({page: 1}));
   }
 }

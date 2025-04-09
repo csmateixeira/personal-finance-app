@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {HttpService} from './http.service';
-import {EMPTY, of} from 'rxjs';
+import {of} from 'rxjs';
 import {cold} from 'jasmine-marbles';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {ApiResponse} from '../models/api-response.model';

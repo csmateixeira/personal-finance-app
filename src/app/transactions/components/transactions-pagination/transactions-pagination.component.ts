@@ -41,6 +41,6 @@ export class TransactionsPaginationComponent {
   }
 
   setPage(page: number): void {
-    this.store.dispatch(() => TransactionsActions.setPage({page}));
+    this.store.dispatch(TransactionsActions.setPage({page}));
   }
 }
