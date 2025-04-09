@@ -40,4 +40,15 @@ describe('BudgetsService', () => {
       a: budget
     }));
   });
+
+  it('should update a budget', () => {
+    const budget: Budget = BudgetsTestsUtils.getBudgets()[0];
+
+    spyOn(httpService, 'doPut').and.returnValue(of(budget));
+
+    expect(service.updateBudget(budget)).toBeObservable(cold('(a|)', {
+      a: budget
+    }));
+    expect(httpService.doPut).toHaveBeenCalledWith('budgets/' + budget.id, budget);
+  });
 });

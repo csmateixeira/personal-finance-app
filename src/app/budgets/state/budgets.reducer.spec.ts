@@ -96,7 +96,7 @@ describe('BudgetsReducer', () => {
       ...BudgetsTestsUtils.getBudgets()[0],
       maximum: 175.00,
     };
-    const action = BudgetsActions.editBudget({newBudget});
+    const action = BudgetsActions.budgetEdited({newBudget});
 
     const state: Readonly<BudgetsState> = {
       data: [

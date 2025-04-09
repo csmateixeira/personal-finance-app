@@ -13,24 +13,24 @@ export class HttpService {
     private readonly baseApiUrl: string = environment.baseApiUrl;
 
     doGet<T>(uri: string): Observable<T> {
-        return this.http.get<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`)
-            .pipe(
-                map((response: ApiResponse<T>) => response.data as T),
-                catchError((error) => {
-                    console.log('Error in GET request:', error);
-                    return EMPTY;
-                }),
-            );
+        return this.extractData(this.http.get<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`));
     }
 
     doPost<T>(uri: string, body: any): Observable<T> {
-        return this.http.post<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`, body)
-            .pipe(
-                map((response: ApiResponse<T>) => response.data as T),
-                catchError((error) => {
-                    console.log('Error in POST request:', error);
-                    return EMPTY;
-                }),
-            );
+        return this.extractData(this.http.post<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`, body));
+    }
+
+    doPut<T>(uri: string, body: any): Observable<T> {
+        return this.extractData(this.http.put<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`, body));
+    }
+
+    private extractData<T>(httpResponse: Observable<ApiResponse<T>>): Observable<T> {
+        return httpResponse.pipe(
+            map((response: ApiResponse<T>) => response.data as T),
+            catchError((error) => {
+                console.log('Error in HTTP request:', error);
+                return EMPTY;
+            }),
+        );
     }
 }
