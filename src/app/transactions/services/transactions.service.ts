@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {Data} from '../../shared/utils/data';
+import {inject, Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
 import {Transaction} from '../models/transaction.model';
+import {HttpService} from '../../shared/services/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionsService {
+  private readonly httpService: HttpService = inject(HttpService);
+
   getAllTransactions(): Observable<Transaction[]> {
-    return of(Data.getTransactions());
+    return this.httpService.doGet<Transaction[]>('transactions');
   }
 }

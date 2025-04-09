@@ -11,6 +11,8 @@ import {createMockStore, MockStore, provideMockStore} from '@ngrx/store/testing'
 import {selectTransactions, TransactionsState} from './transactions.state';
 import {TransactionsUtils} from '../transactions.utils';
 import {Sort} from "../../shared/models/sort.model";
+import {HttpService} from '../../shared/services/http.service';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('TransactionsEffects', () => {
   let actions$: Observable<Action>;
@@ -23,6 +25,9 @@ describe('TransactionsEffects', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        HttpService,
+        HttpClient,
+        HttpHandler,
         TransactionsEffects,
         provideMockActions(() => actions$),
         provideMockStore()
