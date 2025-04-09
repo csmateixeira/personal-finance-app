@@ -95,7 +95,11 @@ export class BudgetsEffects {
       this.store.select(selectBudgetsData),
     ),
     exhaustMap(([{newBudget}, budgets]) => {
-      const budget: Budget = budgets.find((b: Budget) => b.category === newBudget.category)!;
+      const budget: Budget | undefined = budgets.find((b: Budget) => b.category === newBudget.category);
+      if (!budget) {
+        console.error(`No matching budget found for category: ${newBudget.category}`);
+        return EMPTY;
+      }
 
       return this.budgetsService.updateBudget({
         id: budget.id,
