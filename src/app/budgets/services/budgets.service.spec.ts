@@ -51,4 +51,15 @@ describe('BudgetsService', () => {
     }));
     expect(httpService.doPut).toHaveBeenCalledWith('budgets/' + budget.id, budget);
   });
+
+  it('should delete a budget', () => {
+    const budgetId = '12345';
+
+    spyOn(httpService, 'doDelete').and.returnValue(of(true));
+
+    expect(service.deleteBudget(budgetId)).toBeObservable(cold('(a|)', {
+      a: true
+    }));
+    expect(httpService.doDelete).toHaveBeenCalledWith('budgets/' + budgetId);
+  });
 });

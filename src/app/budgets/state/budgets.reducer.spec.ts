@@ -33,7 +33,7 @@ describe('BudgetsReducer', () => {
   });
 
   it('should delete budget by category', () => {
-    const action = BudgetsActions.deleteBudget({
+    const action = BudgetsActions.budgetDeleted({
       category: 'General'
     });
 

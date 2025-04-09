@@ -32,7 +32,7 @@ export const BudgetsReducer: ActionReducer<Readonly<BudgetsState>, Action> = cre
       draft.data = budgets;
     }
   )),
-  on(BudgetsActions.deleteBudget, (_state, {category}) => produce(
+  on(BudgetsActions.budgetDeleted, (_state, {category}) => produce(
     _state, draft => {
       const budget: Budget | undefined = _state.data.find(budget => budget.category === category);
 

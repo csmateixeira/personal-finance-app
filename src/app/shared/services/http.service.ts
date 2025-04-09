@@ -24,6 +24,10 @@ export class HttpService {
         return this.extractData(this.http.put<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`, body));
     }
 
+    doDelete<T>(uri: string): Observable<T> {
+        return this.extractData(this.http.delete<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`));
+    }
+
     private extractData<T>(httpResponse: Observable<ApiResponse<T>>): Observable<T> {
         return httpResponse.pipe(
             map((response: ApiResponse<T>) => response.data as T),

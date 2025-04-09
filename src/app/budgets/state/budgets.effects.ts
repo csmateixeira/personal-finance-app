@@ -118,4 +118,30 @@ export class BudgetsEffects {
       )
     })
   ));
+
+  deleteBudget$ = createEffect(() => this.actions$.pipe(
+    ofType(BudgetsActions.deleteBudget),
+    withLatestFrom(
+      this.store.select(selectBudgetsData),
+    ),
+    exhaustMap(([{category}, budgets]) => {
+      const budget: Budget | undefined = budgets.find((b: Budget) => b.category === category);
+
+      if (!budget || !budget.id) {
+        console.error(`No matching budget found for category: ${category}`);
+        return EMPTY;
+      }
+
+      return this.budgetsService.deleteBudget(budget.id).pipe(
+        map(() => ({
+          type: BudgetsActions.budgetDeleted.type,
+          category
+        })),
+        catchError((error) => {
+          console.error('Error editing budget', error);
+          return EMPTY;
+        })
+      )
+    })
+  ))
 }
