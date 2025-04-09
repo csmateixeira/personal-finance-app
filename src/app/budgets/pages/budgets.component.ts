@@ -34,8 +34,8 @@ export class BudgetsComponent implements OnInit {
   showDialog: boolean = false;
 
   ngOnInit(): void {
-    this.store.dispatch(() => SidebarActions.changePage({page: Page.budgets}));
-    this.store.dispatch(() => BudgetsActions.updateBudgetSpendings());
+    this.store.dispatch(SidebarActions.changePage({page: Page.budgets}));
+    this.store.dispatch(BudgetsActions.updateBudgetSpendings());
   }
 
   closeDialog() {
