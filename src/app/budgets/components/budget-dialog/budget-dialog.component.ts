@@ -8,7 +8,6 @@ import {selectTransactionsCategories} from '../../../transactions/state/transact
 import {SelectComponent} from '../../../shared/components/select/select.component';
 import {selectBudgetsData, selectBudgetsThemes} from '../../state/budgets.state';
 import {BudgetsActions} from '../../state/budgets.actions';
-import {v4 as uuidv4} from 'uuid';
 import {BudgetDialogUtils} from './budget-dialog.utils';
 import {BudgetsUtils} from '../../budgets.utils';
 import {Utils} from '../../../shared/utils/utils';
@@ -160,7 +159,6 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
     private sendAddAction() {
         this.store.dispatch(BudgetsActions.addBudget({
             newBudget: {
-                id: uuidv4(),
                 category: this.budgetForm.controls.category.value!,
                 maximum: this.budgetForm.controls.maximum.value!,
                 theme: this.budgetForm.controls.theme.value!

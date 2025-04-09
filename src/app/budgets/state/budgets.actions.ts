@@ -14,6 +14,7 @@ export const BudgetsActions = createActionGroup(
             'Delete Budget': props<{ category: string }>(),
             'Edit Budget': props<{ newBudget: Budget }>(),
             'Add Budget': props<{ newBudget: Budget }>(),
+            'Budget Added': props<{ newBudget: Budget }>(),
         }
     }
 );

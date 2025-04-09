@@ -5,7 +5,7 @@ import {BudgetsActions} from './budgets.actions';
 import {catchError, EMPTY, exhaustMap, map, withLatestFrom} from 'rxjs';
 import {v4 as uuidv4} from 'uuid';
 import {Store} from '@ngrx/store';
-import {selectBudgetsData} from './budgets.state';
+import {selectBudgetsData, selectBudgetsThemes} from './budgets.state';
 import {TransactionsUtils} from '../../transactions/transactions.utils';
 import {selectTransactionsData} from '../../transactions/state/transactions.state';
 import {Utils} from '../../shared/utils/utils';
@@ -36,7 +36,7 @@ export class BudgetsEffects {
   ));
 
   updateBudgetSpendings$ = createEffect(() => this.actions$.pipe(
-    ofType(BudgetsActions.updateBudgetSpendings, BudgetsActions.addBudget),
+    ofType(BudgetsActions.updateBudgetSpendings, BudgetsActions.budgetAdded),
     withLatestFrom(
       this.store.select(selectBudgetsData),
       this.store.select(selectTransactionsData)
@@ -62,6 +62,30 @@ export class BudgetsEffects {
           };
         })
       }]
+    })
+  ));
+
+  addBudget$ = createEffect(() => this.actions$.pipe(
+    ofType(BudgetsActions.addBudget),
+    withLatestFrom(
+      this.store.select(selectBudgetsThemes),
+    ),
+    exhaustMap(([{newBudget}, themes]) => {
+      const themeIndex: number = themes.findIndex(theme => theme.name === newBudget.theme);
+
+      return this.budgetsService.addBudget({
+        ...newBudget,
+        theme: themes[themeIndex].color,
+      }).pipe(
+        map((budget: Budget) => ({
+          type: BudgetsActions.budgetAdded.type,
+          newBudget: budget
+        })),
+        catchError((error) => {
+          console.error('Error adding new budget', error);
+          return EMPTY;
+        })
+      )
     })
   ));
 }

@@ -10,9 +10,11 @@ import {cold, hot} from 'jasmine-marbles';
 import {BudgetsActions} from './budgets.actions';
 import {TransactionsUtils} from '../../transactions/transactions.utils';
 import {selectTransactionsData} from '../../transactions/state/transactions.state';
-import {selectBudgetsData} from './budgets.state';
+import {selectBudgetsData, selectBudgetsThemes} from './budgets.state';
 import {Spending} from "../models/spending.model";
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {Budget} from '../models/budget.model';
+import {Colors} from '../../shared/models/colors.model';
 
 describe('BudgetsEffects', () => {
   let actions$: Observable<Action>;
@@ -109,6 +111,99 @@ describe('BudgetsEffects', () => {
       });
 
       expect(effects.updateBudgetSpendings$).toBeObservable(expected);
+    });
+
+    it('should return success action to update budget spendings when budget is added', () => {
+      const newBudget: Budget = {
+        "category": "Entertainment",
+        "maximum": 100.00,
+        "theme": "#BE6C49"
+      };
+
+      actions$ = hot('a', {
+        a: BudgetsActions.budgetAdded({newBudget})
+      });
+
+      const expectedSpendings: Spending[] = [
+        {
+          category: BudgetsTestsUtils.getBudgets()[0].category,
+          amount: 20
+        },
+        {
+          category: BudgetsTestsUtils.getBudgets()[1].category,
+          amount: 200
+        }
+      ];
+
+      spyOn(TransactionsUtils, 'getSpendingsForMonth').and.returnValue(expectedSpendings);
+
+      const expected = cold('a', {
+        a: {
+          type: BudgetsActions.budgetSpendingsUpdated.type,
+          budgets: [
+            {
+              ...BudgetsTestsUtils.getBudgets()[0],
+              spent: 20,
+              percent: 0.4,
+              remaining: 30
+            },
+            {
+              ...BudgetsTestsUtils.getBudgets()[1],
+              spent: 200,
+              percent: 0.27,
+              remaining: 550
+            }
+          ]
+        }
+      });
+
+      expect(effects.updateBudgetSpendings$).toBeObservable(expected);
+    });
+  });
+
+  describe('addBudget$', () => {
+    beforeEach(() => {
+      store = createMockStore({
+        initialState: {},
+        selectors: [
+          {
+            selector: selectBudgetsThemes, value: BudgetsTestsUtils.getBudgetsThemes()
+          }
+        ]
+      });
+    });
+
+    it('should call service to add the budget and dispatch added action', () => {
+      const newBudget: Budget = {
+        "category": "Entertainment",
+        "maximum": 100.00,
+        "theme": "Green"
+      };
+
+      spyOn(service, 'addBudget').and.returnValue(of({
+        ...newBudget,
+        theme: Colors.green
+      }));
+
+      actions$ = hot('a', {
+        a: BudgetsActions.addBudget({newBudget})
+      });
+
+      const expected = cold('a', {
+        a: {
+          type: BudgetsActions.budgetAdded.type,
+          newBudget: {
+            ...newBudget,
+            theme: Colors.green
+          }
+        }
+      });
+
+      expect(effects.addBudget$).toBeObservable(expected);
+      expect(service.addBudget).toHaveBeenCalledWith({
+        ...newBudget,
+        theme: Colors.green
+      });
     });
   });
 });

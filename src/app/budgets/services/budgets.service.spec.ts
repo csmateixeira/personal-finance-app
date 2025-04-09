@@ -5,6 +5,7 @@ import {HttpService} from '../../shared/services/http.service';
 import {of} from 'rxjs';
 import {BudgetsTestsUtils} from '../../shared/utils/test-utils';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {Budget} from '../models/budget.model';
 
 describe('BudgetsService', () => {
   let service: BudgetsService;
@@ -28,6 +29,15 @@ describe('BudgetsService', () => {
 
     expect(service.getAllBudgets()).toBeObservable(cold('(a|)', {
       a: BudgetsTestsUtils.getBudgets()
+    }));
+  });
+
+  it('should add a budget', () => {
+    const budget: Budget = BudgetsTestsUtils.getBudgets()[0];
+    spyOn(httpService, 'doPost').and.returnValue(of(budget));
+
+    expect(service.addBudget(budget)).toBeObservable(cold('(a|)', {
+      a: budget
     }));
   });
 });
