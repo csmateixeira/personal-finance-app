@@ -15,6 +15,6 @@ export class BillsComponent implements OnInit {
   private store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   ngOnInit(): void {
-    this.store.dispatch(() => SidebarActions.changePage({page: Page.bills}));
+    this.store.dispatch(SidebarActions.changePage({page: Page.bills}));
   }
 }

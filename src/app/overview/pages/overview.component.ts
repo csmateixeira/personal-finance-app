@@ -15,6 +15,6 @@ export class OverviewComponent implements OnInit {
   private store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   ngOnInit(): void {
-    this.store.dispatch(() => SidebarActions.changePage({page: Page.overview}));
+    this.store.dispatch(SidebarActions.changePage({page: Page.overview}));
   }
 }
