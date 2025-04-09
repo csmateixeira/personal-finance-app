@@ -138,7 +138,7 @@ export class BudgetsEffects {
           category
         })),
         catchError((error) => {
-          console.error('Error editing budget', error);
+          console.error('Error deleting budget', error);
           return EMPTY;
         })
       )
