@@ -16,15 +16,10 @@ export class HttpService {
     return this.http.get<ApiResponse<T>>(`${this.baseApiUrl}/${uri}`)
       .pipe(
         map((response: ApiResponse<T>) => response.data as T),
-        catchError(() => EMPTY),
-      );
-  }
-
-  doGetAll<T>(uri: string): Observable<T[]> {
-    return this.http.get<ApiResponse<T[]>>(`${this.baseApiUrl}/${uri}`)
-      .pipe(
-        map((response: ApiResponse<T[]>) => response.data as T[]),
-        catchError(() => EMPTY),
+        catchError((error) => {
+          console.log('Error in GET request:', error);
+            return EMPTY;
+        }),
       );
   }
 }
