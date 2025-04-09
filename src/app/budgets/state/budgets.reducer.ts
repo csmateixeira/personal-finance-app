@@ -44,14 +44,11 @@ export const BudgetsReducer: ActionReducer<Readonly<BudgetsState>, Action> = cre
       }
     }
   )),
-  on(BudgetsActions.addBudget, (_state, {newBudget}) => produce(
+  on(BudgetsActions.budgetAdded, (_state, {newBudget}) => produce(
     _state, draft => {
-      const themeIndex: number = _state.themes.findIndex(theme => theme.name === newBudget.theme);
+      const themeIndex: number = _state.themes.findIndex(theme => theme.color === newBudget.theme);
 
-      draft.data.push({
-        ...newBudget,
-        theme: _state.themes[themeIndex].color
-      });
+      draft.data.push(newBudget);
       draft.themes[themeIndex].isUsed = true;
     }
   )),

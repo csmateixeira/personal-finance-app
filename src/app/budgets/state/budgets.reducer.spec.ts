@@ -59,12 +59,11 @@ describe('BudgetsReducer', () => {
 
   it('should add a new budget', () => {
     const newBudget: Budget = {
-      id: '789',
       "category": "Entertainment",
       "maximum": 100.00,
-      "theme": "Orange"
+      "theme": "#BE6C49"
     };
-    const action = BudgetsActions.addBudget({newBudget});
+    const action = BudgetsActions.budgetAdded({newBudget});
 
     const state: Readonly<BudgetsState> = {
       data: BudgetsTestsUtils.getBudgets(),

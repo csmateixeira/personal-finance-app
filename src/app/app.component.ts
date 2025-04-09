@@ -17,7 +17,6 @@ import {OverviewActions} from './overview/state/overview.actions';
 export class AppComponent implements OnInit {
   private store: Store = inject(Store<{ sidebar: SidebarState }>);
 
-
   ngOnInit() {
     this.store.dispatch(BudgetsActions.loadBudgets());
     this.store.dispatch(TransactionsActions.loadTransactions());

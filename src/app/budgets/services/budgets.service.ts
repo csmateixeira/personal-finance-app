@@ -13,4 +13,8 @@ export class BudgetsService {
   getAllBudgets(): Observable<Budget[]> {
     return this.httpService.doGet<Budget[]>('budgets');
   }
+
+  addBudget(budget: Budget): Observable<Budget> {
+    return this.httpService.doPost<Budget>('budgets', budget);
+  }
 }
