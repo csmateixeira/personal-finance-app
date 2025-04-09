@@ -2,13 +2,13 @@
   "name": "personal-finance-app",
   "version": "1.0.0",
   "scripts": {
-    "ng": "node -r dotenv/config ./node_modules/.bin/ng",
-    "start": "node -r dotenv/config ./node_modules/.bin/ng serve",
-    "build": "node -r dotenv/config ./node_modules/.bin/ng build",
-    "watch": "node -r dotenv/config ./node_modules/.bin/ng build --watch --configuration development",
-    "test": "node -r dotenv/config ./node_modules/.bin/ng test",
-    "test:ci": "node -r dotenv/config ./node_modules/.bin/ng test --watch=false --browsers=ChromeHeadlessCustom",
-    "build:ci": "node -r dotenv/config ./node_modules/.bin/ng build --prod"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "build:ci": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +24,6 @@
     "@ngrx/store": "19.0.0",
     "@ngrx/store-devtools": "19.0.0",
     "@primeng/themes": "19.0.2",
-    "dotenv": "^16.4.7",
     "highcharts": "12.1.2",
     "highcharts-angular": "4.0.1",
     "immer": "10.1.1",
@@ -39,9 +38,7 @@
     "@angular-devkit/build-angular": "19.0.6",
     "@angular/cli": "19.0.6",
     "@angular/compiler-cli": "19.0.5",
-    "@ngx-env/builder": "^19.0.4",
     "@types/jasmine": "5.1.5",
-    "@types/node": "^22.14.0",
     "autoprefixer": "10.4.20",
     "jasmine-core": "5.4.0",
     "jasmine-marbles": "0.9.2",
