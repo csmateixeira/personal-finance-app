@@ -27,7 +27,7 @@ import {Sort} from '../../../shared/models/sort.model';
   styleUrl: './transactions-filters.component.scss'
 })
 export class TransactionsFiltersComponent {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
   protected readonly Sort = Sort;
 
   categories$: Observable<Option[]> = this.store.select(selectTransactionsCategories);
