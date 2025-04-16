@@ -8,6 +8,7 @@ import {provideMockActions} from '@ngrx/effects/testing';
 import {PotsActions} from './pots.actions';
 import {cold, hot} from 'jasmine-marbles';
 import {PotsTestsUtils} from '../../shared/utils/test-utils';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('PotsEffects', () => {
   let actions$: Observable<Action>;
@@ -19,7 +20,9 @@ describe('PotsEffects', () => {
       providers: [
         PotsEffects,
         provideMockActions(() => actions$),
-        provideMockStore()
+        provideMockStore(),
+        HttpClient,
+        HttpHandler
       ],
     });
 

@@ -30,6 +30,7 @@ describe('BudgetsService', () => {
     expect(service.getAllBudgets()).toBeObservable(cold('(a|)', {
       a: BudgetsTestsUtils.getBudgets()
     }));
+    expect(httpService.doGet).toHaveBeenCalledWith('budgets');
   });
 
   it('should add a budget', () => {
@@ -39,6 +40,7 @@ describe('BudgetsService', () => {
     expect(service.addBudget(budget)).toBeObservable(cold('(a|)', {
       a: budget
     }));
+    expect(httpService.doPost).toHaveBeenCalledWith('budgets', budget);
   });
 
   it('should update a budget', () => {
