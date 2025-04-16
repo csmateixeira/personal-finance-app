@@ -19,7 +19,7 @@ import {Pot} from '../models/pot.model';
   styleUrl: './pots.component.scss'
 })
 export class PotsComponent implements OnInit {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   pots$: Observable<Pot[]> = this.store.select(selectPotsData);
 

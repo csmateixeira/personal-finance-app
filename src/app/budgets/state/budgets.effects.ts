@@ -15,9 +15,9 @@ import {Spending} from '../models/spending.model';
 
 @Injectable()
 export class BudgetsEffects {
-  private actions$: Actions<any> = inject(Actions);
-  private budgetsService: BudgetsService = inject(BudgetsService);
-  private store: Store<any> = inject(Store);
+  private readonly actions$: Actions<any> = inject(Actions);
+  private readonly budgetsService: BudgetsService = inject(BudgetsService);
+  private readonly store: Store<any> = inject(Store);
 
   loadBudgets$ = createEffect(() => this.actions$.pipe(
     ofType(BudgetsActions.loadBudgets),
@@ -127,7 +127,7 @@ export class BudgetsEffects {
     exhaustMap(([{category}, budgets]) => {
       const budget: Budget | undefined = budgets.find((b: Budget) => b.category === category);
 
-      if (!budget || !budget.id) {
+      if (!budget?.id) {
         console.error(`No matching budget found for category: ${category}`);
         return EMPTY;
       }

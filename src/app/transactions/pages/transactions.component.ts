@@ -18,7 +18,7 @@ import {Page} from "../../shared/models/page.model";
   styleUrl: './transactions.component.scss'
 })
 export class TransactionsComponent implements OnInit {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   ngOnInit(): void {
     this.store.dispatch(SidebarActions.changePage({page: Page.transactions}));

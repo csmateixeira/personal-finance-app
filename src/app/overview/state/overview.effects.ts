@@ -8,8 +8,8 @@ import {Balance} from '../models/balance.model';
 
 @Injectable()
 export class OverviewEffects {
-  private actions$: Actions<any> = inject(Actions);
-  private overviewService: OverviewService = inject(OverviewService);
+  private readonly actions$: Actions<any> = inject(Actions);
+  private readonly overviewService: OverviewService = inject(OverviewService);
 
   loadBalances$ = createEffect(() => this.actions$.pipe(
     ofType(OverviewActions.loadOverviewBalances),

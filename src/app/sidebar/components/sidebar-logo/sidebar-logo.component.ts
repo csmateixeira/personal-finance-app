@@ -14,7 +14,7 @@ import {Store} from '@ngrx/store';
   styleUrl: './sidebar-logo.component.scss'
 })
 export class SidebarLogoComponent {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   expanded$: Observable<boolean> = this.store.select(selectSidebarExpanded);
 }

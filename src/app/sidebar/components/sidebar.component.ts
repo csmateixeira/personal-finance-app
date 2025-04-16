@@ -22,7 +22,7 @@ import {Page} from "../../shared/models/page.model";
 })
 export class SidebarComponent {
   protected readonly Page = Page;
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   expanded$: Observable<boolean> = this.store.select(selectSidebarExpanded);
 }

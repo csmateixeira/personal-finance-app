@@ -22,8 +22,8 @@ import {Transaction} from "../../../../transactions/models/transaction.model";
   styleUrl: './budgets-card-latest.component.scss'
 })
 export class BudgetsCardLatestComponent {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
-  private router: Router = inject(Router);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly router: Router = inject(Router);
 
   @Input() category!: string;
 

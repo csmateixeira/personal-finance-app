@@ -26,7 +26,7 @@ import {BudgetsActions} from '../state/budgets.actions';
   styleUrl: './budgets.component.scss'
 })
 export class BudgetsComponent implements OnInit {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
   protected readonly BudgetAction = BudgetAction;
 
   budgets$: Observable<Budget[]> = this.store.select(selectBudgetsData);

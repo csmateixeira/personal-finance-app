@@ -12,7 +12,7 @@ import {Page} from "../../shared/models/page.model";
   styleUrl: './bills.component.scss'
 })
 export class BillsComponent implements OnInit {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   ngOnInit(): void {
     this.store.dispatch(SidebarActions.changePage({page: Page.bills}));

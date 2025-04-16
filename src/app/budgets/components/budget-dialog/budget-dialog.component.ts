@@ -29,8 +29,8 @@ import {BudgetAction} from '../../../shared/models/action.model';
     styleUrl: './budget-dialog.component.scss'
 })
 export class BudgetDialogComponent implements OnInit, OnDestroy {
-    private formBuilder: FormBuilder = inject(FormBuilder);
-    private store: Store = inject(Store);
+    private readonly formBuilder: FormBuilder = inject(FormBuilder);
+    private readonly store: Store = inject(Store);
     protected readonly BudgetAction = BudgetAction;
 
     @Input() action!: BudgetAction;
@@ -68,7 +68,7 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
         theme: this.formBuilder.control<string | null>(null, Validators.required)
     });
 
-    private subs: Subscription[] = []
+    private readonly subs: Subscription[] = []
 
     ngOnInit() {
         this.updateFilteredCategories();

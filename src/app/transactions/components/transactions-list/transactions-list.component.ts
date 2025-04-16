@@ -23,7 +23,7 @@ import {Transaction} from "../../models/transaction.model";
   styleUrl: './transactions-list.component.scss'
 })
 export class TransactionsListComponent {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   transactions$: Observable<Transaction[]> = this.store.select(selectTransactionsFilteredData);
   page$: Observable<number> = this.store.select(selectTransactionsPage);
