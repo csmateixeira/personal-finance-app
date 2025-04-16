@@ -1,4 +1,5 @@
 ![github](https://github.com/csmateixeira/personal-finance-app/actions/workflows/main.yml/badge.svg)
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/personal-finance-app-nine-omega)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=csmateixeira_personal-finance-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=csmateixeira_personal-finance-app)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=csmateixeira_personal-finance-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=csmateixeira_personal-finance-app)
 
