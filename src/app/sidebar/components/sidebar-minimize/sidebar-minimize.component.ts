@@ -14,7 +14,7 @@ import {SidebarActions} from '../../state/sidebar.actions';
   styleUrl: './sidebar-minimize.component.scss'
 })
 export class SidebarMinimizeComponent {
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   expanded$: Observable<boolean> = this.store.select(selectSidebarExpanded);
 

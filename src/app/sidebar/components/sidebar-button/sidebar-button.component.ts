@@ -22,7 +22,7 @@ export class SidebarButtonComponent {
   @Input({required: true}) text!: string;
 
   protected readonly Page = Page;
-  private store: Store = inject(Store<{ sidebar: SidebarState }>);
+  private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
 
   expanded$: Observable<boolean> = this.store.select(selectSidebarExpanded);
   active$: Observable<boolean> = this.store.select(selectActivePage)

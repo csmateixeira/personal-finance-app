@@ -24,7 +24,7 @@ import {Series} from '../../../shared/models/series.model';
   styleUrl: './budgets-summary.component.scss'
 })
 export class BudgetsSummaryComponent {
-  private store: Store = inject(Store<{ budgets: BudgetsState }>);
+  private readonly store: Store = inject(Store<{ budgets: BudgetsState }>);
 
   budgets$: Observable<Budget[]> = this.store.select(selectBudgetsData);
   series$: Observable<Series> = this.buildSeries();
@@ -34,7 +34,7 @@ export class BudgetsSummaryComponent {
   buildSeries(): Observable<Series> {
     return this.budgets$.pipe(
       map((budgets: Budget[]) => {
-        const data: number[] = budgets.map((budget: Budget) => budget.spent || 0);
+        const data: number[] = budgets.map((budget: Budget) => budget.spent ?? 0);
 
         return {
           data,

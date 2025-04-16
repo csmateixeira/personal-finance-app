@@ -1,3 +1,7 @@
+![github](https://github.com/csmateixeira/personal-finance-app/actions/workflows/main.yml/badge.svg)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=csmateixeira_personal-finance-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=csmateixeira_personal-finance-app)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=csmateixeira_personal-finance-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=csmateixeira_personal-finance-app)
+
 # Frontend Mentor - Personal finance app solution
 
 This is a solution to the [Personal finance app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/personal-finance-app-JfjtZgyMt1). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 

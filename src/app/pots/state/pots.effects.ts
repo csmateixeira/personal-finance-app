@@ -9,8 +9,8 @@ import {Pot} from "../models/pot.model";
 
 @Injectable()
 export class PotsEffects {
-  private actions$: Actions<any> = inject(Actions);
-  private potsService: PotsService = inject(PotsService);
+  private readonly actions$: Actions<any> = inject(Actions);
+  private readonly potsService: PotsService = inject(PotsService);
 
   loadPots$ = createEffect(() => this.actions$.pipe(
     ofType(PotsActions.loadPots),

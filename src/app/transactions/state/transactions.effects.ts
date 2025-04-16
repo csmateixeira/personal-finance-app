@@ -13,9 +13,9 @@ import {Transaction} from '../models/transaction.model';
 
 @Injectable()
 export class TransactionsEffects {
-  private actions$: Actions<any> = inject(Actions);
-  private store: Store<any> = inject(Store);
-  private transactionsService = inject(TransactionsService);
+  private readonly actions$: Actions<any> = inject(Actions);
+  private readonly store: Store<any> = inject(Store);
+  private readonly transactionsService = inject(TransactionsService);
 
   loadTransactions$ = createEffect(() => this.actions$.pipe(
       ofType(TransactionsActions.loadTransactions),
