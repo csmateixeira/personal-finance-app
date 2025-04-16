@@ -1,0 +1,15 @@
+.card-title-container {
+  @apply flex flex-row justify-between;
+}
+
+.card-title {
+  @apply flex flex-row space-x-4 items-center;
+}
+
+.card-title span {
+  @apply w-4 h-4 border rounded-full;
+}
+
+.card-title h2 {
+  @apply text-preset2 text-grey-900;
+}

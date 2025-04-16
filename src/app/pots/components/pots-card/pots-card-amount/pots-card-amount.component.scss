@@ -1,0 +1,40 @@
+
+.amount-container {
+  @apply flex flex-col space-y-4;
+}
+
+.total-container {
+  @apply flex flex-row justify-between items-center;
+}
+
+.total-container h3 {
+  @apply text-preset4 text-grey-500;
+}
+
+.total-container h1 {
+  @apply text-preset1 text-grey-900;
+}
+
+.progress-container {
+  @apply flex flex-col space-y-3;
+}
+
+.progress-bar {
+  @apply bg-beige-100 w-full flex flex-row items-start h-2 border rounded-md;
+}
+
+.progress-bar span {
+  @apply border-0 rounded-md h-full;
+}
+
+.target-container {
+  @apply flex flex-row justify-between;
+}
+
+.target-container h4 {
+  @apply text-preset5-bold text-grey-500;
+}
+
+.target-container h5 {
+  @apply text-preset5 text-grey-500;
+}

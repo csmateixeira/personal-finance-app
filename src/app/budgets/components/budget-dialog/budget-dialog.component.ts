@@ -8,7 +8,7 @@ import {selectTransactionsCategories} from '../../../transactions/state/transact
 import {SelectComponent} from '../../../shared/components/select/select.component';
 import {selectBudgetsData, selectBudgetsThemes} from '../../state/budgets.state';
 import {BudgetsActions} from '../../state/budgets.actions';
-import {BudgetDialogUtils} from './budget-dialog.utils';
+import {BudgetDialogUtils} from '../../budget-dialog.utils';
 import {BudgetsUtils} from '../../budgets.utils';
 import {Utils} from '../../../shared/utils/utils';
 import {Budget} from '../../models/budget.model';

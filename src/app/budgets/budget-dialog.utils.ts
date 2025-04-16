@@ -1,7 +1,7 @@
-import {Utils} from '../../../shared/utils/utils';
-import {Budget} from "../../models/budget.model";
-import {Option} from '../../../shared/models/option.model';
-import {BudgetAction} from '../../../shared/models/action.model';
+import {Utils} from '../shared/utils/utils';
+import {Budget} from "./models/budget.model";
+import {Option} from '../shared/models/option.model';
+import {BudgetAction} from '../shared/models/action.model';
 
 export class BudgetDialogUtils {
   static filterCategories(categories: Option[], budgets: Budget[], action: BudgetAction): Option[] {

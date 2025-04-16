@@ -1,13 +1,13 @@
 import {Component, Input} from '@angular/core';
-import {CurrencyPipe, NgStyle, PercentPipe} from '@angular/common';
 import {Pot} from "../../models/pot.model";
+import {PotsCardSummaryComponent} from './pots-card-summary/pots-card-summary.component';
+import {PotsCardAmountComponent} from './pots-card-amount/pots-card-amount.component';
 
 @Component({
   selector: 'app-pots-card',
   imports: [
-    NgStyle,
-    CurrencyPipe,
-    PercentPipe
+    PotsCardSummaryComponent,
+    PotsCardAmountComponent
   ],
   templateUrl: './pots-card.component.html',
   styleUrl: './pots-card.component.scss'

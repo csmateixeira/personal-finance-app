@@ -1,7 +1,7 @@
 import {BudgetDialogUtils} from './budget-dialog.utils';
-import {Budget} from "../../models/budget.model";
-import {Option} from '../../../shared/models/option.model';
-import {BudgetAction} from '../../../shared/models/action.model';
+import {Budget} from "./models/budget.model";
+import {Option} from '../shared/models/option.model';
+import {BudgetAction} from '../shared/models/action.model';
 
 describe('BudgetDialogUtils', () => {
   describe('filterCategories', () => {

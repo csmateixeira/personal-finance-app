@@ -1,0 +1,21 @@
+<div class="amount-container">
+
+  <div class="total-container">
+    <h3>Total Saved</h3>
+    <h1>{{pot.total | currency}}</h1>
+  </div>
+
+  <div class="progress-container">
+
+    <div class="progress-bar">
+      <span [ngStyle]="{'background-color': pot.theme, 'width': (pot.percent | percent)}"></span>
+    </div>
+
+    <div class="target-container">
+      <h4>{{pot.percent | percent: '1.1-1'}}</h4>
+      <h5>Target of {{pot.target | currency}}</h5>
+    </div>
+
+  </div>
+
+</div>
