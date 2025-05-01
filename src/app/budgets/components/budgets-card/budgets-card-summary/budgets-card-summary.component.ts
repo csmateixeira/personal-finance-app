@@ -4,7 +4,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 import {BudgetDialogComponent} from '../../budget-dialog/budget-dialog.component';
 
-import {BudgetAction} from "../../../../shared/models/action.model";
+import {DialogAction} from "../../../../shared/models/dialog-action.model";
 
 @Component({
   selector: 'app-budgets-card-summary',
@@ -19,7 +19,7 @@ import {BudgetAction} from "../../../../shared/models/action.model";
   styleUrl: './budgets-card-summary.component.scss'
 })
 export class BudgetsCardSummaryComponent {
-  protected readonly BudgetAction: typeof BudgetAction = BudgetAction;
+  protected readonly BudgetAction: typeof DialogAction = DialogAction;
 
   @Input() theme!: string;
   @Input() category!: string;

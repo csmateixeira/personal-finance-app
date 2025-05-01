@@ -3,4 +3,20 @@
     <span [ngStyle]="{'background-color': pot.theme}"></span>
     <h2>{{ pot.name }}</h2>
   </div>
+
+  <div class="dropdown-container">
+    <button (click)="toggleDropdown()">
+      <img ngSrc="icon-ellipsis.svg" height="4" width="14" alt="card menu">
+    </button>
+    <ul [ngStyle]="{ display: showDropdown ? 'flex' : 'none' }">
+      <li (click)="showEditDialog()" class="edit-item">Edit Pot</li>
+      <li (click)="showDeleteDialog()" class="delete-item">Delete Pot</li>
+    </ul>
+  </div>
 </div>
+
+<app-pots-dialog (actionEvent)="edit()"
+                 (closeDialogEvent)="closeEditDialog()"
+                 [name]="pot.name"
+                 [showDialog]="editDialog"
+                 [action]="DialogAction.edit"></app-pots-dialog>

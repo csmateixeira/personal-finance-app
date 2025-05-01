@@ -1,9 +1,10 @@
-export interface Pot {
+import {ThemedItem} from '../../shared/models/themed-item';
+
+export interface Pot extends ThemedItem {
   id?: string;
   name: string;
   target: number;
   total: number;
-  theme: string;
 
   percent?: number;
 }

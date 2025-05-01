@@ -1,0 +1,55 @@
+.modal-container {
+  @apply flex flex-col space-y-2 max-w-[560px] drop-shadow;
+}
+
+.modal {
+  @apply flex flex-col space-y-5 px-8 py-8 border rounded-xl bg-white;
+}
+
+.modal p {
+  @apply text-preset4 text-grey-500;
+}
+
+.modal-title {
+  @apply flex flex-row justify-between;
+}
+
+.modal-title h1 {
+  @apply text-preset1 text-grey-900;
+}
+
+.delete-button {
+  @apply px-4 py-4 bg-red border rounded-lg text-preset4-bold text-white text-center;
+}
+
+.cancel-button {
+  @apply outline-none border-none text-center text-preset4 text-grey-500;
+}
+
+.save-button {
+  @apply px-4 py-4 bg-grey-900 border rounded-lg text-preset4-bold text-white text-center;
+}
+
+.add-edit-container {
+  @apply flex flex-col space-y-4;
+}
+
+.add-edit-container form {
+  @apply flex flex-col space-y-1;
+}
+
+.add-edit-container label {
+  @apply text-preset5-bold text-grey-500;
+}
+
+.add-edit-text {
+  @apply flex flex-row space-x-4 px-5 py-3 border rounded-lg justify-start place-items-baseline;
+}
+
+.add-edit-text p {
+  @apply text-preset4 text-beige-500;
+}
+
+.add-edit-text input {
+  @apply w-full outline-none placeholder:text-preset4 placeholder:text-beige-500;
+}

@@ -1,9 +1,9 @@
-import {BudgetDialogUtils} from './budget-dialog.utils';
-import {Budget} from "./models/budget.model";
-import {Option} from '../shared/models/option.model';
-import {BudgetAction} from '../shared/models/action.model';
+import {DialogUtils} from './dialog.utils';
+import {Budget} from "../../budgets/models/budget.model";
+import {Option} from '../models/option.model';
+import {DialogAction} from '../models/dialog-action.model';
 
-describe('BudgetDialogUtils', () => {
+describe('DialogUtils', () => {
   describe('filterCategories', () => {
     it('should return all categories if action is edit', () => {
       const categories: Option[] = [
@@ -11,9 +11,9 @@ describe('BudgetDialogUtils', () => {
         {id: 2, value: 'Transport'}
       ];
       const budgets: Budget[] = [];
-      const action = BudgetAction.edit;
+      const action = DialogAction.edit;
 
-      const result = BudgetDialogUtils.filterCategories(categories, budgets, action);
+      const result = DialogUtils.filterCategories(categories, budgets, action);
 
       expect(result).toEqual(categories);
     });
@@ -28,7 +28,7 @@ describe('BudgetDialogUtils', () => {
         {category: 'Food', maximum: 100, theme: "red"}
       ];
 
-      expect(BudgetDialogUtils.filterCategories(categories, budgets, BudgetAction.add))
+      expect(DialogUtils.filterCategories(categories, budgets, DialogAction.add))
         .toEqual([{id: 2, value: 'Entertainment'}]);
     });
   });
@@ -41,7 +41,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const selectedBudget: Budget = {category: 'Food', maximum: 100, theme: 'red'};
 
-      expect(BudgetDialogUtils.getSelectedTheme(BudgetAction.edit, themes, selectedBudget)).toBe(2);
+      expect(DialogUtils.getSelectedTheme(DialogAction.edit, themes, selectedBudget)).toBe(2);
     });
 
     it('should return the id of the first theme if action is not edit', () => {
@@ -51,7 +51,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const selectedBudget: Budget = {category: 'Food', maximum: 100, theme: 'red'};
 
-      expect(BudgetDialogUtils.getSelectedTheme(BudgetAction.add, themes, selectedBudget)).toBe(1);
+      expect(DialogUtils.getSelectedTheme(DialogAction.add, themes, selectedBudget)).toBe(1);
     });
   });
 
@@ -63,7 +63,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const category = 'Transport';
 
-      expect(BudgetDialogUtils.getSelectedCategory(BudgetAction.edit, categories, category)).toBe(2);
+      expect(DialogUtils.getSelectedCategory(DialogAction.edit, categories, category)).toBe(2);
     });
 
     it('should return the id of the first category if action is not edit', () => {
@@ -73,7 +73,7 @@ describe('BudgetDialogUtils', () => {
       ];
       const category = 'Transport';
 
-      expect(BudgetDialogUtils.getSelectedCategory(BudgetAction.add, categories, category)).toBe(1);
+      expect(DialogUtils.getSelectedCategory(DialogAction.add, categories, category)).toBe(1);
     });
   });
 });

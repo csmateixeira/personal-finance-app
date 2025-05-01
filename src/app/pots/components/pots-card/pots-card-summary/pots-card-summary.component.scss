@@ -13,3 +13,27 @@
 .card-title h2 {
   @apply text-preset2 text-grey-900;
 }
+
+.dropdown-container {
+  @apply flex relative;
+}
+
+.dropdown-container button {
+  @apply items-end;
+}
+
+.dropdown-container ul {
+  @apply shadow-md absolute top-8 right-0 text-nowrap bg-white flex flex-col space-y-3 px-5 py-3 border rounded-lg;
+}
+
+.dropdown-container ul > li {
+  @apply text-preset4 cursor-pointer;
+}
+
+.edit-item {
+  @apply text-grey-900 border-b pb-3;
+}
+
+.delete-item {
+  @apply text-red;
+}

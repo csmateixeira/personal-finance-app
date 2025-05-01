@@ -8,13 +8,13 @@ import {selectTransactionsCategories} from '../../../transactions/state/transact
 import {SelectComponent} from '../../../shared/components/select/select.component';
 import {selectBudgetsData, selectBudgetsThemes} from '../../state/budgets.state';
 import {BudgetsActions} from '../../state/budgets.actions';
-import {BudgetDialogUtils} from '../../budget-dialog.utils';
+import {DialogUtils} from '../../../shared/utils/dialog.utils';
 import {BudgetsUtils} from '../../budgets.utils';
 import {Utils} from '../../../shared/utils/utils';
 import {Budget} from '../../models/budget.model';
 import {Theme} from '../../../shared/models/theme.model';
 import {Option} from '../../../shared/models/option.model';
-import {BudgetAction} from '../../../shared/models/action.model';
+import {DialogAction} from '../../../shared/models/dialog-action.model';
 
 @Component({
     selector: 'app-budget-dialog',
@@ -31,9 +31,9 @@ import {BudgetAction} from '../../../shared/models/action.model';
 export class BudgetDialogComponent implements OnInit, OnDestroy {
     private readonly formBuilder: FormBuilder = inject(FormBuilder);
     private readonly store: Store = inject(Store);
-    protected readonly BudgetAction = BudgetAction;
+    protected readonly DialogAction = DialogAction;
 
-    @Input() action!: BudgetAction;
+    @Input() action!: DialogAction;
     @Input() showDialog!: boolean;
 
     @Input() category!: string;
@@ -74,18 +74,18 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
         this.updateFilteredCategories();
 
         switch (this.action) {
-            case BudgetAction.delete:
+            case DialogAction.delete:
                 this.updateDetails(`Delete ${this.category}?`,
                     'Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever.',
                     'Yes, Confirm Deletion');
                 break;
-            case BudgetAction.edit:
+            case DialogAction.edit:
                 this.updateDetails('Edit Budget',
                     'As your budgets change, feel free to update your spending limits.',
                     'Save Changes');
                 this.initForm();
                 break;
-            case BudgetAction.add:
+            case DialogAction.add:
                 this.updateDetails('Add New Budget',
                     'Choose a category to set a spending budget. These categories can help you monitor spending.',
                     'Add Budget');
@@ -103,15 +103,15 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
 
     submit() {
         switch (this.action) {
-            case BudgetAction.delete:
+            case DialogAction.delete:
                 this.store.dispatch(BudgetsActions.deleteBudget({category: this.category}));
                 break;
-            case BudgetAction.edit:
+            case DialogAction.edit:
                 if (!this.formHasValues()) {
                     this.sendEditAction();
                 }
                 break;
-            case BudgetAction.add:
+            case DialogAction.add:
                 if (this.formHasValues()) {
                     this.sendAddAction();
                 }
@@ -147,11 +147,11 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
         );
 
         this.selectedTheme$ = combineLatest([this.themes$, this.selectedBudget$]).pipe(
-            map(([themes, selectedBudget]: [Option[], Budget]): number => BudgetDialogUtils.getSelectedTheme(this.action, themes, selectedBudget))
+            map(([themes, selectedBudget]: [Option[], Budget]): number => DialogUtils.getSelectedTheme(this.action, themes, selectedBudget))
         );
 
         this.selectedCategory$ = this.categories$.pipe(
-            map((categories: Option[]): number => BudgetDialogUtils.getSelectedCategory(this.action, categories, this.category))
+            map((categories: Option[]): number => DialogUtils.getSelectedCategory(this.action, categories, this.category))
         );
 
     }
@@ -178,7 +178,7 @@ export class BudgetDialogComponent implements OnInit, OnDestroy {
 
     private updateFilteredCategories() {
         this.filteredCategories$ = combineLatest([this.categories$, this.budgets$]).pipe(
-            map(([categories, budgets]): Option[] => BudgetDialogUtils.filterCategories(categories, budgets, this.action))
+            map(([categories, budgets]): Option[] => DialogUtils.filterCategories(categories, budgets, this.action))
         );
     }
 

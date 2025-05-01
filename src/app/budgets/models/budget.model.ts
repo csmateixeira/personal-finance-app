@@ -1,8 +1,9 @@
-export interface Budget {
+import {ThemedItem} from '../../shared/models/themed-item';
+import {CategorisedItem} from '../../shared/models/categorised-item';
+
+export interface Budget extends ThemedItem, CategorisedItem {
   id?: string;
-  category: string;
   maximum: number;
-  theme: string;
 
   spent?: number;
   percent?: number;

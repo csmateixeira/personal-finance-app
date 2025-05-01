@@ -10,7 +10,7 @@ import {AsyncPipe} from '@angular/common';
 import {BudgetDialogComponent} from '../components/budget-dialog/budget-dialog.component';
 
 import {Budget} from '../models/budget.model';
-import {BudgetAction} from '../../shared/models/action.model';
+import {DialogAction} from '../../shared/models/dialog-action.model';
 import {Page} from '../../shared/models/page.model';
 import {BudgetsActions} from '../state/budgets.actions';
 
@@ -27,7 +27,7 @@ import {BudgetsActions} from '../state/budgets.actions';
 })
 export class BudgetsComponent implements OnInit {
   private readonly store: Store = inject(Store<{ sidebar: SidebarState }>);
-  protected readonly BudgetAction = BudgetAction;
+  protected readonly BudgetAction = DialogAction;
 
   budgets$: Observable<Budget[]> = this.store.select(selectBudgetsData);
 
